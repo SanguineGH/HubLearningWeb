@@ -1,0 +1,74 @@
+﻿body {
+    background-image: url('/Images/novahigh.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+    
+.lorembigdiv {
+    display: flex;
+    align-content: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    margin-left: 100px;
+
+}
+
+
+.left {
+    flex: 1;
+    background-color: rgba(1, 1, 1, 0.2);
+    color: white;
+    padding:10px;
+}
+
+.right {
+    flex: 1;
+    margin-left: 70px;
+    width: 300px;
+    height: 300px;
+    border-radius: 160px;
+}
+
+.row {
+    margin-top: 200px;
+    text-align: center;
+    background-color: rgba(1, 1, 1, 0.2);
+ 
+}
+
+.col {
+}
+
+.ImageStrand {
+    border-radius: 85%;
+    width: 45%;
+    background-color: rgba(1, 1, 1, 0.3);
+}
+
+.ImageStrandBig {
+    border-radius: 85%;
+    background-color: rgba(1, 1, 1, 0.3);
+ 
+}
+
+.BSLoremFlex {
+    display: flex;
+    padding: 50px;
+    background-color: rgba(1, 1, 1, 0.2);
+}
+
+.Flexy {
+    display: flex;
+    margin: 10px;
+}
+
+.AlignCen {
+    text-align: center;
+    color : white;
+}
+
+.Loremoments {
+    background-color: rgba(1, 1, 1, 0.2);
+    color: white;
+    padding:10px;
+}

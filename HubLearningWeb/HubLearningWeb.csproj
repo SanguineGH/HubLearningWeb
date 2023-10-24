@@ -145,9 +145,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bootstrapcss\bootstrap.minmat.css" />
     <Content Include="Css\Dashboard.css" />
+    <Content Include="Css\index.css" />
+    <Content Include="Images\ABM.png" />
+    <Content Include="Images\BGNOV.png" />
+    <Content Include="Images\GAS.png" />
+    <Content Include="Images\HUM.png" />
+    <Content Include="Images\NOVA.png" />
+    <Content Include="Images\novahigh.png" />
+    <Content Include="Images\PF_placeholder.png" />
+    <Content Include="Images\STEM.png" />
+    <Content Include="Images\TV.png" />
     <Content Include="Medias\Images\PF_placeholder.png" />
     <Content Include="Views\Dashboard.aspx" />
+    <Content Include="Views\Index.aspx" />
+    <Content Include="Views\Login.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -159,8 +172,23 @@
     <Compile Include="Views\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Medias\.editorconfig" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
