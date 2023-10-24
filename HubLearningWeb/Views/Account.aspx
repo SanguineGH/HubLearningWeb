@@ -20,28 +20,28 @@
                     <div class="dropdown">
                         <button class="dropbtn">Bulletin</button>
                         <div class="dropdown-content">
-                            <a href="DashBoardNotifTutor.aspx">Tutor Bulletin</a>
-                            <a href="DashBoardNotifTutee.aspx">Tutee Bulletin</a>
+                            <a href="DashBoard.aspx">Tutor Bulletin</a>
+                            <a href="DashBoard.aspx">Tutee Bulletin</a>
                         </div>
                     </div>
                     <div class="dropdown">
                         <button class="dropbtn">Notifications</button>
                         <div class="dropdown-content">
-                            <a href="DashBoardNotifTutor.aspx">Tutor Notification</a>
-                            <a href="DashBoardNotifTutee.aspx">Tutee Notification</a>
+                            <a href="DashBoard.aspx">Tutor Notification</a>
+                            <a href="DashBoard.aspx">Tutee Notification</a>
                         </div>
                     </div>
                     <div class="dropdown">
                         <button class="dropbtn">Request</button>
                         <div class="dropdown-content">
-                            <a href="DashBoardNotifTutor.aspx">Make a Request</a>
+                            <a href="MakeRequest.aspx">Make a Request</a>
                         </div>
                     </div>
                     <div class="dropdown">
                         <button class="dropbtn">Account</button>
                         <div class="dropdown-content">
-                            <a href="DashBoardNotifTutor.aspx">Account</a>
-                            <a href="DashBoardNotifTutee.aspx">Progress Tracking</a>
+                            <a href="Account.aspx">Account</a>
+                            <a href="DashBoard.aspx">Progress Tracking</a>
                         </div>
                     </div>
                 </div>

@@ -20,28 +20,28 @@
                     <div class="dropdown">
                         <button class="dropbtn">Bulletin</button>
                         <div class="dropdown-content">
-                            <a href="DashBoardNotifTutor.aspx">Tutor Bulletin</a>
-                            <a href="DashBoardNotifTutee.aspx">Tutee Bulletin</a>
+                            <a href="DashBoard.aspx">Tutor Bulletin</a>
+                            <a href="DashBoard.aspx">Tutee Bulletin</a>
                         </div>
                     </div>
                     <div class="dropdown">
                         <button class="dropbtn">Notifications</button>
                         <div class="dropdown-content">
-                            <a href="DashBoardNotifTutor.aspx">Tutor Notification</a>
-                            <a href="DashBoardNotifTutee.aspx">Tutee Notification</a>
+                            <a href="DashBoard.aspx">Tutor Notification</a>
+                            <a href="DashBoard.aspx">Tutee Notification</a>
                         </div>
                     </div>
                     <div class="dropdown">
                         <button class="dropbtn">Request</button>
                         <div class="dropdown-content">
-                            <a href="DashBoardNotifTutor.aspx">Make a Request</a>
+                            <a href="MakeRequest.aspx">Make a Request</a>
                         </div>
                     </div>
                     <div class="dropdown">
                         <button class="dropbtn">Account</button>
                         <div class="dropdown-content">
-                            <a href="DashBoardNotifTutor.aspx">Account</a>
-                            <a href="DashBoardNotifTutee.aspx">Progress Tracking</a>
+                            <a href="Account.aspx">Account</a>
+                            <a href="DashBoard.aspx">Progress Tracking</a>
                         </div>
                     </div>
                 </div>
@@ -64,32 +64,36 @@
                     <div class="BottomPart">
                         <div class="Strand">
                             <p>Strand</p>
-                               <asp:CheckBox ID="CheckBox10" runat="server" OnCheckedChanged="CheckBox10_CheckedChanged" Text="Here" />
-                            <asp:CheckBox ID="CheckBox11" runat="server" Text="Here"/>
-                            <asp:CheckBox ID="CheckBox12" runat="server" Text="Here"/>
-                            <asp:CheckBox ID="CheckBox13" runat="server" Text="Here"/>
+                            <asp:CheckBox ID="CheckBox10" runat="server" OnCheckedChanged="CheckBox10_CheckedChanged" Text="STEM" />
+                            <asp:CheckBox ID="CheckBox11" runat="server" Text="ABM"/>
+                            <asp:CheckBox ID="CheckBox12" runat="server" Text="HUMSS"/>
+                            <asp:CheckBox ID="CheckBox13" runat="server" Text="GAS"/>
+                            <asp:CheckBox ID="CheckBox24" runat="server" Text="Tech Voc"/>
                         </div>
                         <div class="Subject">
                             <p>Subject</p>
-                            <asp:CheckBox ID="CheckBox1" runat="server" Text="hehe"/>
-                            <asp:CheckBox ID="CheckBox2" runat="server" Text="hehe"/>
-                            <asp:CheckBox ID="CheckBox3" runat="server" Text="hehe"/>
-                            <asp:CheckBox ID="CheckBox4" runat="server" Text="hehe"/>
+                            <asp:CheckBox ID="CheckBox1" runat="server" Text="null"/>
+                            <asp:CheckBox ID="CheckBox2" runat="server" Text="null"/>
+                            <asp:CheckBox ID="CheckBox3" runat="server" Text="null"/>
+                            <asp:CheckBox ID="CheckBox4" runat="server" Text="null"/>
                         </div>
 
                         <div class="Avail">
                             <p>Availability</p>
-                            <asp:CheckBox ID="CheckBox14" runat="server" Text="hehehe"/>
-                            <asp:CheckBox ID="CheckBox15" runat="server" Text="hehehe"/>
-                            <asp:CheckBox ID="CheckBox16" runat="server" Text="hehehe"/>
-                            <asp:CheckBox ID="CheckBox17" runat="server" Text="hehehe"/>
+                            <asp:CheckBox ID="CheckBox14" runat="server" Text="Sunday"/>
+                            <asp:CheckBox ID="CheckBox15" runat="server" Text="Monday"/>
+                            <asp:CheckBox ID="CheckBox23" runat="server" Text="Tuesday"/>
+                            <asp:CheckBox ID="CheckBox16" runat="server" Text="Wednesday"/>
+                            <asp:CheckBox ID="CheckBox17" runat="server" Text="Thursday"/>
+                            <asp:CheckBox ID="CheckBox21" runat="server" Text="Friday"/>
+                            <asp:CheckBox ID="CheckBox22" runat="server" Text="Saturday"/>
+                            
                         </div>
                         <div class="Location">
                             <p>Location</p>
-                               <asp:CheckBox ID="CheckBox18" runat="server" Text="hehehehe"/>
-                            <asp:CheckBox ID="CheckBox19" runat="server" Text="hehehehe"/>
-                            <asp:CheckBox ID="CheckBox20" runat="server" Text="hehehehe"/>
-                            <asp:CheckBox ID="CheckBox21" runat="server" Text="hehehehe"/>
+                            <asp:CheckBox ID="CheckBox18" runat="server" Text="Home"/>
+                            <asp:CheckBox ID="CheckBox19" runat="server" Text="School"/>
+                            <asp:CheckBox ID="CheckBox20" runat="server" Text="Public Place"/>
                         </div>
 
                         <asp:Button ID="Button1" runat="server" Text="Submit" />

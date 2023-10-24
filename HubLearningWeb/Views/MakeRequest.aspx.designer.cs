@@ -96,6 +96,15 @@ namespace HubLearningWeb.Views
         protected global::System.Web.UI.WebControls.CheckBox CheckBox13;
 
         /// <summary>
+        /// CheckBox24 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox24;
+
+        /// <summary>
         /// CheckBox1 control.
         /// </summary>
         /// <remarks>
@@ -150,6 +159,15 @@ namespace HubLearningWeb.Views
         protected global::System.Web.UI.WebControls.CheckBox CheckBox15;
 
         /// <summary>
+        /// CheckBox23 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox23;
+
+        /// <summary>
         /// CheckBox16 control.
         /// </summary>
         /// <remarks>
@@ -166,6 +184,24 @@ namespace HubLearningWeb.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox CheckBox17;
+
+        /// <summary>
+        /// CheckBox21 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox21;
+
+        /// <summary>
+        /// CheckBox22 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox22;
 
         /// <summary>
         /// CheckBox18 control.
@@ -193,15 +229,6 @@ namespace HubLearningWeb.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox CheckBox20;
-
-        /// <summary>
-        /// CheckBox21 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox21;
 
         /// <summary>
         /// Button1 control.
