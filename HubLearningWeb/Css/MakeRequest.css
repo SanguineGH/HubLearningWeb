@@ -1,0 +1,74 @@
+﻿.PostRequestHolder {
+    width: 80%;
+   
+    margin: auto;
+    border: solid;
+}
+
+.TopPart {
+    display: flex;
+}
+
+.ImageContainer {
+    width: 50%;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+}
+
+.RequestImage {
+    width: 50%;
+    border-radius: 50%;
+}
+
+.HoldInfos {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.InfoLabel {
+    padding-top: 10px; 
+    
+}
+
+.BottomPart {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    border: 1px solid #ccc; /* Optional border for styling */
+    padding: 5px; /* Optional padding to space out the content */
+    text-align: center; /* Optional to center text horizontally */
+    font-size: 10px;
+}
+
+.Strand {
+
+}
+
+.Subject {
+
+}
+
+.Avail {
+
+}
+
+.Location {
+
+}
+
+#Button1 {
+
+}
+
+.Strand,
+.Subject,
+.Avail,
+.Location {
+   
+    margin: 10px; /* Optional margin to space out the sections */
+}

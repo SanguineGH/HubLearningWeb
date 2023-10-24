@@ -146,8 +146,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bootstrapcss\bootstrap.minmat.css" />
+    <Content Include="Css\Account.css" />
     <Content Include="Css\Dashboard.css" />
     <Content Include="Css\index.css" />
+    <Content Include="Css\MakeRequest.css" />
     <Content Include="Images\ABM.png" />
     <Content Include="Images\BGNOV.png" />
     <Content Include="Images\GAS.png" />
@@ -158,13 +160,22 @@
     <Content Include="Images\STEM.png" />
     <Content Include="Images\TV.png" />
     <Content Include="Medias\Images\PF_placeholder.png" />
+    <Content Include="Views\Account.aspx" />
     <Content Include="Views\Dashboard.aspx" />
     <Content Include="Views\Index.aspx" />
     <Content Include="Views\Login.aspx" />
+    <Content Include="Views\MakeRequest.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Account.aspx.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Account.aspx.designer.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -185,6 +196,13 @@
     </Compile>
     <Compile Include="Views\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MakeRequest.aspx.cs">
+      <DependentUpon>MakeRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\MakeRequest.aspx.designer.cs">
+      <DependentUpon>MakeRequest.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

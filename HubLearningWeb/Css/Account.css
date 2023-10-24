@@ -1,0 +1,63 @@
+﻿.GrandHolder {
+    border: solid;
+    border-color: white;
+    color: white;
+    width: 90%;
+    margin: auto;
+    margin-top: 40px;
+    background-image: url('/Images/novahigh.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.TopPart {
+    display: flex;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.ImageHolder {
+    width: 30%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.InfoHolder {
+    width: 40%;
+}
+
+.ContactHolder {
+    width: 40%;
+}
+
+.ImagePF {
+    display: block;
+    width: 80%;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.BottomPart {
+    padding-left: 20px;
+    padding-right: 20px;
+    border: solid;
+    border-color: white;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.Logout {
+    padding: 10px
+}
+
+.blog {
+    width: 70px;
+    height: 50px;
+}
