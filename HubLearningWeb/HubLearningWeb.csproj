@@ -161,6 +161,8 @@
     <Content Include="Images\TV.png" />
     <Content Include="Medias\Images\PF_placeholder.png" />
     <Content Include="Views\Account.aspx" />
+    <Content Include="Views\BulletinTutee.aspx" />
+    <Content Include="Views\BulletinTutor.aspx" />
     <Content Include="Views\Dashboard.aspx" />
     <Content Include="Views\Index.aspx" />
     <Content Include="Views\Login.aspx" />
@@ -175,6 +177,20 @@
     </Compile>
     <Compile Include="Views\Account.aspx.designer.cs">
       <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BulletinTutee.aspx.cs">
+      <DependentUpon>BulletinTutee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\BulletinTutee.aspx.designer.cs">
+      <DependentUpon>BulletinTutee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BulletinTutor.aspx.cs">
+      <DependentUpon>BulletinTutor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\BulletinTutor.aspx.designer.cs">
+      <DependentUpon>BulletinTutor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>

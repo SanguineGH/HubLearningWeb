@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="HubLearningWeb.Views.Dashboard" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BulletinTutor.aspx.cs" Inherits="HubLearningWeb.Views.BulletinTutor" %>
 
 <!DOCTYPE html>
 
@@ -46,9 +46,10 @@
                 </div>
             </div>
             <div class="Content">
-
+                <p>tite</p>
             </div>
         </div>
     </form>
 </body>
 </html>
+

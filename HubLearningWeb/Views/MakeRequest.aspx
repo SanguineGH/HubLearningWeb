@@ -20,8 +20,8 @@
                     <div class="dropdown">
                         <button class="dropbtn">Bulletin</button>
                         <div class="dropdown-content">
-                            <a href="DashBoard.aspx">Tutor Bulletin</a>
-                            <a href="DashBoard.aspx">Tutee Bulletin</a>
+                            <a href="BulletinTutor.aspx">Tutor Bulletin</a>
+                            <a href="BulletinTutee.aspx">Tutee Bulletin</a>
                         </div>
                     </div>
                     <div class="dropdown">
