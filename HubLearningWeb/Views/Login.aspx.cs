@@ -20,14 +20,14 @@ namespace HubLearningWeb.Views
         {
             string username = Request.Form.Get("Username");
             string password = Request.Form.Get("Password");
-            string mycon = "server=localhost;Uid=root;password=;persistsecurityinfo=True;database=learninghubweb;SslMode=none";
+            string mycon = "server=localhost;Uid=root;password=;persistsecurityinfo=True;database=learninghubwebdb;SslMode=none";
             MySqlConnection con = new MySqlConnection(mycon);
             MySqlCommand cmd = null;
 
             try
             {
                 con.Open();
-                cmd = new MySqlCommand("SELECT password FROM moreuser WHERE studId = @a1", con);
+                cmd = new MySqlCommand("SELECT password FROM users WHERE studId = @a1", con);
                 cmd.Parameters.AddWithValue("@a1", username);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())

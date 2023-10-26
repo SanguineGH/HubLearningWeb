@@ -1,11 +1,13 @@
 ﻿.PostRequestHolder {
     width: 80%;
     margin: auto;
-    border: solid;
+    border: 1px solid #ff6a00 ;
 }
 
 .TopPart {
-    display: flex;
+    display: inline-flex;
+    color: white;
+    border: 1px solid #ff6a00; /* Optional border for styling */
 }
 
 .ImageContainer {
@@ -13,11 +15,14 @@
     justify-content: center;
     align-content: center;
     display: flex;
+   
 }
 
 .RequestImage {
     width: 50%;
     border-radius: 50%;
+    
+    
 }
 
 .HoldInfos {
@@ -38,10 +43,13 @@
     flex-direction: column;
     align-items: center; /* Center content horizontally */
     justify-content: center; /* Center content vertically */
-    border: 1px solid #ccc; /* Optional border for styling */
-    padding: 5px; /* Optional padding to space out the content */
+    border: 1px solid #ff6a00; /* Optional border for styling */
+    padding: 4px; /* Optional padding to space out the content */
     text-align: center; /* Optional to center text horizontally */
     font-size: 10px;
+    color:white;
+    font-size:small;
+
 }
 
 .Strand {
@@ -70,4 +78,7 @@
 .Location {
    
     margin: 10px; /* Optional margin to space out the sections */
+}
+.Content {
+  
 }

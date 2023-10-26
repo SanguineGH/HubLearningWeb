@@ -51,7 +51,7 @@
                  <div class="GrandHolder">
                    <div class="TopPart">
                     <div class="ImageHolder">
-                        <img src="../Images/PF_placeholder.png" / class="ImagePF"/>
+                        <img src="../Images/ako.jpg" / class="ImagePF"/>
                     </div>
                     <div class="InfoHolder">
                         <p>Name: Ian Quiming </p>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="ContactHolder">
                         <h2>Contacts</h2>
-                        <p>Email: IanQuimming@gmail.com</p>
+                        <p>Email: IanQuiming@gmail.com</p>
                         <p>Contact Number: 09123456789</p>
                         <p>Facebook: Ian Quiming</p>
                     </div>
