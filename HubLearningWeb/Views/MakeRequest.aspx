@@ -60,7 +60,7 @@
                             <asp:Label ID="Contact" runat="server" Text="Contact No.: 09123456789" class="InfoLabel"></asp:Label>
                         </div>
                     </div>
-                    <hr />
+                   
                     <div class="BottomPart">
                         <div class="Strand">
                             <p>Strand</p>

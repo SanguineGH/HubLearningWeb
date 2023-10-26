@@ -150,6 +150,7 @@
     <Content Include="Css\Dashboard.css" />
     <Content Include="Css\index.css" />
     <Content Include="Css\MakeRequest.css" />
+    <Content Include="Css\Bulletin.css" />
     <Content Include="Images\ABM.png" />
     <Content Include="Images\ako.jpg" />
     <Content Include="Images\BGNOV.png" />
