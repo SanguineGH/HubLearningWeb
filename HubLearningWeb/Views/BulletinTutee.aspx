@@ -27,8 +27,8 @@
                     <div class="dropdown">
                         <button class="dropbtn">Notifications</button>
                         <div class="dropdown-content">
-                            <a href="DashBoard.aspx">Tutor Notification</a>
-                            <a href="DashBoard.aspx">Tutee Notification</a>
+                            <a href="TutorNotif.aspx">Tutor Notification</a>
+                            <a href="TuteeNotif.aspx">Tutee Notification</a>
                         </div>
                     </div>
                     <div class="dropdown">
@@ -41,7 +41,7 @@
                         <button class="dropbtn">Account</button>
                         <div class="dropdown-content">
                             <a href="Account.aspx">Account</a>
-                            <a href="DashBoard.aspx">Progress Tracking</a>
+                            <a href="Progress.aspx">Progress Tracking</a>
                         </div>
                     </div>
                 </div>

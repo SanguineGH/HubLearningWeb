@@ -169,6 +169,9 @@
     <Content Include="Views\Index.aspx" />
     <Content Include="Views\Login.aspx" />
     <Content Include="Views\MakeRequest.aspx" />
+    <Content Include="Views\Progress.aspx" />
+    <Content Include="Views\TuteeNotif.aspx" />
+    <Content Include="Views\TutorNotif.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +224,27 @@
     </Compile>
     <Compile Include="Views\MakeRequest.aspx.designer.cs">
       <DependentUpon>MakeRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Progress.aspx.cs">
+      <DependentUpon>Progress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Progress.aspx.designer.cs">
+      <DependentUpon>Progress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TuteeNotif.aspx.cs">
+      <DependentUpon>TuteeNotif.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\TuteeNotif.aspx.designer.cs">
+      <DependentUpon>TuteeNotif.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TutorNotif.aspx.cs">
+      <DependentUpon>TutorNotif.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\TutorNotif.aspx.designer.cs">
+      <DependentUpon>TutorNotif.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

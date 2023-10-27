@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="HubLearningWeb.Views.Dashboard" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Progress.aspx.cs" Inherits="HubLearningWeb.Views.Progress" %>
 
 <!DOCTYPE html>
 
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="Content">
-
+                <p>This is for progress</p>
             </div>
         </div>
     </form>
