@@ -68,9 +68,7 @@
                         <p>Facebook: Ian Quiming</p>
                     </div>
                     <div class="Logout">
-                        <form action="Index.aspx">
-                        <button type="submit" class="blog">Logout</button>
-                        </form>
+                        <asp:Button class="blog" ID="logout" runat="server" Text="Logout" OnClick="logout_Click"/>
                     </div>
                 </div>
                         <div class="BottomPart">

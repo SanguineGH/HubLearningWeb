@@ -39,7 +39,7 @@ namespace HubLearningWeb.Views
                         {
                             // Passwords match, so authentication is successful.
                             Response.Write("<script>alert('Login successful')</script>");
-                            Response.Redirect("DashBoard.aspx");
+                            Response.Redirect("Dashboard.aspx");
                         }
                         else
                         {
