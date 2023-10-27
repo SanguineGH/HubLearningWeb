@@ -6,6 +6,7 @@
 <head runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title></title>
+    <link href="../Css/Notif.css" rel="stylesheet" />
     <link href="../Css/Dashboard.css" rel="stylesheet" />
 </head>
 <body>
@@ -46,7 +47,68 @@
                 </div>
             </div>
             <div class="Content">
-                <p>This is tutee notification</p>
+                <div class="TitleOnly">
+                    <p>TUTEE NOTIFICATION</p>
+                </div>
+                <div class="MainHolderNotif">
+                    <table class="NotifTable">
+                        <tr class="NotifRow">
+                            <td class="NotifCell">
+                                <div class="DivInCell">
+                                    <div class="LabelHolder">
+                                    <asp:Label ID="NotifLabelName" runat="server" Text="Name: Ian Quiming"></asp:Label>&nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="NotifLabelMath" runat="server" Text="Subject: Math"></asp:Label>
+                                    </div>
+                                    <asp:Button ID="NotifViewButton" runat="server" Text="View" />
+                                </div>
+                            </td>
+                        </tr>
+                           <tr class="NotifRow">
+                            <td class="NotifCell">
+                                <div class="DivInCell">
+                                    <div class="LabelHolder">
+                                    <asp:Label ID="Label1" runat="server" Text="Name: Ian Quiming"></asp:Label>&nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="Label2" runat="server" Text="Subject: Math"></asp:Label>
+                                    </div>
+                                    <asp:Button ID="Button1" runat="server" Text="View" />
+                                </div>
+                            </td>
+                        </tr>
+                         <tr class="NotifRow">
+                            <td class="NotifCell">
+                                <div class="DivInCell">
+                                    <div class="LabelHolder">
+                                    <asp:Label ID="Label3" runat="server" Text="Name: Ian Quiming"></asp:Label>&nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="Label4" runat="server" Text="Subject: Math"></asp:Label>
+                                    </div>
+                                    <asp:Button ID="Button2" runat="server" Text="View" />
+                                </div>
+                            </td>
+                        </tr>
+                         <tr class="NotifRow">
+                            <td class="NotifCell">
+                                <div class="DivInCell">
+                                    <div class="LabelHolder">
+                                    <asp:Label ID="Label5" runat="server" Text="Name: Ian Quiming"></asp:Label>&nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="Label6" runat="server" Text="Subject: Math"></asp:Label>
+                                    </div>
+                                    <asp:Button ID="Button3" runat="server" Text="View" />
+                                </div>
+                            </td>
+                             </tr>
+                              <tr class="NotifRow">
+                            <td class="NotifCell">
+                                <div class="DivInCell">
+                                    <div class="LabelHolder">
+                                    <asp:Label ID="Label7" runat="server" Text="Name: Ian Quiming"></asp:Label>&nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="Label8" runat="server" Text="Subject: Math"></asp:Label>
+                                    </div>
+                                    <asp:Button ID="Button4" runat="server" Text="View" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </form>
