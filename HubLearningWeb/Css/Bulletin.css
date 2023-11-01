@@ -29,12 +29,15 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align:center;
 }
+
 
 .Yearlvl {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align:center;
 }
 
 .Availability {
@@ -47,12 +50,14 @@ p {
 .Location {
     display: flex;
     flex-direction: column;
+    justify-content:flex-start;
+
 }
 
 /*Filter END*/
 
 .CardSide {
-    border: solid blue;
+    border: solid orange;
     width: 75%;
     height: 100%;
 }

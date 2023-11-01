@@ -84,7 +84,7 @@
                         <div class="Holder">
                         <asp:RadioButton ID="SecondLVL" runat="server" text="Second Year" />
                             </div>
-                    </div>
+                            </div>
                     <div class="Availability">
                         <p> Availability </p>
                         <div class="Holder">
@@ -120,7 +120,7 @@
                         <div class="Holder">
                         <asp:CheckBox ID="Other" runat="server" text="Other Places" value="Other Places"/>
                             </div>
-                    </div>
+                        </div>
                     <br />
                     <br />
                     <div class="ButtonLoc">
