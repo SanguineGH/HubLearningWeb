@@ -53,19 +53,19 @@
                     <div class="ImageHolder">
                         <img src="../Images/ako.jpg" / class="ImagePF"/>
                     </div>
-                    <div class="InfoHolder">
-                        <p>Name: Ian Quiming </p>
-                        <p>Student ID: 21-2323</p>
-                        <p>Age: 21 </p>
-                        <p>Sex: Male  </p>
-                        <p>Location: Quezon City </p>
-                        <p>Year Level: G12  </p>
+                    <div class="InfoHolder">                
+                        <asp:Label ID="InfoName" runat="server" Text="Label"></asp:Label>          
+                        <asp:Label ID="InfoStudId" runat="server" Text="Label"></asp:Label>                    
+                        <asp:Label ID="InfoAge" runat="server" Text="Label"></asp:Label>               
+                        <asp:Label ID="InfoSex" runat="server" Text="Label"></asp:Label>            
+                        <asp:Label ID="InfoLocation" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="InfoYearLvl" runat="server" Text="Label"></asp:Label>
                     </div>
                     <div class="ContactHolder">
                         <h2>Contacts</h2>
-                        <p>Email: IanQuiming@gmail.com</p>
-                        <p>Contact Number: 09123456789</p>
-                        <p>Facebook: Ian Quiming</p>
+                        <asp:Label ID="ContactEmail" runat="server" Text="Label"></asp:Label>  
+                        <asp:Label ID="ContactNumber" runat="server" Text="Label"></asp:Label>             
+                        <asp:Label ID="ContactSocmed" runat="server" Text="Label"></asp:Label>
                     </div>
                     <div class="Logout">
                         <asp:Button class="blog" ID="logout" runat="server" Text="Logout" OnClick="logout_Click"/>

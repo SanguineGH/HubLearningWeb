@@ -27,7 +27,7 @@ namespace HubLearningWeb.Views
             try
             {
                 con.Open();
-                cmd = new MySqlCommand("SELECT password FROM users WHERE studId = @a1", con);
+                cmd = new MySqlCommand("SELECT password, UID FROM users WHERE studId = @a1", con);
                 cmd.Parameters.AddWithValue("@a1", username);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -35,9 +35,15 @@ namespace HubLearningWeb.Views
                     if (reader.Read())
                     {
                         string storedPassword = reader["password"].ToString();
+                        string uid = reader["UID"].ToString(); // Retrieve the UID
+
                         if (storedPassword == password)
                         {
                             // Passwords match, so authentication is successful.
+
+                            // Set the UID as a session variable
+                            Session["UID"] = uid;
+
                             Response.Write("<script>alert('Login successful')</script>");
                             Response.Redirect("Dashboard.aspx");
                         }
