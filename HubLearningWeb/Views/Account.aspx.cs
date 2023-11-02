@@ -54,7 +54,8 @@ namespace HubLearningWeb.Views
                                     ContactNumber.Text = "Contact Number: " + reader["contact"].ToString();
                                     ContactSocmed.Text = "Social Media: " + reader["socmed"].ToString();
                                     // Retrieve and display the bio
-                                    BioTextarea.Text = reader["bio"].ToString();
+                                    string userBio = reader["bio"].ToString();
+                                    ContactBioLabel.Text = userBio;
                                 }
                             }
                         }

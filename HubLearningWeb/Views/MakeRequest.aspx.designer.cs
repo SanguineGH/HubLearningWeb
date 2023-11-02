@@ -60,183 +60,219 @@ namespace HubLearningWeb.Views
         protected global::System.Web.UI.WebControls.Label Contact;
 
         /// <summary>
-        /// CheckBox10 control.
+        /// ReqTutee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox10;
+        protected global::System.Web.UI.WebControls.RadioButton ReqTutee;
 
         /// <summary>
-        /// CheckBox11 control.
+        /// ReqTutor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox11;
+        protected global::System.Web.UI.WebControls.RadioButton ReqTutor;
 
         /// <summary>
-        /// CheckBox12 control.
+        /// StrandRadios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox12;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl StrandRadios;
 
         /// <summary>
-        /// CheckBox13 control.
+        /// ReqStem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox13;
+        protected global::System.Web.UI.WebControls.RadioButton ReqStem;
 
         /// <summary>
-        /// CheckBox24 control.
+        /// ReqABM control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox24;
+        protected global::System.Web.UI.WebControls.RadioButton ReqABM;
 
         /// <summary>
-        /// CheckBox1 control.
+        /// ReqHUMSS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
+        protected global::System.Web.UI.WebControls.RadioButton ReqHUMSS;
 
         /// <summary>
-        /// CheckBox2 control.
+        /// ReqGAS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox2;
+        protected global::System.Web.UI.WebControls.RadioButton ReqGAS;
 
         /// <summary>
-        /// CheckBox3 control.
+        /// ReqTV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox3;
+        protected global::System.Web.UI.WebControls.RadioButton ReqTV;
 
         /// <summary>
-        /// CheckBox4 control.
+        /// SubjectRadios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox4;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SubjectRadios;
 
         /// <summary>
-        /// CheckBox14 control.
+        /// ReqS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox14;
+        protected global::System.Web.UI.WebControls.RadioButton ReqS1;
 
         /// <summary>
-        /// CheckBox15 control.
+        /// ReqS2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox15;
+        protected global::System.Web.UI.WebControls.RadioButton ReqS2;
 
         /// <summary>
-        /// CheckBox23 control.
+        /// ReqS3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox23;
+        protected global::System.Web.UI.WebControls.RadioButton ReqS3;
 
         /// <summary>
-        /// CheckBox16 control.
+        /// ReqS4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox16;
+        protected global::System.Web.UI.WebControls.RadioButton ReqS4;
 
         /// <summary>
-        /// CheckBox17 control.
+        /// ReqSun control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox17;
+        protected global::System.Web.UI.WebControls.CheckBox ReqSun;
 
         /// <summary>
-        /// CheckBox21 control.
+        /// ReqMon control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox21;
+        protected global::System.Web.UI.WebControls.CheckBox ReqMon;
 
         /// <summary>
-        /// CheckBox22 control.
+        /// ReqTues control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox22;
+        protected global::System.Web.UI.WebControls.CheckBox ReqTues;
 
         /// <summary>
-        /// CheckBox18 control.
+        /// ReqWed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox18;
+        protected global::System.Web.UI.WebControls.CheckBox ReqWed;
 
         /// <summary>
-        /// CheckBox19 control.
+        /// ReqThur control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox19;
+        protected global::System.Web.UI.WebControls.CheckBox ReqThur;
 
         /// <summary>
-        /// CheckBox20 control.
+        /// ReqFri control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox20;
+        protected global::System.Web.UI.WebControls.CheckBox ReqFri;
 
         /// <summary>
-        /// Button1 control.
+        /// ReqSat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.CheckBox ReqSat;
+
+        /// <summary>
+        /// ReqHome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ReqHome;
+
+        /// <summary>
+        /// ReqSchool control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ReqSchool;
+
+        /// <summary>
+        /// ReqPublic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ReqPublic;
+
+        /// <summary>
+        /// ReqSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ReqSubmit;
     }
 }
