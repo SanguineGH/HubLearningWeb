@@ -21,10 +21,8 @@ p {
 
 /*Filters HERE*/
 
-.Strands {
-    
+.Strands {  
 }
-
 .Subjects {
     display: flex;
     flex-direction: column;
@@ -41,7 +39,6 @@ p {
 }
 
 .Availability {
-    display: flex;
     flex-direction: column;
     justify-content: center;
 
@@ -128,3 +125,11 @@ td {
     margin: auto;
 }
 
+.div.Availability {
+    display: inline-block;
+    margin-right: 10px;
+}
+.div.Holder {
+    display: inline-block;
+    margin-right: 10px;
+}
