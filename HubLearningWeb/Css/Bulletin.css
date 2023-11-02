@@ -60,13 +60,13 @@ p {
 }
 
 .Holder {
-    display: flex;
+    display: inline-grid;
     justify-content: center;
     align-content: center;
 }
 
 .ButtonLoc {
-    display: flex;
+    display:grid ;
     align-content: center;
     justify-content: center;
 }
@@ -126,8 +126,7 @@ td {
 }
 
 .div.Availability {
-    display: inline-block;
-    margin-right: 10px;
+    margin-right: 200px;
 }
 .div.Holder {
     display: inline-block;
