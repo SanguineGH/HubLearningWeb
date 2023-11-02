@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="../Css/Dashboard.css" rel="stylesheet" />
     <link href="../Css/Account.css" rel="stylesheet" />
+     <style>
+        .hidden-form {
+            display: none; /* Set to 'none' to hide it initially */
+        }
+    </style>
     <title></title>
 </head>
 <body>
@@ -71,18 +76,33 @@
                         <asp:Button class="blog" ID="logout" runat="server" Text="Logout" OnClick="logout_Click"/>
                     </div>
                 </div>
-                        <div class="BottomPart">
-                        <h1>Bio comes here</h1>
-                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla eget libero ac finibus. Integer bibendum orci at augue facilisis, interdum sodales ante fermentum. Ut ac felis non lacus ornare pellentesque. Maecenas eu scelerisque lorem, id placerat tellus. Suspendisse rhoncus, nunc eget vestibulum sodales, lacus nibh dictum libero, eu laoreet tortor nisi non felis. Fusce venenatis tempor aliquam. Ut sed quam nec nulla sodales vulputate. Mauris ultrices dignissim tortor, eget egestas nunc bibendum ac. Integer ultrices, magna sed facilisis interdum, arcu metus suscipit risus, at sodales lorem arcu a magna.
+                       <div class="BottomPart">
+                <h1>Bio</h1>
+                <asp:Label ID="ContactBioLabel" runat="server" Text="Label"></asp:Label>
+                <asp:Button ID="editBioButton" runat="server" Text="Edit Bio" OnClientClick="showEditBioForm(); return false;" />
+                <div id="editBioForm" class="hidden-form" runat="server">
+                    <asp:TextBox ID="BioTextarea" runat="server" TextMode="MultiLine" Rows="5" Columns="40"></asp:TextBox>
+                    <br />
+                    <asp:Button ID="saveButton" runat="server" Text="Save" OnClick="SaveButton_Click" OnClientClick="hideEditBioForm();" />
+                </div>
+            </div>
+        </div>
+        <script>
+            function showEditBioForm() {
+                var editBioForm = document.getElementById('<%= editBioForm.ClientID %>');
+                if (editBioForm) {
+                    editBioForm.style.display = 'block';
+                }
+            }
 
-                        </p>
-                    </div>
-                 </div>
-
-
-
-
-
+            function hideEditBioForm() {
+                var editBioForm = document.getElementById('<%= editBioForm.ClientID %>');
+                if (editBioForm) {
+                    editBioForm.style.display = 'none';
+                }
+            }
+        </script>
+         
             </div>
         </div>
     </form>
