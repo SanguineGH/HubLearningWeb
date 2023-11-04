@@ -51,65 +51,23 @@
                     <p>TUTEE NOTIFICATION</p>
                 </div>
                 <div class="MainHolderNotif">
-                    <table class="NotifTable">
-                        <tr class="NotifRow">
-                            <td class="NotifCell">
-                                <div class="DivInCell">
-                                    <div class="LabelHolder">
-                                    <asp:Label ID="NotifLabelName" runat="server" Text="Name: Ian Quiming"></asp:Label>&nbsp;&nbsp;&nbsp;
-                                    <asp:Label ID="NotifLabelMath" runat="server" Text="Subject: Math"></asp:Label>
-                                    </div>
-                                    <asp:Button ID="NotifViewButton" runat="server" Text="View" />
-                                </div>
-                            </td>
-                        </tr>
-                           <tr class="NotifRow">
-                            <td class="NotifCell">
-                                <div class="DivInCell">
-                                    <div class="LabelHolder">
-                                    <asp:Label ID="Label1" runat="server" Text="Name: Ian Quiming"></asp:Label>&nbsp;&nbsp;&nbsp;
-                                    <asp:Label ID="Label2" runat="server" Text="Subject: Math"></asp:Label>
-                                    </div>
-                                    <asp:Button ID="Button1" runat="server" Text="View" />
-                                </div>
-                            </td>
-                        </tr>
-                         <tr class="NotifRow">
-                            <td class="NotifCell">
-                                <div class="DivInCell">
-                                    <div class="LabelHolder">
-                                    <asp:Label ID="Label3" runat="server" Text="Name: Ian Quiming"></asp:Label>&nbsp;&nbsp;&nbsp;
-                                    <asp:Label ID="Label4" runat="server" Text="Subject: Math"></asp:Label>
-                                    </div>
-                                    <asp:Button ID="Button2" runat="server" Text="View" />
-                                </div>
-                            </td>
-                        </tr>
-                         <tr class="NotifRow">
-                            <td class="NotifCell">
-                                <div class="DivInCell">
-                                    <div class="LabelHolder">
-                                    <asp:Label ID="Label5" runat="server" Text="Name: Ian Quiming"></asp:Label>&nbsp;&nbsp;&nbsp;
-                                    <asp:Label ID="Label6" runat="server" Text="Subject: Math"></asp:Label>
-                                    </div>
-                                    <asp:Button ID="Button3" runat="server" Text="View" />
-                                </div>
-                            </td>
-                             </tr>
-                              <tr class="NotifRow">
-                            <td class="NotifCell">
-                                <div class="DivInCell">
-                                    <div class="LabelHolder">
-                                    <asp:Label ID="Label7" runat="server" Text="Name: Ian Quiming"></asp:Label>&nbsp;&nbsp;&nbsp;
-                                    <asp:Label ID="Label8" runat="server" Text="Subject: Math"></asp:Label>
-                                    </div>
-                                    <asp:Button ID="Button4" runat="server" Text="View" />
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+             <asp:Repeater ID="transactionRepeater" runat="server">
+    <ItemTemplate>
+        <div class="NotificationCard">
+            <asp:Label ID="tutorLabel" runat="server" Text="Tutor: "></asp:Label>
+            <asp:Label ID="tutorNameLabel" runat="server" Text='<%# Eval("TutorName") %>'></asp:Label>
+            <br />
+            <asp:Label ID="tuteeLabel" runat="server" Text="Tutee: "></asp:Label>
+            <asp:Label ID="tuteeNameLabel" runat="server" Text='<%# Eval("TuteeName") %>'></asp:Label>
+            <br />
+            <asp:Label ID="subjectLabel" runat="server" Text="Subject: "></asp:Label>
+            <asp:Label ID="subjectNameLabel" runat="server" Text='<%# Eval("Subject") %>'></asp:Label>
+            <br />
+            <asp:Button ID="viewMoreButton" runat="server" Text="View More" OnClick="ViewMore_Click" CommandArgument='<%# Eval("TransactionID") %>' />
+        </div>
+    </ItemTemplate>
+</asp:Repeater>
+          </div>
         </div>
     </form>
 </body>

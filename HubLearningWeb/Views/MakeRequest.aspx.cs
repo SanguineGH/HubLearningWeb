@@ -46,8 +46,8 @@ namespace HubLearningWeb.Views
                             {
                                 if (reader.Read())
                                 {
-                                    // Retrieve data from the database and set it to the labels with additional text
-                                    Name.Text = "Name: " + reader["name"].ToString();
+                                    string nameValue = reader["name"].ToString();
+                                    Name.Text = "Name: " + nameValue;
                                     SID.Text = "Student ID: " + reader["studId"].ToString();
                                     Email.Text = "Email: " + reader["email"].ToString();
                                     Contact.Text = "Contact Number: " + reader["contact"].ToString();
@@ -71,13 +71,13 @@ namespace HubLearningWeb.Views
             // Define your MySQL connection string.
             string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
 
-            // Create a MySQL connection and command.
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
 
                 // Define the SQL query to insert data into the "bulletin" table.
-                string query = "INSERT INTO bulletin (uid, looking, strand, subject, availability, location) VALUES (@uid, @looking, @strand, @subject, @availability, @location);";
+                string query = "INSERT INTO bulletin (uid, name, looking, strand, subject, availability, location, role) " +
+                    "VALUES (@uid, (SELECT name FROM users WHERE uid = @uid), @looking, @strand, @subject, @availability, @location, @role);";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -95,85 +95,78 @@ namespace HubLearningWeb.Views
 
                     // Availability checkboxes (assuming checkboxes are used):
                     string availability = string.Join(", ", new[] {
-                ReqSun.Checked ? "Sunday" : "",
-                ReqMon.Checked ? "Monday" : "",
-                ReqTues.Checked ? "Tuesday" : "",
-                ReqWed.Checked ? "Wednesday" : "",
-                ReqThur.Checked ? "Thursday" : "",
-                ReqFri.Checked ? "Friday" : "",
-                ReqSat.Checked ? "Saturday" : ""
-            }.Where(x => !string.IsNullOrEmpty(x)));
+                        ReqSun.Checked ? "Sunday" : "",
+                        ReqMon.Checked ? "Monday" : "",
+                        ReqTues.Checked ? "Tuesday" : "",
+                        ReqWed.Checked ? "Wednesday" : "",
+                        ReqThur.Checked ? "Thursday" : "",
+                        ReqFri.Checked ? "Friday" : "",
+                        ReqSat.Checked ? "Saturday" : ""
+                    }.Where(x => !string.IsNullOrEmpty(x)));
 
                     command.Parameters.AddWithValue("@availability", availability);
 
                     // Location checkboxes (assuming checkboxes are used):
                     string location = string.Join(", ", new[] {
-                ReqHome.Checked ? "Home" : "",
-                ReqSchool.Checked ? "School" : "",
-                ReqPublic.Checked ? "Public Place" : ""
-            }.Where(x => !string.IsNullOrEmpty(x)));
+                        ReqHome.Checked ? "Home" : "",
+                        ReqSchool.Checked ? "School" : "",
+                        ReqPublic.Checked ? "Public Place" : ""
+                    }.Where(x => !string.IsNullOrEmpty(x)));
 
                     command.Parameters.AddWithValue("@location", location);
+
+                    // Determine the "role" based on the "looking" value
+                    string role = (lookingFor == "Tutee") ? "Tutor" : "Tutee";
+                    command.Parameters.AddWithValue("@role", role);
 
                     // Execute the MySQL command to insert the data.
                     command.ExecuteNonQuery();
                 }
             }
 
+            // Reset the checkboxes and radio buttons to their initial state
+            ReqTutee.Checked = false;
+            ReqTutor.Checked = false;
+            UncheckRadioButtons(StrandRadios);
+            UncheckRadioButtons(SubjectRadios);
+            ReqSun.Checked = false;
+            ReqMon.Checked = false;
+            ReqTues.Checked = false;
+            ReqWed.Checked = false;
+            ReqThur.Checked = false;
+            ReqFri.Checked = false;
+            ReqSat.Checked = false;
+            ReqHome.Checked = false;
+            ReqSchool.Checked = false;
+            ReqPublic.Checked = false;
 
-                            // Redirect or display a success message.
-                            Response.Write("<script>alert('Success')</script>");
-
-                            // Reset the checkboxes and radio buttons to their initial state
-                            ReqTutee.Checked = false;
-                            ReqTutor.Checked = false;
-
-                            // Replace 'StrandRadios' and 'SubjectRadios' with the actual container IDs
-                            UncheckRadioButtons(StrandRadios);
-                            UncheckRadioButtons(SubjectRadios);
-
-                            ReqSun.Checked = false;
-                            ReqMon.Checked = false;
-                            ReqTues.Checked = false;
-                            ReqWed.Checked = false;
-                            ReqThur.Checked = false;
-                            ReqFri.Checked = false;
-                            ReqSat.Checked = false;
-
-                            ReqHome.Checked = false;
-                            ReqSchool.Checked = false;
-                            ReqPublic.Checked = false;
-                        }
-                    
-
-                 private void UncheckRadioButtons(Control container)
-                    {
-                        foreach (Control control in container.Controls)
-                        {
-                            if (control is RadioButton radioButton)
-                            {
-                                radioButton.Checked = false;
-                            }
-                        }
-                    }
-
-                private string GetSelectedRadioValue(Control container)
-                    {
-                        foreach (Control control in container.Controls)
-                        {
-                            if (control is RadioButton radioButton && radioButton.Checked)
-                            {
-                                return radioButton.Text; // Change this to Value if necessary.
-                            }
-                        }
-
-                        // Default to an empty string if none are selected.
-                        return string.Empty;
+            // Redirect or display a success message.
+            Response.Write("<script>alert('Success')</script>");
         }
 
-        protected void CheckBox10_CheckedChanged(object sender, EventArgs e)
+        private void UncheckRadioButtons(Control container)
         {
-            // Handle CheckBox10_CheckedChanged event if needed
+            foreach (Control control in container.Controls)
+            {
+                if (control is RadioButton radioButton)
+                {
+                    radioButton.Checked = false;
+                }
+            }
+        }
+
+        private string GetSelectedRadioValue(Control container)
+        {
+            foreach (Control control in container.Controls)
+            {
+                if (control is RadioButton radioButton && radioButton.Checked)
+                {
+                    return radioButton.Text; // Change this to Value if necessary.
+                }
+            }
+
+            // Default to an empty string if none are selected.
+            return string.Empty;
         }
     }
 }

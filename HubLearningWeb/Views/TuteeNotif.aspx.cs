@@ -4,6 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
+using System.Web.Security;
 
 namespace HubLearningWeb.Views
 {
@@ -11,7 +16,57 @@ namespace HubLearningWeb.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // Check if the user is authenticated and has a session key (UID).
+                if (Session["UID"] != null)
+                {
+                    string uid = Session["UID"].ToString();
 
+                    // Fetch data from the database and bind it to the Repeater.
+                    BindRepeater(uid);
+                }
+            }
+        }
+
+        protected void BindRepeater(string uid)
+        {
+            string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT t.tid AS TransactionID, " +
+                               "CASE WHEN b.role = 'Tutee' THEN u.name ELSE b.name END AS TutorName, " +
+                               "CASE WHEN b.role = 'Tutor' THEN u.name ELSE b.name END AS TuteeName, " +
+                               "b.subject AS Subject " +
+                               "FROM transaction t " +
+                               "INNER JOIN bulletin b ON t.requestor = b.rid " +
+                               "INNER JOIN users u ON t.client = u.uid " +
+                               "WHERE b.uid = @UID AND b.role = 'Tutee'";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@UID", uid);
+
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        transactionRepeater.DataSource = dt;
+                        transactionRepeater.DataBind();
+                    }
+                }
+            }
+        }
+
+        protected void ViewMore_Click(object sender, EventArgs e)
+        {
+            // Handle the button click event for "View More" here.
+            // You can access the TransactionID using CommandArgument.
+            // For example:
+            Button button = (Button)sender;
+            string transactionID = button.CommandArgument;
+            // Add your code to handle the view more action.
         }
     }
 }
