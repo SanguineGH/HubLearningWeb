@@ -18,6 +18,7 @@ namespace HubLearningWeb.Views
                 // Check if the UID is set in the session
                 if (Session["UID"] != null)
                 {
+                    string uidValue = Session["UID"].ToString();
                     BindDataToRepeater();
                 }
                 else
@@ -36,7 +37,7 @@ namespace HubLearningWeb.Views
             {
                 connection.Open();
 
-                string query = "SELECT name, looking, strand, subject, availability, location FROM bulletin WHERE UID = @UID";
+                string query = "SELECT name, looking, strand, subject, availability, location FROM bulletin WHERE UID";
 
                 // Replace 'uidValue' with the actual UID you want to retrieve
                 string uidValue = Session["UID"].ToString();
