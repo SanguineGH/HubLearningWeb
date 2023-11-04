@@ -127,154 +127,35 @@
                         <asp:Button ID="Submit" runat="server" Text="Submit" />
                     </div>
                 </div>
-                <div class="CardSide">
+                                <div class="CardSide">
                     <div class="BullTitle">
                         <p>TUTEE BULLETIN</p>
                     </div>
-                    <table style="width: 100%;" class="CardHolder">
-                        <tr>
-                            <td class="Cards">
-                                <div class="CardDiv">
-                                <div class="CardImage">
-                                <img src="../Images/PF_placeholder.png" class="CardDP"/>
-                                    <br />
-                                   <br />
-                                <asp:Button ID="MoreButton1" runat="server" Text="More" class="MoreButton" />
-                                    </div>
-                                <div class="CardInfo">                                 
-                                    <asp:Label ID="CardName1" runat="server" Text="Name:" class="label"></asp:Label>
-                                    <asp:Label ID="CardStrand1" runat="server" Text="Strand:" class="label"></asp:Label>
-                                    <asp:Label ID="CardSubject1" runat="server" Text="Subject:" ></asp:Label>
-                                </div>
-                               </div>
-                            </td>
-                             <td class="Cards">
-                                <div class="CardDiv">
-                                <div class="CardImage">
-                                <img src="../Images/PF_placeholder.png" class="CardDP"/>
-                                    <br />
-                                   <br />
-                                <asp:Button ID="MoreButton2" runat="server" Text="More" class="MoreButton" />
-                                    </div>
-                                <div class="CardInfo">                                 
-                                    <asp:Label ID="CardName2" runat="server" Text="Name:" class="label"></asp:Label>
-                                    <asp:Label ID="CardStrand2" runat="server" Text="Strand:" class="label"></asp:Label>
-                                    <asp:Label ID="CardSubject2" runat="server" Text="Subject:" ></asp:Label>
-                                </div>
-                               </div>
-                            </td>
-                             <td class="Cards">
-                                <div class="CardDiv">
-                                <div class="CardImage">
-                                <img src="../Images/PF_placeholder.png" class="CardDP"/>
-                                    <br />
-                                   <br />
-                                <asp:Button ID="MoreButton3" runat="server" Text="More" class="MoreButton" />
-                                    </div>
-                                <div class="CardInfo">                                 
-                                    <asp:Label ID="CardName3" runat="server" Text="Name:" class="label"></asp:Label>
-                                    <asp:Label ID="CardStrand3" runat="server" Text="Strand:" class="label"></asp:Label>
-                                    <asp:Label ID="CardSubject3" runat="server" Text="Subject:" ></asp:Label>
-                                </div>
-                               </div>
-                            </td>
-                        </tr>
-                        <tr>
-                             <td class="Cards">
-                                <div class="CardDiv">
-                                <div class="CardImage">
-                                <img src="../Images/PF_placeholder.png" class="CardDP"/>
-                                    <br />
-                                   <br />
-                                <asp:Button ID="MoreButton4" runat="server" Text="More" class="MoreButton" />
-                                    </div>
-                                <div class="CardInfo">                                 
-                                    <asp:Label ID="CardName4" runat="server" Text="Name:" class="label"></asp:Label>
-                                    <asp:Label ID="CardStrand4" runat="server" Text="Strand:" class="label"></asp:Label>
-                                    <asp:Label ID="CardSubject4" runat="server" Text="Subject:" ></asp:Label>
-                                </div>
-                               </div>
-                            </td>
-                             <td class="Cards">
-                                <div class="CardDiv">
-                                <div class="CardImage">
-                                <img src="../Images/PF_placeholder.png" class="CardDP"/>
-                                    <br />
-                                   <br />
-                                <asp:Button ID="MoreButton5" runat="server" Text="More" class="MoreButton" />
-                                    </div>
-                                <div class="CardInfo">                                 
-                                    <asp:Label ID="CardName5" runat="server" Text="Name:" class="label"></asp:Label>
-                                    <asp:Label ID="CardStrand5" runat="server" Text="Strand:" class="label"></asp:Label>
-                                    <asp:Label ID="CardSubject5" runat="server" Text="Subject:" ></asp:Label>
-                                </div>
-                               </div>
-                            </td>
-                             <td class="Cards">
-                                <div class="CardDiv">
-                                <div class="CardImage">
-                                <img src="../Images/PF_placeholder.png" class="CardDP"/>
-                                    <br />
-                                   <br />
-                                <asp:Button ID="MoreButton6" runat="server" Text="More" class="MoreButton" />
-                                    </div>
-                                <div class="CardInfo">                                 
-                                    <asp:Label ID="CardName6" runat="server" Text="Name:" class="label"></asp:Label>
-                                    <asp:Label ID="CardStrand6" runat="server" Text="Strand:" class="label"></asp:Label>
-                                    <asp:Label ID="CardSubject6" runat="server" Text="Subject:" ></asp:Label>
-                                </div>
-                               </div>
-                            </td>
-                        </tr>
-                        <tr>
-                             <td class="Cards">
-                                <div class="CardDiv">
-                                <div class="CardImage">
-                                <img src="../Images/PF_placeholder.png" class="CardDP"/>
-                                    <br />
-                                   <br />
-                                <asp:Button ID="MoreButton7" runat="server" Text="More" class="MoreButton" />
-                                    </div>
-                                <div class="CardInfo">                                 
-                                    <asp:Label ID="CardName7" runat="server" Text="Name:" class="label"></asp:Label>
-                                    <asp:Label ID="CardStrand7" runat="server" Text="Strand:" class="label"></asp:Label>
-                                    <asp:Label ID="CardSubject7" runat="server" Text="Subject:" ></asp:Label>
-                                </div>
-                               </div>
-                            </td>
-                             <td class="Cards">
-                                <div class="CardDiv">
-                                <div class="CardImage">
-                                <img src="../Images/PF_placeholder.png" class="CardDP"/>
-                                    <br />
-                                   <br />
-                                <asp:Button ID="MoreButton8" runat="server" Text="More" class="MoreButton" />
-                                    </div>
-                                <div class="CardInfo">                                 
-                                    <asp:Label ID="CardName8" runat="server" Text="Name:" class="label"></asp:Label>
-                                    <asp:Label ID="CardStrand8" runat="server" Text="Strand:" class="label"></asp:Label>
-                                    <asp:Label ID="CardSubject8" runat="server" Text="Subject:" ></asp:Label>
-                                </div>
-                               </div>
-                            </td>
-                             <td class="Cards">
-                                <div class="CardDiv">
-                                <div class="CardImage">
-                                <img src="../Images/PF_placeholder.png" class="CardDP"/>
-                                    <br />
-                                   <br />
-                                <asp:Button ID="MoreButton9" runat="server" Text="More" class="MoreButton" />
-                                    </div>
-                                <div class="CardInfo">                                 
-                                    <asp:Label ID="CardName9" runat="server" Text="Name:" class="label"></asp:Label>
-                                    <asp:Label ID="CardStrand9" runat="server" Text="Strand:" class="label"></asp:Label>
-                                    <asp:Label ID="CardSubject9" runat="server" Text="Subject:" ></asp:Label>
-                                </div>
-                               </div>
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="CardSideContainer">
+                        <asp:Repeater ID="CardRepeater" runat="server">
+        <ItemTemplate>
+            <td class="Cards">
+                <div class="CardDiv">
+                    <div class="CardImage">
+                        <img src="../Images/PF_placeholder.png" class="CardDP" />
+                        <br />
+                        <br />
+                        <asp:Button ID="MoreButton" runat="server" Text="More" class="MoreButton" />
+                    </div>
+                    <div class="CardInfo">
+                        <asp:Label ID="CardName" runat="server" Text='<%# Eval("name") %>' class="label"></asp:Label>
+                        <asp:Label ID="CardLooking" runat="server" Text='<%# Eval("looking") %>' class="label"></asp:Label>
+                        <asp:Label ID="CardStrand" runat="server" Text='<%# Eval("strand") %>' class="label"></asp:Label>
+                        <asp:Label ID="CardSubject" runat="server" Text='<%# Eval("subject") %>' class="label"></asp:Label>
+                        <asp:Label ID="CardAvailability" runat="server" Text='<%# Eval("availability") %>' class="label"></asp:Label>
+                        <asp:Label ID="CardLocation" runat="server" Text='<%# Eval("location") %>' class="label"></asp:Label>
+                    </div>
                 </div>
+            </td>
+        </ItemTemplate>
+    </asp:Repeater>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

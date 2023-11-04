@@ -81,6 +81,9 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 
 }
 
@@ -99,6 +102,7 @@ td {
    display: flex;
    height: 80%;
    padding: 10px;
+   border: solid black;
 }
 
 .CardImage {
@@ -131,4 +135,9 @@ td {
 .div.Holder {
     display: inline-block;
     margin-right: 10px;
+}
+
+.CardSideContainer {
+    max-height: 84%; /* Adjust the height as needed */
+    overflow-y: auto;
 }
