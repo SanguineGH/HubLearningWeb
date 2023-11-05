@@ -61,8 +61,22 @@
     margin-right: 5px;
     margin-bottom: 5px;
     text-align: center;
-    display:inherit;
 }
+
+.hidden-form {
+    display: none;
+}
+
+#editBioForm {
+    position: fixed; /* Set the position to fixed */
+    top: 50%; /* Adjust the top position as needed */
+    left: 50%; /* Adjust the left position as needed */
+    transform: translate(-50%, -50%); /* Center the form */
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
 
 .Logout {
     padding: 10px
