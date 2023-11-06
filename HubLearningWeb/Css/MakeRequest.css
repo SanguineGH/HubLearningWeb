@@ -1,13 +1,21 @@
 ﻿.PostRequestHolder {
     width: 80%;
-    margin: auto;
-    border: 1px solid #ff6a00 ;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    transition: transform 0.2s;
 }
-
+    .PostRequestHolder:hover {
+        transform: translateY(-5px);
+    }
 .TopPart {
     display: inline-flex;
     color: white;
     border: 1px solid #ff6a00; /* Optional border for styling */
+    align-items:center;
 }
 
 .ImageContainer {
@@ -21,10 +29,11 @@
 .RequestImage {
     width: 50%;
     border-radius: 50%;
-    
-    
+    transition: transform 0.2s;
 }
-
+    .RequestImage:hover {
+        transform: scale(1.05);
+    }
 .HoldInfos {
     width: 50%;
     display: flex;
@@ -39,7 +48,7 @@
 }
 
 .BottomPart {
-    display: flex;
+    display:block;
     flex-direction: column;
     align-items: center; /* Center content horizontally */
     justify-content: center; /* Center content vertically */
@@ -81,4 +90,28 @@
 }
 .Content {
   
+}
+/* Para sa submit button kineme */
+#ReqSubmit {
+    background-color: #ff5722;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+    /* Para sa color ng submit button kunyare fadeaway*/
+    #ReqSubmit:hover {
+        background-color: #ff6f33;
+        transform: scale(1.05);
+    }
+p {
+    font-weight: bold;
+}
+/* para sa radio buttin margin*/
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 5px;
 }
