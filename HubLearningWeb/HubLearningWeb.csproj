@@ -149,6 +149,7 @@
     <Content Include="Css\Account.css" />
     <Content Include="Css\Dashboard.css" />
     <Content Include="Css\index.css" />
+    <Content Include="Css\Login.css" />
     <Content Include="Css\MakeRequest.css" />
     <Content Include="Css\Bulletin.css" />
     <Content Include="Css\Notif.css" />

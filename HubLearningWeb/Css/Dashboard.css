@@ -1,60 +1,43 @@
-﻿body {
-
+﻿/* Reset some default styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
+/* Overall dashboard container */
 .Dashboard {
-    width: 90vw;
-    height: 90vh; 
-    border: solid 3px;
-    margin: auto;
     display: flex;
-    border-color: white;
+    width: 100vw;
+    height: 100vh;
 }
 
-.IconNavigation { /* Navbar saka Icon area*/
+/* Icon navigation section */
+.IconNavigation {
     width: 15%;
-    height: 100%;
-    border: solid 3px;
-    border-color: orange;
-    background-color:white;
+    background-color: #f8f8f8;
+    border-right: 3px solid orange;
 }
 
-.Icon { /* Icon Div */
+.Icon {
     width: 100%;
-    height: 20%;
-    border: solid 3px;
-    display: flex; /* Create a flex container */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    border-color:orange;
-
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.IconImage { /* Icon Image*/
-    width: 75%;
+.IconImage {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    margin: auto;
 }
 
-.Navigation { /*Navbar Div*/
-    width: 100%;
-    align-content: center;
+.Navigation {
+    padding: 20px 0;
 }
 
-.Content { /* Content Area */
-    border: solid 3px;
-    width: 85%;
-    height: 100%;
-    background-image: url('/Images/novahigh.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    color:white;
-    border-color: orange;
-    
-    
-}
-
-/* Style The Dropdown Button */
+/* Dropdown button styles */
 .dropbtn {
     background-color: orange;
     color: white;
@@ -63,43 +46,52 @@
     border: none;
     cursor: pointer;
     width: 100%;
-    border-bottom: solid white;
-    border-top: solid white;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
-/* The container <div> - needed to position the dropdown content */
+/* Dropdown container styles */
 .dropdown {
     position: relative;
     display: inline-block;
     width: 100%;
 }
 
-/* Dropdown Content (Hidden by Default) */
+/* Dropdown content styles */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: sandybrown;
+    background-color: #f4a460;
     width: 100%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     color: white;
 }
 
-    /* Links inside the dropdown */
+    /* Dropdown link styles */
     .dropdown-content a {
         color: white;
         padding: 12px 16px;
         text-decoration: none;
         display: block;
+        transition: background-color 0.3s;
     }
 
-        /* Change color of dropdown links on hover */
+        /* Hover effect for dropdown links */
         .dropdown-content a:hover {
-            background-color: saddlebrown;
+            background-color: #8b4513;
         }
 
-/* Display the dropdown content when hovering over the container */
+/* Display dropdown content on hover */
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+/* Main content area */
+.Content {
+    flex-grow: 1;
+    background-image: url('/Images/novahigh.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: white;
+    padding: 20px;
 }
