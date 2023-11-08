@@ -22,8 +22,8 @@
 
 <div class="lorembigdiv">
 	<div class="left">
-		<h1 class="display-4">Shish</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor elit sed vulputate mi. Vitae turpis massa sed elementum tempus egestas. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit. Id interdum velit laoreet id donec ultrices. Velit dignissim sodales ut eu sem integer vitae. Hendrerit dolor magna eget est lorem ipsum dolor. Vehicula ipsum a arcu cursus vitae congue mauris rhoncus. In metus vulputate eu scelerisque felis imperdiet proin. Id interdum velit laoreet id. Magna fringilla urna porttitor rhoncus dolor. Enim praesent elementum facilisis leo vel fringilla. Pellentesque habitant morbi tristique senectus et netus. Feugiat vivamus at augue eget arcu..</p>
+		<h1 class="display-4">Novaliches High school</h1>
+		<p>Novaliches High School is a public educational institution located in Quezon City that was founded in 1964. It offers education for junior and senior high school. The ABM, HUMSS, GAS, and STEM strands and the TVL track like ICT strand are offered for senior high school. The school is also recognized by the Department of Education (DepEd).</p>
 	</div>
 	<div class="right">
 		<img class="right" src="/Images/NOVA.png" />
@@ -68,14 +68,14 @@
 <div class ="BIGSTRAND">
 	<div class="Flexy">
 		<div class="BSLoremFlex">
-			<p class="Loremoments">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend nec elit a porttitor. Ut eget rhoncus purus. Sed non lacinia est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed enim mi, convallis sit amet finibus sed, venenatis ac mauris. In fringilla nec libero vitae tempus. Nam ultricies erat at aliquet posuere. Ut a ligula quis massa finibus vulputate a vel quam. Nullam non bibendum ligula. Nulla a nulla vestibulum, blandit nunc in, vulputate nibh. Etiam ut fermentum enim. Donec fermentum ipsum sem, vel hendrerit sapien rutrum pretium. Nullam vestibulum condimentum velit, et malesuada ligula semper nec. Duis imperdiet ipsum sed odio sodales commodo.</p>
+			<p class="Loremoments">The STEM stands for Science, Technology, Engineering, and Mathematics strand. This strand will help students become future scientists, technological analysts and experts, engineers, mathematicians, programmers, and the like by developing their ability to assess simple to complex societal problems and be responsive and active in the formulation of its solution through the application and integration of scientific, technological, engineering, and mathematical concepts. It also prepares them to pursue college degrees that center on the mystery of the natural world.</p>
 			<div id="STEM">
 			<div><img class="ImageStrandBig" src="../Images/STEM.png" /></div>
 				<div class="AlignCen"><p>STEM</p></div>
 			</div>
 		</div>
 		<div class="BSLoremFlex">
-			<p class="Loremoments">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend nec elit a porttitor. Ut eget rhoncus purus. Sed non lacinia est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed enim mi, convallis sit amet finibus sed, venenatis ac mauris. In fringilla nec libero vitae tempus. Nam ultricies erat at aliquet posuere. Ut a ligula quis massa finibus vulputate a vel quam. Nullam non bibendum ligula. Nulla a nulla vestibulum, blandit nunc in, vulputate nibh. Etiam ut fermentum enim. Donec fermentum ipsum sem, vel hendrerit sapien rutrum pretium. Nullam vestibulum condimentum velit, et malesuada ligula semper nec. Duis imperdiet ipsum sed odio sodales commodo.</p>
+			<p class="Loremoments">The Accountancy, Business, and Management (ABM) track combines mathematical application, creativity, and business acumen to train tomorrow's top business leaders. Students will be introduced to the fundamentals of accounting, corporate operations, business management, and financial management when they take ABM classes in senior high school. This course will prepare students for exciting jobs as managers, accountants, and entrepreneurs. This course will prepare students for exciting jobs as managers, accountants, and entrepreneurs. With the knowledge and abilities gained from these ABM courses, they will be well-equipped to succeed in their careers and manage their enterprises.</p>
 			<div id="ABM">
 			<div><img class="ImageStrandBig" src="../Images/ABM.png" /></div>
 				<div class="AlignCen"><p>ABM</p></div>
@@ -84,14 +84,14 @@
 	</div>
 	<div class="Flexy">
 		<div class="BSLoremFlex">
-			<p class="Loremoments">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend nec elit a porttitor. Ut eget rhoncus purus. Sed non lacinia est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed enim mi, convallis sit amet finibus sed, venenatis ac mauris. In fringilla nec libero vitae tempus. Nam ultricies erat at aliquet posuere. Ut a ligula quis massa finibus vulputate a vel quam. Nullam non bibendum ligula. Nulla a nulla vestibulum, blandit nunc in, vulputate nibh. Etiam ut fermentum enim. Donec fermentum ipsum sem, vel hendrerit sapien rutrum pretium. Nullam vestibulum condimentum velit, et malesuada ligula semper nec. Duis imperdiet ipsum sed odio sodales commodo.</p>
+			<p class="Loremoments">The Humanities and Social Sciences (HUMSS) strands provide students with a broad education by utilizing their experiences and abilities to investigate and inquire about human situations. They do this by utilizing empirical, analytical, and critical method techniques to study human behavior and social changes. Every student who takes HUMSS will get a greater grasp of politics, literature, the arts, culture, and society—how these variables' complexity is recognized during the urgent challenges that affect them.</p>
 			<div>
 				<div id="HUMS"><img class="ImageStrandBig" src="../Images/HUM.png" /></div>
 				<div class="AlignCen"><p>HUMSS</p></div>
 			</div>
 		</div>
 		<div class="BSLoremFlex">
-			<p class="Loremoments">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend nec elit a porttitor. Ut eget rhoncus purus. Sed non lacinia est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed enim mi, convallis sit amet finibus sed, venenatis ac mauris. In fringilla nec libero vitae tempus. Nam ultricies erat at aliquet posuere. Ut a ligula quis massa finibus vulputate a vel quam. Nullam non bibendum ligula. Nulla a nulla vestibulum, blandit nunc in, vulputate nibh. Etiam ut fermentum enim. Donec fermentum ipsum sem, vel hendrerit sapien rutrum pretium. Nullam vestibulum condimentum velit, et malesuada ligula semper nec. Duis imperdiet ipsum sed odio sodales commodo.</p>
+			<p class="Loremoments">Information and communication technology (ICT) is transforming many sectors and organizations. Economic development is fueled by advancements in communication and technology, which are also transforming many facets of society. As a result, after obtaining their National Certification II from TESDA, the graduates of this strand will have the skills and abilities required for employment. Because of the department's extensive external network and wide range of industrial partners, graduates stand a good chance of finding employment because the firms will hire them for on-the-job training.</p>
 			<div>
 			<div id="TV"><img class="ImageStrandBig" src="../Images/TV.png" /></div>
 			<div class="AlignCen"><p>TEC VOC</p></div>
@@ -100,7 +100,7 @@
 	</div>
 	<div class="Flexy">
 		<div class="BSLoremFlex"> 
-			<p class="Loremoments">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend nec elit a porttitor. Ut eget rhoncus purus. Sed non lacinia est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed enim mi, convallis sit amet finibus sed, venenatis ac mauris. In fringilla nec libero vitae tempus. Nam ultricies erat at aliquet posuere. Ut a ligula quis massa finibus vulputate a vel quam. Nullam non bibendum ligula. Nulla a nulla vestibulum, blandit nunc in, vulputate nibh. Etiam ut fermentum enim. Donec fermentum ipsum sem, vel hendrerit sapien rutrum pretium. Nullam vestibulum condimentum velit, et malesuada ligula semper nec. Duis imperdiet ipsum sed odio sodales commodo.</p>
+			<p class="Loremoments">The GAS strand is designed to accommodate students who would rather study a wide range of subjects than just one or two specializations. It gives SHS students the freedom to select electives from a variety of strands, assisting them in deciding on a university major. An introduction of this strand is given in this article, along with a list of courses students can enroll in to pave the way for future job success.</p>
 			<div>
 				<div id="GAS"><img class="ImageStrandBig" src="../Images/GAS.png" /></div>
 				<div class="AlignCen"><p>GAS</p></div>
