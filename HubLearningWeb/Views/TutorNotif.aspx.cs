@@ -36,7 +36,11 @@ namespace HubLearningWeb.Views
                 string query = "SELECT t.tid AS TransactionID, " +
                                "CASE WHEN b.role = 'Tutee' THEN u.name ELSE b.name END AS TutorName, " +
                                "CASE WHEN b.role = 'Tutor' THEN u.name ELSE b.name END AS TuteeName, " +
-                               "b.subject AS Subject " +
+                               "b.subject AS Subject, " +
+                               "b.strand AS Strand, " +
+                               "b.yearlevel AS YearLevel, " +
+                               "b.availability AS Availability, " +
+                               "b.location AS Location " +
                                "FROM transaction t " +
                                "INNER JOIN bulletin b ON t.requestor = b.rid " +
                                "INNER JOIN users u ON t.client = u.uid " +
@@ -59,12 +63,7 @@ namespace HubLearningWeb.Views
 
         protected void ViewMore_Click(object sender, EventArgs e)
         {
-            // Handle the button click event for "View More" here.
-            // You can access the TransactionID using CommandArgument.
-            // For example:
-            Button button = (Button)sender;
-            string transactionID = button.CommandArgument;
-            // Add your code to handle the view more action.
+            
         }
     }
 }

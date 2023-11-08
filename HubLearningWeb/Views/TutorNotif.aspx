@@ -54,6 +54,7 @@
                                <asp:Repeater ID="transactionRepeater" runat="server">
                         <ItemTemplate>
                             <div class="NotificationCard">
+                                <div class="NotificationText">
                                 <asp:Label ID="tutorLabel" runat="server" Text="Tutor: "></asp:Label>
                                 <asp:Label ID="tutorNameLabel" runat="server" Text='<%# Eval("TutorName") %>'></asp:Label>
                                 <br />
@@ -63,13 +64,77 @@
                                 <asp:Label ID="subjectLabel" runat="server" Text="Subject: "></asp:Label>
                                 <asp:Label ID="subjectNameLabel" runat="server" Text='<%# Eval("Subject") %>'></asp:Label>
                                 <br />
-                                <asp:Button ID="viewMoreButton" runat="server" Text="View More" OnClick="ViewMore_Click" CommandArgument='<%# Eval("TransactionID") %>' />
+                                    </div>
+                                 <div class="NotificationButton">
+                                <asp:Button ID="viewMoreButton" runat="server" Text="View More" CssClass="view-more-button"
+                                            data-tutor='<%# Eval("TutorName") %>'
+                                            data-tutee='<%# Eval("TuteeName") %>'
+                                            data-strand='<%# Eval("Strand") %>'
+                                            data-subject='<%# Eval("Subject") %>'
+                                            data-yearlevel='<%# Eval("YearLevel") %>'
+                                            data-availability='<%# Eval("Availability") %>'
+                                            data-location='<%# Eval("Location") %>' />
+                                     </div>
                             </div>
                         </ItemTemplate>
-                    </asp:Repeater>
+                               </asp:Repeater>
+                        <div id="detailsModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="hideDetails()">&times;</span>
+                            <div class="NotificationText">
+                                <div class="label-container">
+                                    <asp:Label ID="tutorLabelModal" runat="server" Text="Tutor: "></asp:Label>
+                                    <asp:Label ID="tuteeLabelModal" runat="server" Text="Tutee: "></asp:Label>
+                                    <asp:Label ID="strandLabelModal" runat="server" Text="Strand: "></asp:Label>
+                                    <asp:Label ID="subjectLabelModal" runat="server" Text="Subject: "></asp:Label>
+                                    <asp:Label ID="yearLevelLabelModal" runat="server" Text="Year Level: "></asp:Label>
+                                    <asp:Label ID="availabilityLabelModal" runat="server" Text="Availability: "></asp:Label>
+                                    <asp:Label ID="locationLabelModal" runat="server" Text="Location: "></asp:Label>
+                                </div>
+                            </div>
+                            <div class="modal-actions">
+                                <button id="acceptButton">Accept</button>
+                                <button id="declineButton">Decline</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var buttons = document.querySelectorAll(".view-more-button");
+            buttons.forEach(function (button) {
+                button.addEventListener("click", function (event) {
+                    event.preventDefault(); // Prevent the default form submission behavior
+                    var tutor = this.getAttribute("data-tutor");
+                    var tutee = this.getAttribute("data-tutee");
+                    var strand = this.getAttribute("data-strand");
+                    var subject = this.getAttribute("data-subject");
+                    var yearLevel = this.getAttribute("data-yearlevel");
+                    var availability = this.getAttribute("data-availability");
+                    var location = this.getAttribute("data-location");
+                    showDetails(tutor, tutee, strand, subject, yearLevel, availability, location);
+                });
+            });
+        });
+
+        function showDetails(tutor, tutee, strand, subject, yearLevel, availability, location) {
+            document.getElementById("tutorLabelModal").innerHTML = "Tutor: " + tutor;
+            document.getElementById("tuteeLabelModal").innerHTML = "Tutee: " + tutee;
+            document.getElementById("strandLabelModal").innerHTML = "Strand: " + strand;
+            document.getElementById("subjectLabelModal").innerHTML = "Subject: " + subject;
+            document.getElementById("yearLevelLabelModal").innerHTML = "Year Level: " + yearLevel;
+            document.getElementById("availabilityLabelModal").innerHTML = "Availability: " + availability;
+            document.getElementById("locationLabelModal").innerHTML = "Location: " + location;
+            document.getElementById("detailsModal").style.display = "block";
+            return false; // Prevent form submission
+        }
+
+        function hideDetails() {
+            document.getElementById("detailsModal").style.display = "none";
+        }
+    </script>
 </body>
 </html>
