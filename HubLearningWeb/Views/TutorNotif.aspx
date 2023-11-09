@@ -54,7 +54,7 @@
                                <asp:Repeater ID="transactionRepeater" runat="server">
                         <ItemTemplate>
                             <div class="NotificationCard">
-                                <div class="NotificationText">
+                              
                                 <asp:Label ID="tutorLabel" runat="server" Text="Tutor: "></asp:Label>
                                 <asp:Label ID="tutorNameLabel" runat="server" Text='<%# Eval("TutorName") %>'></asp:Label>
                                 <br />
@@ -64,7 +64,7 @@
                                 <asp:Label ID="subjectLabel" runat="server" Text="Subject: "></asp:Label>
                                 <asp:Label ID="subjectNameLabel" runat="server" Text='<%# Eval("Subject") %>'></asp:Label>
                                 <br />
-                                    </div>
+                                 
                                  <div class="NotificationButton">
                                 <asp:Button ID="viewMoreButton" runat="server" Text="View More" CssClass="view-more-button"
                                             data-tutor='<%# Eval("TutorName") %>'
