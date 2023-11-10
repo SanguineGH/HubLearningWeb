@@ -46,6 +46,7 @@
                     </div>
                 </div>
             </div>
+            </div>
             <div class="Content">
                 <div class="TitleOnly">
                     <p>TUTEE NOTIFICATION</p>
