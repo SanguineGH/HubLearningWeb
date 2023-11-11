@@ -32,7 +32,6 @@
     background-color: orange;
 }
 
-/* Para mas tumaba yung border */
 .NotifCell {
     padding: 10px;
     border: 1px solid #ddd;
@@ -85,10 +84,6 @@
     display: flex;
     width: 80%;
     height: 50%;
-}
-
-.LabelHolder {
-    width: 80%;
 }
 
 .TitleOnly {
@@ -162,7 +157,6 @@
     flex-direction: column;
 }
 
-    /* Adjust individual label styles within the hidden modal */
     .label-container .label {
         font-weight: bold;
         color: #333;
