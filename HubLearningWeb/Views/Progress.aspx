@@ -46,7 +46,20 @@
                 </div>
             </div>
             <div class="Content">
-                <p>This is for progress</p>
+                <asp:GridView ID="progressGridView" runat="server" AutoGenerateColumns="False" OnRowCommand="progressGridView_RowCommand" DataKeyNames="TransactionID">
+                    <Columns>
+                        <asp:BoundField DataField="TuteeName" HeaderText="Tutee Name" SortExpression="TuteeName" />
+                        <asp:BoundField DataField="TuteeStudentID" HeaderText="Tutee Student ID" SortExpression="TuteeStudentID" />
+                        <asp:BoundField DataField="TutorName" HeaderText="Tutor Name" SortExpression="TutorName" />
+                        <asp:BoundField DataField="TutorStudentID" HeaderText="Tutor Student ID" SortExpression="TutorStudentID" />
+                        <asp:BoundField DataField="TuteeYearLevel" HeaderText="Year Level" SortExpression="TuteeYearLevel" />
+                        <asp:BoundField DataField="TuteeStrand" HeaderText="Strand" SortExpression="TuteeStrand" />
+                        <asp:BoundField DataField="TutorAvailability" HeaderText="Availability" SortExpression="TutorAvailability" />
+                        <asp:BoundField DataField="TutorLocation" HeaderText="Location" SortExpression="TutorLocation" />
+                        <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" />
+                        <asp:ButtonField ButtonType="Button" Text="Complete" CommandName="CompleteCommand" HeaderText="" ShowHeader="True" />
+                    </Columns>
+                </asp:GridView>
             </div>
         </div>
     </form>
