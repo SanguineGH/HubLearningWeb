@@ -76,8 +76,8 @@ namespace HubLearningWeb.Views
                 connection.Open();
 
                 // Define the SQL query to insert data into the "bulletin" table.
-                string query = "INSERT INTO bulletin (uid, name, looking, strand, subject, availability, location, role) " +
-                    "VALUES (@uid, (SELECT name FROM users WHERE uid = @uid), @looking, @strand, @subject, @availability, @location, @role);";
+                string query = "INSERT INTO bulletin (uid, name, looking, strand, yearlevel, availability, location, role) " +
+                "VALUES (@uid, (SELECT name FROM users WHERE uid = @uid), @looking, @strand, @yearLevel, @availability, @location, @role);";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -90,8 +90,9 @@ namespace HubLearningWeb.Views
                     string strand = GetSelectedRadioValue(StrandRadios);
                     command.Parameters.AddWithValue("@strand", strand);
 
-                    string subject = GetSelectedRadioValue(SubjectRadios);
-                    command.Parameters.AddWithValue("@subject", subject);
+                    string yearLevel = GetSelectedRadioValue(YearLevelRadios);
+                    command.Parameters.AddWithValue("@yearLevel", yearLevel);
+
 
                     // Availability checkboxes (assuming checkboxes are used):
                     string availability = string.Join(", ", new[] {
@@ -128,7 +129,7 @@ namespace HubLearningWeb.Views
             ReqTutee.Checked = false;
             ReqTutor.Checked = false;
             UncheckRadioButtons(StrandRadios);
-            UncheckRadioButtons(SubjectRadios);
+       
             ReqSun.Checked = false;
             ReqMon.Checked = false;
             ReqTues.Checked = false;
