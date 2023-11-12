@@ -9,8 +9,8 @@ using System.Web.UI.WebControls;
 
 namespace HubLearningWeb.Views
 {
-	public partial class BulletinTutee : System.Web.UI.Page
-	{
+    public partial class BulletinTutee : System.Web.UI.Page
+    {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -37,7 +37,7 @@ namespace HubLearningWeb.Views
             {
                 connection.Open();
 
-                string query = "SELECT name, looking, strand, subject, availability, location FROM bulletin WHERE UID";
+                string query = "SELECT rid, name, looking, strand, availability, location FROM bulletin WHERE UID AND looking ='tutee'";
 
                 // Replace 'uidValue' with the actual UID you want to retrieve
                 string uidValue = Session["UID"].ToString();
@@ -56,5 +56,6 @@ namespace HubLearningWeb.Views
                 }
             }
         }
+
     }
 }

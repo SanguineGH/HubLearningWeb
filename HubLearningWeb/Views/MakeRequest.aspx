@@ -79,14 +79,11 @@
                                 <asp:RadioButton ID="ReqTV" runat="server" Text="TechVoc" GroupName="Strand" value="TechVoc" />
                
                         </div>
-                        <div class="Subject" runat="server" id="SubjectRadios">
-                            <p>Subject</p>
-                      
-                                <asp:RadioButton ID="ReqS1" runat="server" Text="Subject 1" GroupName="Subject" value="Subject 1" />
-                                <asp:RadioButton ID="ReqS2" runat="server" Text="Subject 2" GroupName="Subject" value="Subject 2" />
-                                <asp:RadioButton ID="ReqS3" runat="server" Text="Subject 3" GroupName="Subject" value="Subject 3" />
-                                <asp:RadioButton ID="ReqS4" runat="server" Text="Subject 4" GroupName="Subject" value="Subject 4" />
-                      
+               
+                        <div class="YearLevel" runat="server" id="YearLevelRadios">
+                            <p>Year Level</p>
+                            <asp:RadioButton ID="ReqFirstYear" runat="server" Text="First Year" GroupName="YearLevel" value="First Year" />
+                            <asp:RadioButton ID="ReqSecondYear" runat="server" Text="Second Year" GroupName="YearLevel" value="Second Year" />
                         </div>
 
                         <div class="Avail">

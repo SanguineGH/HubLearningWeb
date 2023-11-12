@@ -37,7 +37,7 @@ namespace HubLearningWeb.Views
             {
                 connection.Open();
 
-                string query = "SELECT name, looking, strand, subject, availability, location FROM bulletin WHERE uid";
+                string query = "SELECT name, looking, strand, subject, availability, location FROM bulletin WHERE uid AND looking='tutor'";
 
                 // Replace 'uidValue' with the actual UID you want to retrieve
                 string uidValue = Session["UID"].ToString();

@@ -132,49 +132,31 @@ namespace HubLearningWeb.Views
         protected global::System.Web.UI.WebControls.RadioButton ReqTV;
 
         /// <summary>
-        /// SubjectRadios control.
+        /// YearLevelRadios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SubjectRadios;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl YearLevelRadios;
 
         /// <summary>
-        /// ReqS1 control.
+        /// ReqFirstYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton ReqS1;
+        protected global::System.Web.UI.WebControls.RadioButton ReqFirstYear;
 
         /// <summary>
-        /// ReqS2 control.
+        /// ReqSecondYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton ReqS2;
-
-        /// <summary>
-        /// ReqS3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton ReqS3;
-
-        /// <summary>
-        /// ReqS4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton ReqS4;
+        protected global::System.Web.UI.WebControls.RadioButton ReqSecondYear;
 
         /// <summary>
         /// ReqSun control.

@@ -35,17 +35,16 @@ namespace HubLearningWeb.Views
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT t.tid AS TransactionID, " +
-                               "CASE WHEN b.role = 'Tutee' THEN u.name ELSE b.name END AS TutorName, " +
-                               "CASE WHEN b.role = 'Tutor' THEN u.name ELSE b.name END AS TuteeName, " +
-                               "b.subject AS Subject, " +
+                string query = "SELECT n.nid AS NotificationID, " +
+                               "CASE WHEN b.role = 'Tutor' THEN u.name ELSE b.name END AS TutorName, " +
+                               "CASE WHEN b.role = 'Tutee' THEN u.name ELSE b.name END AS TuteeName, " +
                                "b.strand AS Strand, " +
                                "b.yearlevel AS YearLevel, " +
                                "b.availability AS Availability, " +
-                               "b.location AS Location " + 
-                               "FROM transaction t " +
-                               "INNER JOIN bulletin b ON t.requestor = b.rid " +
-                               "INNER JOIN users u ON t.client = u.uid " +
+                               "b.location AS Location " +
+                               "FROM notification n " +
+                               "INNER JOIN bulletin b ON n.Frid = b.rid " +
+                               "INNER JOIN users u ON n.Fuid = u.uid " +
                                "WHERE b.uid = @UID AND b.role = 'Tutee'";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -66,11 +65,87 @@ namespace HubLearningWeb.Views
         protected void ViewMore_Click(object sender, EventArgs e)
         {
             // Handle the button click event for "View More" here.
-            // You can access the TransactionID using CommandArgument.
+            // You can access the NotificationID using CommandArgument.
             // For example:
             Button button = (Button)sender;
-            string transactionID = button.CommandArgument;
+            string notificationID = button.CommandArgument;
+
             // Add your code to handle the view more action.
+            // You can use the notificationID to fetch additional details if needed.
+
+            // Assuming you want to insert into the transaction table
+            InsertTransaction(notificationID);
+
+            // Refresh the Repeater to reflect the changes
+            BindRepeater(Session["UID"].ToString());
+        }
+
+        protected void AcceptButton_Click(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "Accept")
+            {
+                string notificationID = e.CommandArgument.ToString();
+                InsertTransaction(notificationID);
+                RemoveNotification(notificationID);
+                BindRepeater(Session["UID"].ToString()); // Rebind the repeater to reflect the changes
+            }
+        }
+
+        private void RemoveNotification(string notificationID)
+        {
+            string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Remove the corresponding row from the notification table
+                string removeQuery = "DELETE FROM notification WHERE nid = @NotificationID";
+                using (MySqlCommand removeCmd = new MySqlCommand(removeQuery, connection))
+                {
+                    removeCmd.Parameters.AddWithValue("@NotificationID", notificationID);
+                    removeCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private void InsertTransaction(string notificationID)
+        {
+            string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Fetch details from the notification table
+                string fetchDetailsQuery = "SELECT Frid, Fuid FROM notification WHERE nid = @NotificationID";
+
+                using (MySqlCommand fetchCmd = new MySqlCommand(fetchDetailsQuery, connection))
+                {
+                    fetchCmd.Parameters.AddWithValue("@NotificationID", notificationID);
+
+                    using (MySqlDataReader reader = fetchCmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int requestor = reader.GetInt32("Frid");
+                            int client = reader.GetInt32("Fuid");
+
+                            // Close the reader before executing the next command
+                            reader.Close();
+
+                            // Insert into the transaction table
+                            string insertQuery = "INSERT INTO transaction (requestor, client, progress) VALUES (@Requestor, @Client, @Progress)";
+                            using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, connection))
+                            {
+                                insertCmd.Parameters.AddWithValue("@Requestor", requestor);
+                                insertCmd.Parameters.AddWithValue("@Client", client);
+                                insertCmd.Parameters.AddWithValue("@Progress", "Ongoing"); // Adjust as needed
+                                insertCmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
