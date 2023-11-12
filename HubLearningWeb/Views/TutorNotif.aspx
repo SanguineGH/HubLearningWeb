@@ -74,6 +74,8 @@
                                             data-yearlevel='<%# Eval("YearLevel") %>'
                                             data-availability='<%# Eval("Availability") %>'
                                             data-location='<%# Eval("Location") %>' />
+                                     <asp:Button ID="acceptButton" runat="server" Text="Accept" CssClass="accept-button"
+                             CommandName="Accept" CommandArgument='<%# Eval("NotificationID") %>' OnCommand="AcceptButton_Click" />
                                      </div>
                             </div>
                         </ItemTemplate>
@@ -92,10 +94,7 @@
                                     <asp:Label ID="locationLabelModal" runat="server" Text="Location: "></asp:Label>
                                 </div>
                             </div>
-                            <div class="modal-actions">
-                                <button id="acceptButton">Accept</button>
-                                <button id="declineButton">Decline</button>
-                            </div>
+                       
                         </div>
                     </div>
                 </div>
