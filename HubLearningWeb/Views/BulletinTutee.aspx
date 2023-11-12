@@ -39,6 +39,14 @@
             z-index: 1;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px;
+}
     </style>
 </head>
 <body>
@@ -172,13 +180,17 @@
                                                 <img src="../Images/PF_placeholder.png" class="CardDP" />
                                                 <br />
                                                 <br />
-                                                <asp:Button ID="MoreButton" runat="server" Text="More" class="MoreButton" OnClientClick='<%# "showDetails(" + Eval("rid") + "); return false;" %>' />
+                                                <asp:Button ID="MoreButton" runat="server" Text="More" class="MoreButton" CssClass="more-button"
+                                                        data-name='<%# Eval("name") %>'
+                                                        data-looking='<%# Eval("looking") %>'
+                                                        data-strand='<%# Eval("strand") %>'
+                                                        data-availability='<%# Eval("availability") %>'
+                                                        data-location='<%# Eval("location") %>' />
                                             </div>
                                             <div class="CardInfo">
                                                 <asp:Label ID="CardName" runat="server" Text='<%# Eval("name") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardLooking" runat="server" Text='<%# Eval("looking") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardStrand" runat="server" Text='<%# Eval("strand") %>' class="label"></asp:Label>
-                                                <asp:Label ID="CardSubject" runat="server" Text='<%# Eval("subject") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardAvailability" runat="server" Text='<%# Eval("availability") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardLocation" runat="server" Text='<%# Eval("location") %>' class="label"></asp:Label>
                                             </div>
@@ -193,77 +205,52 @@
         </div>
         <!-- Hidden Div for Details -->
         <div id="detailsModal" class="HiddenDiv">
+            <span class="close" onclick="hideDetails()">&times;</span>
             <img src="../Images/PF_placeholder.png" />
             <br />
             <br />
-            <label id="HiddenDivName"></label>
+            <asp:Label ID="nameLabelModal" runat="server" Text="Name: "></asp:Label>
             <br />
-            <label id="HiddenDivLooking"></label>
+            <asp:Label ID="lookingLabelModal" runat="server" Text="Looking For: "></asp:Label>
             <br />
-            <label id="HiddenDivStrand"></label>
+            <asp:Label ID="strandLabelModal" runat="server" Text="Strand: "></asp:Label>
             <br />
-            <label id="HiddenDivYearLevel"></label>
+            <asp:Label ID="availLabelModal" runat="server" Text="Availability: "></asp:Label>
             <br />
-            <label id="HiddenDivAvailability"></label>
-            <br />
-            <label id="HiddenDivLocation"></label>
+            <asp:Label ID="locLabelModal" runat="server" Text="Location: "></asp:Label>
             <br />
             <button onclick="connectNow()">Connect Now</button>
         </div>
-        <!-- Bottom Layer for Bio -->
-        <div class="BottomLayer">
-            <label id="BioLabel"></label>
-        </div>
-        <script>
-            function showDetails(rid) {
-                // Fetch details and bio based on RID
-                var details = fetchDetails(rid);
-                var bio = fetchBio(rid);
-
-                // Populate the hidden div
-                document.getElementById("HiddenDivName").innerText = "Name: " + details.name;
-                document.getElementById("HiddenDivLooking").innerText = "Looking For: " + details.looking;
-                document.getElementById("HiddenDivStrand").innerText = "Strand: " + details.strand;
-                document.getElementById("HiddenDivYearLevel").innerText = "Year Level: " + details.yearlevel;
-                document.getElementById("HiddenDivAvailability").innerText = "Availability: " + details.availability;
-                document.getElementById("HiddenDivLocation").innerText = "Location: " + details.location;
-
-                // Show the hidden div
-                document.getElementById("detailsModal").style.display = "block";
-                document.getElementById("detailsModal").style.zIndex = "3"; // Bring to front
-
-                // Show the BottomLayer
-                document.getElementsByClassName("BottomLayer")[0].style.display = "block";
-
-                // Populate bio in the BottomLayer
-                document.getElementById("BioLabel").innerText = "Bio: " + bio;
-            }
-
-            function fetchDetails(rid) {
-                // Implement your logic to fetch details from the server based on RID
-                // This is a placeholder; replace it with your actual implementation
-                return {
-                    name: "John Doe",
-                    looking: "Tutor",
-                    strand: "STEM",
-                    yearlevel: "First Year",
-                    availability: "Monday, Wednesday",
-                    location: "School"
-                };
-            }
-
-            function fetchBio(rid) {
-                // Implement your logic to fetch bio from the server based on RID
-                // This is a placeholder; replace it with your actual implementation
-                return "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-            }
-
-            function connectNow() {
-                // Implement the logic for connecting now
-                // You can use the details fetched earlier
-                alert("Connect Now button clicked!");
-            }
-        </script>
     </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var buttons = document.querySelectorAll(".more-button");
+            buttons.forEach(function (button) {
+                button.addEventListener("click", function (event) {
+                    event.preventDefault(); // Prevent the default form submission behavior
+                    var name = this.getAttribute("data-name");
+                    var looking = this.getAttribute("data-looking");
+                    var strand = this.getAttribute("data-strand");
+                    var availability = this.getAttribute("data-availability");
+                    var location = this.getAttribute("data-location");
+                    showDetails(name, looking, strand, availability, location);
+                });
+            });
+        });
+
+        function showDetails(name, looking, strand, availability, location) {
+            document.getElementById("nameLabelModal").innerHTML = "Name: " + name;
+            document.getElementById("lookingLabelModal").innerHTML = "Looking For: " + looking;
+            document.getElementById("strandLabelModal").innerHTML = "Strand: " + strand;
+            document.getElementById("availLabelModal").innerHTML = "Availability: " + availability;
+            document.getElementById("locLabelModal").innerHTML = "Location: " + location;
+            document.getElementById("detailsModal").style.display = "block";
+            return false; // Prevent form submission
+        }
+
+        function hideDetails() {
+            document.getElementById("detailsModal").style.display = "none";
+        }
+    </script>
 </body>
 </html>
