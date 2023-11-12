@@ -1,4 +1,5 @@
-﻿.GrandHolder {
+﻿
+.GrandHolder {
     border: solid;
     border-color: white;
     color: white;
@@ -7,32 +8,20 @@
     margin-top: 40px;
     background-image: url('/Images/novahigh.png');
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover; /* Use cover for a better background image fit */
+    padding: 20px; /* Add some padding to the GrandHolder */
+    border-radius: 10px; /* Add border-radius for rounded corners */
 }
 
 .TopPart {
     display: flex;
     color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    justify-content: space-between; /* Distribute child elements evenly */
 }
 
-.ImageHolder {
-    width: 30%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.InfoHolder {
-    width: 40%;
-    display:flex;
-   flex-direction:column;
-   align-items:flex-start;
-   gap:10px;
-   padding-top: 10px;
-}
-
+/* Add styling to the InfoHolder and ContactHolder */
+.InfoHolder,
 .ContactHolder {
     width: 40%;
     display: flex;
@@ -42,47 +31,43 @@
     padding-top: 10px;
 }
 
+    /* Add styling to the ContactHolder h2 */
+    .ContactHolder h2 {
+        margin-bottom: 0; /* Remove margin-bottom for better alignment */
+    }
+
 .ImagePF {
     display: block;
-    width: 80%;
+    width: 100%; /* Make the image fill its container */
     border-radius: 50%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .BottomPart {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 20px; /* Add more padding to the BottomPart */
     border: solid;
     border-color: white;
     color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
+    margin: 5px 0;
     text-align: center;
+    border-radius: 10px; /* Add border-radius for rounded corners */
 }
 
-.hidden-form {
-    display: none;
-}
-
+/* Style the Edit Bio button */
 #editBioForm {
-    position: fixed; /* Set the position to fixed */
-    top: 50%; /* Adjust the top position as needed */
-    left: 50%; /* Adjust the left position as needed */
-    transform: translate(-50%, -50%); /* Center the form */
     background: white;
     padding: 20px;
     border-radius: 10px;
 }
 
-
+/* Style the Logout button */
 .Logout {
-    padding: 10px
+    padding: 20px;
 }
 
+/* Style the Logout button */
 .blog {
-    width: 70px;
+    width: 100%; /* Make the button fill its container */
     height: 50px;
+    border-radius: 5px; /* Add border-radius for rounded corners */
 }
