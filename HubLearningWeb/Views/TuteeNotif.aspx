@@ -73,6 +73,9 @@
                                             data-yearlevel='<%# Eval("YearLevel") %>'
                                             data-availability='<%# Eval("Availability") %>'
                                             data-location='<%# Eval("Location") %>' />
+
+                                     <asp:Button ID="acceptButton" runat="server" Text="Accept" CssClass="accept-button"
+                             CommandName="Accept" CommandArgument='<%# Eval("NotificationID") %>' OnCommand="AcceptButton_Click" />
                                      </div>
                             </div>
                         </ItemTemplate>
@@ -90,10 +93,6 @@
                                     <asp:Label ID="availabilityLabelModal" runat="server" Text="Availability: "></asp:Label>
                                     <asp:Label ID="locationLabelModal" runat="server" Text="Location: "></asp:Label>
                                 </div>
-                            </div>
-                            <div class="modal-actions">
-                                <button id="acceptButton">Accept</button>
-                                <button id="declineButton">Decline</button>
                             </div>
                         </div>
                     </div>
@@ -122,7 +121,7 @@
             document.getElementById("tutorLabelModal").innerHTML = "Tutor: " + tutor;
             document.getElementById("tuteeLabelModal").innerHTML = "Tutee: " + tutee;
             document.getElementById("strandLabelModal").innerHTML = "Strand: " + strand;
-         
+
             document.getElementById("yearLevelLabelModal").innerHTML = "Year Level: " + yearLevel;
             document.getElementById("availabilityLabelModal").innerHTML = "Availability: " + availability;
             document.getElementById("locationLabelModal").innerHTML = "Location: " + location;
