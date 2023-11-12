@@ -14,7 +14,7 @@
 .TopPart {
     display: inline-flex;
     color: white;
-    border: 1px solid #ff6a00; /* Optional border for styling */
+   
     align-items:center;
 }
 
@@ -115,3 +115,54 @@ p {
 input[type="radio"], input[type="checkbox"] {
     margin-right: 5px;
 }
+/* Add a gradient background to the PostRequestHolder div */
+.PostRequestHolder {
+    background: linear-gradient(to right, #ff6a00, #ff9933);
+}
+
+/* Add a border and shadow to the RequestImage div */
+.RequestImage {
+    border: 1px solid white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Change the font color of the InfoLabel class */
+.InfoLabel {
+    color: white;
+}
+
+/* Change the background color of the BottomPart div */
+.BottomPart {
+    background: linear-gradient(to right, #ff9933, #ffcc66);
+}
+
+/* Change the font size of the BottomPart div */
+.BottomPart {
+    font-size: 12px;
+}
+
+/* Add a border and shadow to the Submit button */
+#ReqSubmit {
+    border: 1px solid white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+    /* Add a hover effect to the Submit button */
+    #ReqSubmit:hover {
+        background-color: #ff6a00;
+    }
+#ReqSubmit {
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+    #ReqSubmit:hover {
+        background-color: #ff0000;
+    }
