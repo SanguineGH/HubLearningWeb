@@ -60,8 +60,8 @@
                                 <asp:Label ID="tuteeLabel" runat="server" Text="Tutee: "></asp:Label>
                                 <asp:Label ID="tuteeNameLabel" runat="server" Text='<%# Eval("TuteeName") %>'></asp:Label>
                                 <br />
-                                <asp:Label ID="subjectLabel" runat="server" Text="Subject: "></asp:Label>
-                                <asp:Label ID="subjectNameLabel" runat="server" Text='<%# Eval("Subject") %>'></asp:Label>
+                                <asp:Label ID="subjectLabel" runat="server" Text="Strand: "></asp:Label>
+                                <asp:Label ID="subjectNameLabel" runat="server" Text='<%# Eval("Strand") %>'></asp:Label>
                                 <br />
                                   
                                  <div class="NotificationButton">
@@ -69,7 +69,7 @@
                                             data-tutor='<%# Eval("TutorName") %>'
                                             data-tutee='<%# Eval("TuteeName") %>'
                                             data-strand='<%# Eval("Strand") %>'
-                                            data-subject='<%# Eval("Subject") %>'
+
                                             data-yearlevel='<%# Eval("YearLevel") %>'
                                             data-availability='<%# Eval("Availability") %>'
                                             data-location='<%# Eval("Location") %>' />
@@ -85,7 +85,7 @@
                                     <asp:Label ID="tutorLabelModal" runat="server" Text="Tutor: "></asp:Label>
                                     <asp:Label ID="tuteeLabelModal" runat="server" Text="Tutee: "></asp:Label>
                                     <asp:Label ID="strandLabelModal" runat="server" Text="Strand: "></asp:Label>
-                                    <asp:Label ID="subjectLabelModal" runat="server" Text="Subject: "></asp:Label>
+                                 
                                     <asp:Label ID="yearLevelLabelModal" runat="server" Text="Year Level: "></asp:Label>
                                     <asp:Label ID="availabilityLabelModal" runat="server" Text="Availability: "></asp:Label>
                                     <asp:Label ID="locationLabelModal" runat="server" Text="Location: "></asp:Label>
@@ -122,7 +122,7 @@
             document.getElementById("tutorLabelModal").innerHTML = "Tutor: " + tutor;
             document.getElementById("tuteeLabelModal").innerHTML = "Tutee: " + tutee;
             document.getElementById("strandLabelModal").innerHTML = "Strand: " + strand;
-            document.getElementById("subjectLabelModal").innerHTML = "Subject: " + subject;
+         
             document.getElementById("yearLevelLabelModal").innerHTML = "Year Level: " + yearLevel;
             document.getElementById("availabilityLabelModal").innerHTML = "Availability: " + availability;
             document.getElementById("locationLabelModal").innerHTML = "Location: " + location;
