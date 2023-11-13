@@ -51,7 +51,7 @@
                 <div class="PostRequestHolder">
                     <div class="TopPart">
                         <div class="ImageContainer">
-                        <img src="../Medias/Images/PF_placeholder.png" class="RequestImage"/>
+                        <asp:Image ID="ImagePF" runat="server" class="RequestImage" CssClass="ImagePF" />
                         </div>
                         <div class="HoldInfos">
                             <asp:Label ID="Name" runat="server" Text="Name: Ian Quimming" ></asp:Label>

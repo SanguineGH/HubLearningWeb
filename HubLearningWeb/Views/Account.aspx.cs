@@ -53,7 +53,6 @@ namespace HubLearningWeb.Views
 
                                     // Set the image source to the retrieved profile picture link
                                     string profilePictureLink = reader["pfp"].ToString();
-
                                     // Update the link to use Google Drive shareable link
                                     ImagePF.ImageUrl = GetDirectLinkFromGoogleDrive(profilePictureLink);
 
