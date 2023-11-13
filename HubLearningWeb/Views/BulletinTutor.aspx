@@ -96,25 +96,7 @@
                             <asp:RadioButton ID="ABM" runat="server" Text="ABM"/>
                             <asp:RadioButton ID="HUMSS" runat="server" Text="HUMSS"/>
                             <asp:RadioButton ID="GAS" runat="server" Text="GAS"/>
-                            <asp:RadioButton ID="IT" runat="server" Text="IT"/>
-                        </div>
-                        <div class="Subjects">
-                            <p> Subjects </p>
-                            <div class="Holder">
-                                <asp:RadioButton ID="Subject1" runat="server" Text="Subject 1"/>
-                            </div>
-                            <div class="Holder">
-                                <asp:RadioButton ID="Subject2" runat="server" Text="Subject 2"/>
-                            </div>
-                            <div class="Holder">
-                                <asp:RadioButton ID="Subject3" runat="server" Text="Subject 3"/>
-                            </div>
-                            <div class="Holder">
-                                <asp:RadioButton ID="Subject4" runat="server" Text="Subject 4"/>
-                            </div>
-                            <div class="Holder">
-                                <asp:RadioButton ID="Subject5" runat="server" Text="Subject 5"/>
-                            </div>
+
                         </div>
                         <div class="Yearlvl">
                             <p> Year Level </p>
@@ -190,7 +172,6 @@
                                                 <asp:Label ID="CardName" runat="server" Text='<%# Eval("name") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardTeaching" runat="server" Text='<%# Eval("looking") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardStrand" runat="server" Text='<%# Eval("strand") %>' class="label"></asp:Label>
-                                                <asp:Label ID="CardSubject" runat="server" Text='<%# Eval("subject") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardAvailability" runat="server" Text='<%# Eval("availability") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardLocation" runat="server" Text='<%# Eval("location") %>' class="label"></asp:Label>
                                             </div>
