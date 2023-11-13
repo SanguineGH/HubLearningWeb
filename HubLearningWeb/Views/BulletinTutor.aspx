@@ -160,19 +160,20 @@
                             <div class="Holder">
                                 <asp:CheckBox ID="Other" runat="server" Text="Other Places" value="Other Places"/>
                             </div>
-                        </div>
-                        <br />
-                        <br />
-                        <div class="ButtonLoc">
-                            <asp:Button ID="Submit" runat="server" Text="Submit" />
-                        </div>
                     </div>
-                    <div class="CardSide">
-                        <div class="BullTitle">
-                            <p>TUTOR BULLETIN</p>
-                        </div>
-                        <div class="CardSideContainer">
-                            <asp:Repeater ID="CardRepeater" runat="server">
+                    <br />
+                    <br />
+                    <div class="ButtonLoc">
+                        <asp:Button ID="Submit" runat="server" Text="Submit" />
+                    </div>
+                </div>
+                <div class="CardSide">
+                    <div class="BullTitle">
+                        <p>TUTOR BULLETIN</p>
+                    </div>
+                    <div class="CardSideContainer">
+                         <asp:Repeater ID="CardRepeater" runat="server">
+
                                 <ItemTemplate>
                                     <td class="Cards">
                                         <div class="CardDiv">
@@ -180,17 +181,16 @@
                                                 <img src="../Images/PF_placeholder.png" class="CardDP" />
                                                 <br />
                                                 <br />
-                                                <asp:Button ID="MoreButton" runat="server" Text="More" class="MoreButton" CssClass="more-button"
-                                                        data-name='<%# Eval("name") %>'
-                                                        data-looking='<%# Eval("looking") %>'
-                                                        data-strand='<%# Eval("strand") %>'
-                                                        data-availability='<%# Eval("availability") %>'
-                                                        data-location='<%# Eval("location") %>' />
+
+                                                <asp:HiddenField ID="HiddenRid" runat="server" Value='<%# Eval("rid") %>' />
+                                                <asp:Button ID="MoreButton" runat="server" Text="More" class="MoreButton" OnClientClick='<%# "showDetails(" + Eval("rid") + "); return false;" %>' />
+                                                <asp:Button ID="ConnectButton" runat="server" Text="Connect" class="ConnectButton" OnClick="ConnectNow_Click" />
                                             </div>
                                             <div class="CardInfo">
                                                 <asp:Label ID="CardName" runat="server" Text='<%# Eval("name") %>' class="label"></asp:Label>
-                                                <asp:Label ID="CardLooking" runat="server" Text='<%# Eval("looking") %>' class="label"></asp:Label>
+                                                <asp:Label ID="CardTeaching" runat="server" Text='<%# Eval("looking") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardStrand" runat="server" Text='<%# Eval("strand") %>' class="label"></asp:Label>
+                                                <asp:Label ID="CardSubject" runat="server" Text='<%# Eval("subject") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardAvailability" runat="server" Text='<%# Eval("availability") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardLocation" runat="server" Text='<%# Eval("location") %>' class="label"></asp:Label>
                                             </div>
@@ -203,55 +203,6 @@
                 </div>
             </div>
         </div>
-        <!-- Hidden Div for Details -->
-        <div id="detailsModal" class="HiddenDiv">
-            <span class="close" onclick="hideDetails()">&times;</span>
-            <img src="../Images/PF_placeholder.png" />
-            <br />
-            <br />
-            <asp:Label ID="nameLabelModal" runat="server" Text="Name: "></asp:Label>
-            <br />
-            <asp:Label ID="lookingLabelModal" runat="server" Text="Looking For: "></asp:Label>
-            <br />
-            <asp:Label ID="strandLabelModal" runat="server" Text="Strand: "></asp:Label>
-            <br />
-            <asp:Label ID="availLabelModal" runat="server" Text="Availability: "></asp:Label>
-            <br />
-            <asp:Label ID="locLabelModal" runat="server" Text="Location: "></asp:Label>
-            <br />
-            <button onclick="connectNow()">Connect Now</button>
-        </div>
-    </form>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var buttons = document.querySelectorAll(".more-button");
-            buttons.forEach(function (button) {
-                button.addEventListener("click", function (event) {
-                    event.preventDefault(); // Prevent the default form submission behavior
-                    var name = this.getAttribute("data-name");
-                    var looking = this.getAttribute("data-looking");
-                    var strand = this.getAttribute("data-strand");
-                    var availability = this.getAttribute("data-availability");
-                    var location = this.getAttribute("data-location");
-                    showDetails(name, looking, strand, availability, location);
-                });
-            });
-        });
-
-        function showDetails(name, looking, strand, availability, location) {
-            document.getElementById("nameLabelModal").innerHTML = "Name: " + name;
-            document.getElementById("lookingLabelModal").innerHTML = "Looking For: " + looking;
-            document.getElementById("strandLabelModal").innerHTML = "Strand: " + strand;
-            document.getElementById("availLabelModal").innerHTML = "Availability: " + availability;
-            document.getElementById("locLabelModal").innerHTML = "Location: " + location;
-            document.getElementById("detailsModal").style.display = "block";
-            return false; // Prevent form submission
-        }
-
-        function hideDetails() {
-            document.getElementById("detailsModal").style.display = "none";
-        }
-    </script>
 </body>
 </html>
 

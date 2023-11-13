@@ -28,16 +28,47 @@ namespace HubLearningWeb.Views
             }
         }
 
-        private void BindDataToRepeater()
+        protected void ConnectNow_Click(object sender, EventArgs e)
         {
-            // Connect to the database and fetch the data
-            string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Password=;";
+            Button connectButton = (Button)sender;
+            RepeaterItem item = (RepeaterItem)connectButton.NamingContainer;
+            int rid = Convert.ToInt32((item.FindControl("HiddenRid") as HiddenField).Value);
+
+            // Fetch UID from the session
+            string uid = Session["UID"].ToString();
+
+            // Connect to the database and insert values into the notification table
+            string connectionString = "Server=localhost;Database=learninghubwebdb;User=root;Password=;";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
 
-                string query = "SELECT name, looking, strand, subject, availability, location FROM bulletin WHERE uid AND looking='tutor'";
+                string query = "INSERT INTO notification (Fuid, Frid) VALUES (@Fuid, @Frid)";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Fuid", uid);
+                    command.Parameters.AddWithValue("@Frid", rid);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            // You can add any additional logic or redirection after the connection is made
+
+        }
+
+        private void BindDataToRepeater()
+        {
+            // Connect to the database and fetch the data
+            string connectionString = "Server=localhost;Database=learninghubwebdb;User=root;Password=;";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT rid, name, looking, strand, subject, availability, location FROM bulletin WHERE looking = 'Tutor' AND visibility = ''";
 
                 // Replace 'uidValue' with the actual UID you want to retrieve
                 string uidValue = Session["UID"].ToString();

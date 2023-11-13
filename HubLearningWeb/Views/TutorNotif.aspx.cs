@@ -74,12 +74,39 @@ namespace HubLearningWeb.Views
             if (e.CommandName == "Accept")
             {
                 string notificationID = e.CommandArgument.ToString();
+
+                // Get details from the notification
+                int frid = 0;
+                string fridQueryString = "SELECT Frid FROM notification WHERE nid = @NotificationID";
+
+                string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand(fridQueryString, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@NotificationID", notificationID);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                frid = reader.GetInt32("Frid");
+                            }
+                        }
+                    }
+                }
                 InsertTransaction(notificationID);
+
+                UpdateBulletinVisibility(frid, "Nada");
+
                 RemoveNotification(notificationID);
-                BindRepeater(Session["UID"].ToString()); // Rebind the repeater to reflect the changes
+          
+                BindRepeater(Session["UID"].ToString());
             }
         }
-
         private void RemoveNotification(string notificationID)
         {
             string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
@@ -136,5 +163,27 @@ namespace HubLearningWeb.Views
                 }
             }
         }
+        private void UpdateBulletinVisibility(int rid, string visibilityValue)
+        {
+            string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Update the visibility column in the bulletin table
+                string updateQuery = "UPDATE bulletin SET visibility = @Visibility WHERE rid = @RID";
+
+                using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, connection))
+                {
+                    updateCmd.Parameters.AddWithValue("@Visibility", visibilityValue);
+                    updateCmd.Parameters.AddWithValue("@RID", rid);
+
+                    updateCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
     }
 }
