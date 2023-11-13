@@ -164,7 +164,7 @@
                             <p>TUTEE BULLETIN</p>
                         </div>
                         <div class="CardSideContainer">
-                            <asp:Repeater ID="CardRepeater" runat="server">
+                             <asp:Repeater ID="CardRepeater" runat="server">
                                 <ItemTemplate>
                                     <td class="Cards">
                                         <div class="CardDiv">
@@ -172,7 +172,9 @@
                                                 <img src="../Images/PF_placeholder.png" class="CardDP" />
                                                 <br />
                                                 <br />
+                                                <asp:HiddenField ID="HiddenRid" runat="server" Value='<%# Eval("rid") %>' />
                                                 <asp:Button ID="MoreButton" runat="server" Text="More" class="MoreButton" OnClientClick='<%# "showDetails(" + Eval("rid") + "); return false;" %>' />
+                                                <asp:Button ID="ConnectButton" runat="server" Text="Connect" class="ConnectButton" OnClick="ConnectNow_Click" />
                                             </div>
                                             <div class="CardInfo">
                                                 <asp:Label ID="CardName" runat="server" Text='<%# Eval("name") %>' class="label"></asp:Label>
@@ -208,7 +210,6 @@
             <br />
             <label id="HiddenDivLocation"></label>
             <br />
-            <button onclick="connectNow()">Connect Now</button>
         </div>
         <!-- Bottom Layer for Bio -->
         <div class="BottomLayer">

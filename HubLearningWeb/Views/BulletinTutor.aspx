@@ -132,28 +132,30 @@
                         <p>TUTOR BULLETIN</p>
                     </div>
                     <div class="CardSideContainer">
-                        <asp:Repeater ID="CardRepeater" runat="server">
-        <ItemTemplate>
-            <td class="Cards">
-                <div class="CardDiv">
-                    <div class="CardImage">
-                        <img src="../Images/PF_placeholder.png" class="CardDP" />
-                        <br />
-                        <br />
-                        <asp:Button ID="MoreButton" runat="server" Text="More" class="MoreButton" />
-                    </div>
-                    <div class="CardInfo">
-                        <asp:Label ID="CardName" runat="server" Text='<%# Eval("name") %>' class="label"></asp:Label>
-                        <asp:Label ID="CardLooking" runat="server" Text='<%# Eval("looking") %>' class="label"></asp:Label>
-                        <asp:Label ID="CardStrand" runat="server" Text='<%# Eval("strand") %>' class="label"></asp:Label>
-                        <asp:Label ID="CardSubject" runat="server" Text='<%# Eval("subject") %>' class="label"></asp:Label>
-                        <asp:Label ID="CardAvailability" runat="server" Text='<%# Eval("availability") %>' class="label"></asp:Label>
-                        <asp:Label ID="CardLocation" runat="server" Text='<%# Eval("location") %>' class="label"></asp:Label>
-                    </div>
-                </div>
-            </td>
-        </ItemTemplate>
-    </asp:Repeater>
+                         <asp:Repeater ID="CardRepeater" runat="server">
+                                <ItemTemplate>
+                                    <td class="Cards">
+                                        <div class="CardDiv">
+                                            <div class="CardImage">
+                                                <img src="../Images/PF_placeholder.png" class="CardDP" />
+                                                <br />
+                                                <br />
+                                                <asp:HiddenField ID="HiddenRid" runat="server" Value='<%# Eval("rid") %>' />
+                                                <asp:Button ID="MoreButton" runat="server" Text="More" class="MoreButton" OnClientClick='<%# "showDetails(" + Eval("rid") + "); return false;" %>' />
+                                                <asp:Button ID="ConnectButton" runat="server" Text="Connect" class="ConnectButton" OnClick="ConnectNow_Click" />
+                                            </div>
+                                            <div class="CardInfo">
+                                                <asp:Label ID="CardName" runat="server" Text='<%# Eval("name") %>' class="label"></asp:Label>
+                                                <asp:Label ID="CardTeaching" runat="server" Text='<%# Eval("looking") %>' class="label"></asp:Label>
+                                                <asp:Label ID="CardStrand" runat="server" Text='<%# Eval("strand") %>' class="label"></asp:Label>
+                                                <asp:Label ID="CardSubject" runat="server" Text='<%# Eval("subject") %>' class="label"></asp:Label>
+                                                <asp:Label ID="CardAvailability" runat="server" Text='<%# Eval("availability") %>' class="label"></asp:Label>
+                                                <asp:Label ID="CardLocation" runat="server" Text='<%# Eval("location") %>' class="label"></asp:Label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </div>
                     </div>
                                     </div>
