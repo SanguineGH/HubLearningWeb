@@ -70,6 +70,7 @@ namespace HubLearningWeb.Views
 
                 string query = "SELECT rid, name, looking, strand, subject, availability, location FROM bulletin WHERE looking = 'Tutee' AND visibility = ''";
 
+
                 // Replace 'uidValue' with the actual UID you want to retrieve
                 string uidValue = Session["UID"].ToString();
 
@@ -87,5 +88,6 @@ namespace HubLearningWeb.Views
                 }
             }
         }
+
     }
 }

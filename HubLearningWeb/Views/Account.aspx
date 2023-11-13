@@ -19,7 +19,7 @@
           <div class="Dashboard">
             <div class="IconNavigation">
                 <div class="Icon">
-                    <img src="../Medias/Images/PF_placeholder.png" class="IconImage" />
+                    <asp:Image ID="Image1" runat="server" CssClass="ImagePF" />
                 </div>
                 <div class="Navigation">
                     <div class="dropdown">
@@ -56,7 +56,7 @@
                  <div class="GrandHolder">
                    <div class="TopPart">
                     <div class="ImageHolder">
-                        <img src="../Images/ako.jpg" / class="ImagePF"/>
+                        <asp:Image ID="ImagePF" runat="server" CssClass="ImagePF" />
                     </div>
                     <div class="InfoHolder">                
                         <asp:Label ID="InfoName" runat="server" Text="Label"></asp:Label>          

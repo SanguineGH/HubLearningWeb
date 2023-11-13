@@ -39,6 +39,14 @@
             z-index: 1;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px;
+}
     </style>
 </head>
 <body>
@@ -175,12 +183,12 @@
                                                 <asp:HiddenField ID="HiddenRid" runat="server" Value='<%# Eval("rid") %>' />
                                                 <asp:Button ID="MoreButton" runat="server" Text="More" class="MoreButton" OnClientClick='<%# "showDetails(" + Eval("rid") + "); return false;" %>' />
                                                 <asp:Button ID="ConnectButton" runat="server" Text="Connect" class="ConnectButton" OnClick="ConnectNow_Click" />
+
                                             </div>
                                             <div class="CardInfo">
                                                 <asp:Label ID="CardName" runat="server" Text='<%# Eval("name") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardLooking" runat="server" Text='<%# Eval("looking") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardStrand" runat="server" Text='<%# Eval("strand") %>' class="label"></asp:Label>
-                                                <asp:Label ID="CardSubject" runat="server" Text='<%# Eval("subject") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardAvailability" runat="server" Text='<%# Eval("availability") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardLocation" runat="server" Text='<%# Eval("location") %>' class="label"></asp:Label>
                                             </div>
@@ -193,78 +201,6 @@
                 </div>
             </div>
         </div>
-        <!-- Hidden Div for Details -->
-        <div id="detailsModal" class="HiddenDiv">
-            <img src="../Images/PF_placeholder.png" />
-            <br />
-            <br />
-            <label id="HiddenDivName"></label>
-            <br />
-            <label id="HiddenDivLooking"></label>
-            <br />
-            <label id="HiddenDivStrand"></label>
-            <br />
-            <label id="HiddenDivYearLevel"></label>
-            <br />
-            <label id="HiddenDivAvailability"></label>
-            <br />
-            <label id="HiddenDivLocation"></label>
-            <br />
-        </div>
-        <!-- Bottom Layer for Bio -->
-        <div class="BottomLayer">
-            <label id="BioLabel"></label>
-        </div>
-        <script>
-            function showDetails(rid) {
-                // Fetch details and bio based on RID
-                var details = fetchDetails(rid);
-                var bio = fetchBio(rid);
-
-                // Populate the hidden div
-                document.getElementById("HiddenDivName").innerText = "Name: " + details.name;
-                document.getElementById("HiddenDivLooking").innerText = "Looking For: " + details.looking;
-                document.getElementById("HiddenDivStrand").innerText = "Strand: " + details.strand;
-                document.getElementById("HiddenDivYearLevel").innerText = "Year Level: " + details.yearlevel;
-                document.getElementById("HiddenDivAvailability").innerText = "Availability: " + details.availability;
-                document.getElementById("HiddenDivLocation").innerText = "Location: " + details.location;
-
-                // Show the hidden div
-                document.getElementById("detailsModal").style.display = "block";
-                document.getElementById("detailsModal").style.zIndex = "3"; // Bring to front
-
-                // Show the BottomLayer
-                document.getElementsByClassName("BottomLayer")[0].style.display = "block";
-
-                // Populate bio in the BottomLayer
-                document.getElementById("BioLabel").innerText = "Bio: " + bio;
-            }
-
-            function fetchDetails(rid) {
-                // Implement your logic to fetch details from the server based on RID
-                // This is a placeholder; replace it with your actual implementation
-                return {
-                    name: "John Doe",
-                    looking: "Tutor",
-                    strand: "STEM",
-                    yearlevel: "First Year",
-                    availability: "Monday, Wednesday",
-                    location: "School"
-                };
-            }
-
-            function fetchBio(rid) {
-                // Implement your logic to fetch bio from the server based on RID
-                // This is a placeholder; replace it with your actual implementation
-                return "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-            }
-
-            function connectNow() {
-                // Implement the logic for connecting now
-                // You can use the details fetched earlier
-                alert("Connect Now button clicked!");
-            }
-        </script>
     </form>
 </body>
 </html>
