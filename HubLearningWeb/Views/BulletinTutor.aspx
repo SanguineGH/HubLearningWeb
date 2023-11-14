@@ -139,7 +139,7 @@
                                 <asp:CheckBox ID="School" runat="server" Text="School" value="School" Group="locGroup"/>
                             </div>
                             <div class="Holder">
-                                <asp:CheckBox ID="Other" runat="server" Text="Other Places" value="Other" Group="locGroup"/>
+                                <asp:CheckBox ID="Other" runat="server" Text="Public Place" value="Public Place" Group="locGroup"/>
                             </div>
                     </div>
                     <br />
