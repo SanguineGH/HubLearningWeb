@@ -90,63 +90,64 @@
                 <div class="MainContentHolder">
                     <div class="FilterSide">
                         <p> FILTERS </p>
-                        <div class="Strands">
-                            <p> Strand </p>
-                            <asp:RadioButton ID="STEM" runat="server" Text="STEM"/>
-                            <asp:RadioButton ID="ABM" runat="server" Text="ABM"/>
-                            <asp:RadioButton ID="HUMSS" runat="server" Text="HUMSS"/>
-                            <asp:RadioButton ID="GAS" runat="server" Text="GAS"/>
-
-                        </div>
+                            <div class="Strands">
+                                <p> Strand </p>
+                                <asp:RadioButton ID="STEM" runat="server" Text="STEM" GroupName="strandGroup" />
+                                <asp:RadioButton ID="ABM" runat="server" Text="ABM" GroupName="strandGroup" />
+                                <asp:RadioButton ID="HUMSS" runat="server" Text="HUMSS" GroupName="strandGroup" />
+                                <asp:RadioButton ID="GAS" runat="server" Text="GAS" GroupName="strandGroup" />
+                            </div>
                         <div class="Yearlvl">
                             <p> Year Level </p>
                             <div class="Holder">
-                                <asp:RadioButton ID="FirstLVL" runat="server" Text="First Year" />
+                                 <asp:RadioButton ID="FirstLVL" runat="server" Text="First Year" GroupName="yearLevelGroup" />
                             </div>
                             <div class="Holder">
-                                <asp:RadioButton ID="SecondLVL" runat="server" Text="Second Year" />
+                                <asp:RadioButton ID="SecondLVL" runat="server" Text="Second Year" GroupName="yearLevelGroup" />
                             </div>
                         </div>
                         <div class="Availability">
                             <p> Availability </p>
                             <div class="Holder">
-                                <asp:CheckBox ID="Monday" runat="server" Text="Monday" value="Monday"/>
+                                <asp:CheckBox ID="Monday" runat="server" Text="Monday" value="Monday" Group="availGroup"/>
                             </div>
                             <div class="Holder">
-                                <asp:CheckBox ID="Tuesday" runat="server" Text="Tuesday" value="Tuesday"/>
+                                <asp:CheckBox ID="Tuesday" runat="server" Text="Tuesday" value="Tuesday" Group="availGroup"/>
                             </div>
                             <div class="Holder">
-                                <asp:CheckBox ID="Wednesday" runat="server" Text="Wednesday" value="Wednesday"/>
+                                <asp:CheckBox ID="Wednesday" runat="server" Text="Wednesday" value="Wednesday" Group="availGroup"/>
                             </div>
                             <div class="Holder">
-                                <asp:CheckBox ID="Thursday" runat="server" Text="Thursday" value="Thursday"/>
+                                <asp:CheckBox ID="Thursday" runat="server" Text="Thursday" value="Thursday" Group="availGroup"/>
                             </div>
                             <div class="Holder">
-                                <asp:CheckBox ID="Friday" runat="server" Text="Friday" value="Friday"/>
+                                <asp:CheckBox ID="Friday" runat="server" Text="Friday" value="Friday" Group="availGroup"/>
                             </div>
                             <div class="Holder">
-                                <asp:CheckBox ID="Saturday" runat="server" Text="Saturday" value="Saturday"/>
+                                <asp:CheckBox ID="Saturday" runat="server" Text="Saturday" value="Saturday" Group="availGroup"/>
                             </div>
                             <div class="Holder">
-                                <asp:CheckBox ID="Sunday" runat="server" Text="Sunday" value="Sunday"/>
+                                <asp:CheckBox ID="Sunday" runat="server" Text="Sunday" value="Sunday" Group="availGroup"/>
                             </div>
                         </div>
                         <div class="Location">
                             <p> Location </p>
                             <div class="Holder">
-                                <asp:CheckBox ID="Home" runat="server" Text="Home" value="Home"/>
+                                <asp:CheckBox ID="Home" runat="server" Text="Home" value="Home" Group="locGroup"/>
                             </div>
                             <div class="Holder">
-                                <asp:CheckBox ID="School" runat="server" Text="School" value="School"/>
+                                <asp:CheckBox ID="School" runat="server" Text="School" value="School" Group="locGroup"/>
                             </div>
                             <div class="Holder">
-                                <asp:CheckBox ID="Other" runat="server" Text="Other Places" value="Other Places"/>
+                                <asp:CheckBox ID="Other" runat="server" Text="Other Places" value="Other" Group="locGroup"/>
                             </div>
                     </div>
                     <br />
                     <br />
                     <div class="ButtonLoc">
-                        <asp:Button ID="Submit" runat="server" Text="Submit" />
+                        <asp:Button ID="Submit" runat="server" Text="Submit" OnClick="Submit_Click" />
+                        <br />
+                        <asp:Button ID="Clear" runat="server" Text="Clear" OnClick="Clear_Click" />
                     </div>
                 </div>
                 <div class="CardSide">

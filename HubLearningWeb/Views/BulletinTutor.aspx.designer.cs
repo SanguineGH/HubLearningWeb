@@ -177,6 +177,15 @@ namespace HubLearningWeb.Views
         protected global::System.Web.UI.WebControls.Button Submit;
 
         /// <summary>
+        /// Clear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Clear;
+
+        /// <summary>
         /// CardRepeater control.
         /// </summary>
         /// <remarks>
