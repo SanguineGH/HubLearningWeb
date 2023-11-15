@@ -37,6 +37,13 @@ namespace HubLearningWeb.Views
             // Fetch UID from the session
             string uid = Session["UID"].ToString();
 
+            // Check for confirmation
+            if (!Page.ClientScript.IsStartupScriptRegistered("connectConfirmation"))
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "connectConfirmation",
+                    $"if (!showConnectConfirmation({rid})) return;", true);
+            }
+
             // Connect to the database and insert values into the notification table
             string connectionString = "Server=localhost;Database=learninghubwebdb;User=root;Password=;";
 
