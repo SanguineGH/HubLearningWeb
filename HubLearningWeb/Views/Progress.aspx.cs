@@ -108,7 +108,14 @@ namespace HubLearningWeb.Views
         {
             if (e.CommandName == "CompleteCommand")
             {
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                // Find the button that was clicked
+                Button btnComplete = (Button)e.CommandSource;
+
+                // Find the row that contains the button
+                GridViewRow row = (GridViewRow)btnComplete.NamingContainer;
+
+                // Get the row index
+                int rowIndex = row.RowIndex;
 
                 if (rowIndex >= 0 && rowIndex < progressGridView.Rows.Count)
                 {
