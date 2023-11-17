@@ -76,7 +76,6 @@
                                 <asp:RadioButton ID="ReqABM" runat="server" Text="ABM" GroupName="Strand" value="ABM" />
                                 <asp:RadioButton ID="ReqHUMSS" runat="server" Text="HUMSS" GroupName="Strand" value="HUMSS" />
                                 <asp:RadioButton ID="ReqGAS" runat="server" Text="GAS" GroupName="Strand" value="GAS" />
-                                <asp:RadioButton ID="ReqTV" runat="server" Text="TechVoc" GroupName="Strand" value="TechVoc" />
                
                         </div>
                
