@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BulletinTutor.aspx.cs" Inherits="HubLearningWeb.Views.BulletinTutor" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BulletinTutee.aspx.cs" Inherits="HubLearningWeb.Views.BulletinTutee" %>
 
 <!DOCTYPE html>
 
