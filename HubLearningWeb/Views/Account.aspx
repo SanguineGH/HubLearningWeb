@@ -11,6 +11,7 @@
         .hidden-form {
             display: none; /* Set to 'none' to hide it initially */
         }
+
     </style>
     <title></title>
 </head>

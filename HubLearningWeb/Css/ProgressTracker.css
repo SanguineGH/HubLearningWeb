@@ -1,0 +1,66 @@
+﻿body {
+    font-family: 'Arial', sans-serif;
+   
+    margin: 0;
+    padding: 0;
+}
+
+.Content {
+    max-width: 1200px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    background-color:white;
+    color:black;
+}
+
+#progressGridView {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color:white;
+}
+
+    #progressGridView th, #progressGridView td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    #progressGridView th {
+        background-color: sandybrown;
+        text-transform: uppercase;
+    }
+
+    #progressGridView .Complete {
+        background-color: #2ecc71; /* Green */
+       
+    }
+
+    #progressGridView .Ongoing {
+        background-color: #ffeb3b; /* Yellow */
+        color: #000;
+    }
+
+    #progressGridView tr:nth-child(even) {
+
+    }
+
+    #progressGridView tr:hover {
+        background-color: #C4A484;
+    }
+    #progressGridView .CompleteButton {
+        background-color: #28a745; /* Green */
+        color: #fff;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        #progressGridView .CompleteButton:hover {
+            background-color: #218838; /* Darker green on hover */
+        }

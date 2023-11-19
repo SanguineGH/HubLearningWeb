@@ -1,13 +1,17 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Progress.aspx.cs" Inherits="HubLearningWeb.Views.Progress" %>
 
-<!DOCTYPE html>
+<!-- Your HTML file -->
 
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title></title>
     <link href="../Css/Dashboard.css" rel="stylesheet" />
+    <link href="../Css/ProgressTracker.css" rel="stylesheet" />
 </head>
+<!-- ... rest of your HTML ... -->
+
 <body>
     <form id="form1" runat="server">
         <div class="Dashboard">
