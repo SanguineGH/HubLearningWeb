@@ -166,7 +166,12 @@
                                                 <br />
 
                                                 <asp:HiddenField ID="HiddenRid" runat="server" Value='<%# Eval("rid") %>' />
-                                                <asp:Button ID="MoreButton" runat="server" Text="More" class="MoreButton" OnClientClick='<%# "showDetails(" + Eval("rid") + "); return false;" %>' />
+                                                       <asp:Button ID="MoreButton" runat="server" Text="More" class="MoreButton" CssClass="more-button"
+                                                        data-name='<%# Eval("name") %>'
+                                                        data-looking='<%# Eval("looking") %>'
+                                                        data-strand='<%# Eval("strand") %>'
+                                                        data-availability='<%# Eval("availability") %>'
+                                                        data-location='<%# Eval("location") %>' />
                                                 <asp:Button ID="ConnectButton" runat="server" Text="Connect" class="ConnectButton"
     OnClientClick='<%# "return showConnectConfirmation(" + Eval("rid") + ");" %>'
     OnClick="ConnectNow_Click" />
@@ -187,11 +192,56 @@
                 </div>
             </div>
         </div>
+        <div id="detailsModal" class="HiddenDiv">
+            <span class="close" onclick="hideDetails()">&times;</span>
+            <img src="../Images/PF_placeholder.png" />
+            <br />
+            <br />
+            <asp:Label ID="nameLabelModal" runat="server" Text="Name: "></asp:Label>
+            <br />
+            <asp:Label ID="lookingLabelModal" runat="server" Text="Looking For: "></asp:Label>
+            <br />
+            <asp:Label ID="strandLabelModal" runat="server" Text="Strand: "></asp:Label>
+            <br />
+            <asp:Label ID="availLabelModal" runat="server" Text="Availability: "></asp:Label>
+            <br />
+            <asp:Label ID="locLabelModal" runat="server" Text="Location: "></asp:Label>
+            <br />
+
+        </div>
     </form>
     <script type="text/javascript">
     function showConnectConfirmation(rid) {
         return confirm('Are you sure you want to connect now?');
     }
+ document.addEventListener("DOMContentLoaded", function () {
+            var buttons = document.querySelectorAll(".more-button");
+            buttons.forEach(function (button) {
+                button.addEventListener("click", function (event) {
+                    event.preventDefault(); // Prevent the default form submission behavior
+                    var name = this.getAttribute("data-name");
+                    var looking = this.getAttribute("data-looking");
+                    var strand = this.getAttribute("data-strand");
+                    var availability = this.getAttribute("data-availability");
+                    var location = this.getAttribute("data-location");
+                    showDetails(name, looking, strand, availability, location);
+                });
+            });
+        });
+
+        function showDetails(name, looking, strand, availability, location) {
+            document.getElementById("nameLabelModal").innerHTML = "Name: " + name;
+            document.getElementById("lookingLabelModal").innerHTML = "Looking For: " + looking;
+            document.getElementById("strandLabelModal").innerHTML = "Strand: " + strand;
+            document.getElementById("availLabelModal").innerHTML = "Availability: " + availability;
+            document.getElementById("locLabelModal").innerHTML = "Location: " + location;
+            document.getElementById("detailsModal").style.display = "block";
+            return false; // Prevent form submission
+        }
+
+        function hideDetails() {
+            document.getElementById("detailsModal").style.display = "none";
+        }
     </script>
 </body>
 </html>
