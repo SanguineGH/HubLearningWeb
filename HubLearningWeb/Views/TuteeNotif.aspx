@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 </div> 
-            </div>
+          
             <div class="Content">
                 <div class="TitleOnly">
                     <p>TUTEE NOTIFICATION</p>
@@ -99,6 +99,7 @@
                     </div>
           </div>
         </div>
+       </div>
     </form>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
