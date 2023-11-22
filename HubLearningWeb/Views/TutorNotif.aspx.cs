@@ -150,12 +150,14 @@ namespace HubLearningWeb.Views
                             reader.Close();
 
                             // Insert into the transaction table
-                            string insertQuery = "INSERT INTO transaction (requestor, client, progress) VALUES (@Requestor, @Client, @Progress)";
+                            string insertQuery = "INSERT INTO transaction (requestor, client, progress, trandate) VALUES (@Requestor, @Client, @Progress, @TranDate)";
                             using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, connection))
                             {
                                 insertCmd.Parameters.AddWithValue("@Requestor", requestor);
                                 insertCmd.Parameters.AddWithValue("@Client", client);
                                 insertCmd.Parameters.AddWithValue("@Progress", "Ongoing"); // Adjust as needed
+                                insertCmd.Parameters.AddWithValue("@TranDate", DateTime.Now); // Add the current date and time
+
                                 insertCmd.ExecuteNonQuery();
                             }
                         }
@@ -181,6 +183,16 @@ namespace HubLearningWeb.Views
 
                     updateCmd.ExecuteNonQuery();
                 }
+            }
+        }
+
+        protected void RejectButton_Click(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "Reject")
+            {
+                string notificationID = e.CommandArgument.ToString();
+                RemoveNotification(notificationID);
+                BindRepeater(Session["UID"].ToString());
             }
         }
 

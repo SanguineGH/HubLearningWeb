@@ -99,8 +99,8 @@ namespace HubLearningWeb.Views
                 connection.Open();
 
                 // Define the SQL query to insert data into the "bulletin" table.
-                string query = "INSERT INTO bulletin (uid, name, looking, strand, yearlevel, availability, location, role) " +
-                "VALUES (@uid, (SELECT name FROM users WHERE uid = @uid), @looking, @strand, @yearLevel, @availability, @location, @role);";
+                string query = "INSERT INTO bulletin (uid, name, looking, strand, yearlevel, availability, location, role, buldate) " +
+                "VALUES (@uid, (SELECT name FROM users WHERE uid = @uid), @looking, @strand, @yearLevel, @availability, @location, @role, CURDATE());";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -116,26 +116,25 @@ namespace HubLearningWeb.Views
                     string yearLevel = GetSelectedRadioValue(YearLevelRadios);
                     command.Parameters.AddWithValue("@yearLevel", yearLevel);
 
-
                     // Availability checkboxes (assuming checkboxes are used):
                     string availability = string.Join(", ", new[] {
-                        ReqSun.Checked ? "Sunday" : "",
-                        ReqMon.Checked ? "Monday" : "",
-                        ReqTues.Checked ? "Tuesday" : "",
-                        ReqWed.Checked ? "Wednesday" : "",
-                        ReqThur.Checked ? "Thursday" : "",
-                        ReqFri.Checked ? "Friday" : "",
-                        ReqSat.Checked ? "Saturday" : ""
-                    }.Where(x => !string.IsNullOrEmpty(x)));
+                ReqSun.Checked ? "Sunday" : "",
+                ReqMon.Checked ? "Monday" : "",
+                ReqTues.Checked ? "Tuesday" : "",
+                ReqWed.Checked ? "Wednesday" : "",
+                ReqThur.Checked ? "Thursday" : "",
+                ReqFri.Checked ? "Friday" : "",
+                ReqSat.Checked ? "Saturday" : ""
+            }.Where(x => !string.IsNullOrEmpty(x)));
 
                     command.Parameters.AddWithValue("@availability", availability);
 
                     // Location checkboxes (assuming checkboxes are used):
                     string location = string.Join(", ", new[] {
-                        ReqHome.Checked ? "Home" : "",
-                        ReqSchool.Checked ? "School" : "",
-                        ReqPublic.Checked ? "Public Place" : ""
-                    }.Where(x => !string.IsNullOrEmpty(x)));
+                ReqHome.Checked ? "Home" : "",
+                ReqSchool.Checked ? "School" : "",
+                ReqPublic.Checked ? "Public Place" : ""
+            }.Where(x => !string.IsNullOrEmpty(x)));
 
                     command.Parameters.AddWithValue("@location", location);
 
@@ -152,7 +151,7 @@ namespace HubLearningWeb.Views
             ReqTutee.Checked = false;
             ReqTutor.Checked = false;
             UncheckRadioButtons(StrandRadios);
-       
+
             ReqSun.Checked = false;
             ReqMon.Checked = false;
             ReqTues.Checked = false;

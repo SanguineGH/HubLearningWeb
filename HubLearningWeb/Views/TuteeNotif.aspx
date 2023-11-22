@@ -74,9 +74,13 @@
                                             data-yearlevel='<%# Eval("YearLevel") %>'
                                             data-availability='<%# Eval("Availability") %>'
                                             data-location='<%# Eval("Location") %>' />
+                                                <asp:Button ID="acceptButton" runat="server" Text="Accept" CssClass="accept-button"
+    CommandName="Accept" CommandArgument='<%# Eval("NotificationID") %>' OnCommand="AcceptButton_Click"
+    OnClientClick="return confirm('Are you sure you want to accept this notification?');" />
+                        <asp:Button ID="rejectButton" runat="server" Text="Reject" CssClass="reject-button"
+    CommandName="Reject" CommandArgument='<%# Eval("NotificationID") %>' OnCommand="RejectButton_Click"
+    OnClientClick="return confirm('Are you sure you want to reject this notification?');" />
 
-                                     <asp:Button ID="acceptButton" runat="server" Text="Accept" CssClass="accept-button"
-                             CommandName="Accept" CommandArgument='<%# Eval("NotificationID") %>' OnCommand="AcceptButton_Click" />
                                      </div>
                             </div>
                         </ItemTemplate>
