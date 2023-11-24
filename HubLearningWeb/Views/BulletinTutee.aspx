@@ -161,7 +161,7 @@
                                     <td class="Cards">
                                         <div class="CardDiv">
                                             <div class="CardImage">
-                                                <img src="../Images/PF_placeholder.png" class="CardDP" />
+                                                <asp:Image ID="CardDPImage" runat="server" ImageUrl='<%# GetDirectLinkFromGoogleDrive(Eval("pfp").ToString()) %>' CssClass="CardDP" />
                                                 <br />
                                                 <br />
 

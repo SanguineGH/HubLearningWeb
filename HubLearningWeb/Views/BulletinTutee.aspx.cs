@@ -88,7 +88,7 @@ namespace HubLearningWeb.Views
                 List<string> selectedLocations = GetSelectedCheckboxes("locGroup");
 
                 // Start building the query
-                string query = "SELECT rid, uid, name, looking, role, strand, subject, yearlevel, availability, location, visibility FROM bulletin WHERE looking = 'Tutee'";
+                string query = "SELECT b.rid, u.uid, u.name, u.pfp, b.looking, b.strand, b.availability, b.location FROM bulletin b JOIN users u ON b.uid = u.uid WHERE b.looking = 'Tutee' AND b.visibility = ''";
 
                 // Add filters to the query based on selected values
                 if (!string.IsNullOrEmpty(selectedStrand))
@@ -144,6 +144,27 @@ namespace HubLearningWeb.Views
                     }
                 }
             }
+        }
+
+        protected string GetDirectLinkFromGoogleDrive(string googleDriveLink)
+        {
+            // Return the direct link if it already fits the expected format
+            if (googleDriveLink.Contains("drive.google.com/file/d/"))
+            {
+                // Extract the file ID from the link
+                int start = googleDriveLink.IndexOf("drive.google.com/file/d/") + "drive.google.com/file/d/".Length;
+                int end = googleDriveLink.IndexOf("/view");
+
+                if (start != -1 && end != -1)
+                {
+                    string fileId = googleDriveLink.Substring(start, end - start);
+
+                    // Construct the direct link
+                    return $"https://drive.google.com/uc?export=view&id={fileId}";
+                }
+            }
+
+            return googleDriveLink;
         }
 
         private string GetSelectedRadioButton(string groupName)
