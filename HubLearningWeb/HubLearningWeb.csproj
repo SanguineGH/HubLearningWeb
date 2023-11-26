@@ -153,6 +153,7 @@
     <Content Include="Css\MakeRequest.css" />
     <Content Include="Css\Bulletin.css" />
     <Content Include="Css\Notif.css" />
+    <Content Include="Css\ProgressTracker.css" />
     <Content Include="Images\ABM.png" />
     <Content Include="Images\ako.jpg" />
     <Content Include="Images\BGNOV.png" />
