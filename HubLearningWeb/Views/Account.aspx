@@ -9,7 +9,7 @@
     <link href="../Css/Account.css" rel="stylesheet" />
      <style>
         .hidden-form {
-            display: none; /* Set to 'none' to hide it initially */
+            display: none;
         }
     </style>
     <title></title>

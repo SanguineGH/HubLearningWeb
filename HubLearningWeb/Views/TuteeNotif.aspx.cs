@@ -18,12 +18,10 @@ namespace HubLearningWeb.Views
         {
             if (!IsPostBack)
             {
-                // Check if the user is authenticated and has a session key (UID).
                 if (Session["UID"] != null)
                 {
                     string uid = Session["UID"].ToString();
 
-                    // Fetch data from the database and bind it to the Repeater.
                     BindRepeater(uid);
                 }
             }
@@ -64,18 +62,9 @@ namespace HubLearningWeb.Views
 
         protected void ViewMore_Click(object sender, EventArgs e)
         {
-            // Handle the button click event for "View More" here.
-            // You can access the NotificationID using CommandArgument.
-            // For example:
             Button button = (Button)sender;
             string notificationID = button.CommandArgument;
 
-            // Add your code to handle the view more action.
-            // You can use the notificationID to fetch additional details if needed.
-
-            // Assuming you want to insert into the transaction table
-
-            // Refresh the Repeater to reflect the changes
             BindRepeater(Session["UID"].ToString());
         }
 
@@ -85,7 +74,6 @@ namespace HubLearningWeb.Views
             {
                 string notificationID = e.CommandArgument.ToString();
 
-                // Get details from the notification
                 int frid = 0;
                 string fridQueryString = "SELECT Frid FROM notification WHERE nid = @NotificationID";
 
@@ -125,7 +113,6 @@ namespace HubLearningWeb.Views
             {
                 connection.Open();
 
-                // Remove the corresponding row from the notification table
                 string removeQuery = "DELETE FROM notification WHERE nid = @NotificationID";
                 using (MySqlCommand removeCmd = new MySqlCommand(removeQuery, connection))
                 {
@@ -143,7 +130,6 @@ namespace HubLearningWeb.Views
             {
                 connection.Open();
 
-                // Fetch details from the notification table
                 string fetchDetailsQuery = "SELECT Frid, Fuid FROM notification WHERE nid = @NotificationID";
 
                 using (MySqlCommand fetchCmd = new MySqlCommand(fetchDetailsQuery, connection))
@@ -157,17 +143,15 @@ namespace HubLearningWeb.Views
                             int requestor = reader.GetInt32("Frid");
                             int client = reader.GetInt32("Fuid");
 
-                            // Close the reader before executing the next command
                             reader.Close();
 
-                            // Insert into the transaction table
                             string insertQuery = "INSERT INTO transaction (requestor, client, progress, trandate) VALUES (@Requestor, @Client, @Progress, @TranDate)";
                             using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, connection))
                             {
                                 insertCmd.Parameters.AddWithValue("@Requestor", requestor);
                                 insertCmd.Parameters.AddWithValue("@Client", client);
-                                insertCmd.Parameters.AddWithValue("@Progress", "Ongoing"); // Adjust as needed
-                                insertCmd.Parameters.AddWithValue("@TranDate", DateTime.Now); // Add the current date and time
+                                insertCmd.Parameters.AddWithValue("@Progress", "Ongoing");
+                                insertCmd.Parameters.AddWithValue("@TranDate", DateTime.Now);
 
                                 insertCmd.ExecuteNonQuery();
                             }
@@ -184,7 +168,6 @@ namespace HubLearningWeb.Views
             {
                 connection.Open();
 
-                // Update the visibility column in the bulletin table
                 string updateQuery = "UPDATE bulletin SET visibility = @Visibility WHERE rid = @RID";
 
                 using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, connection))

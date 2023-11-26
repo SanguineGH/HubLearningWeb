@@ -167,14 +167,16 @@
 
                                                 <asp:HiddenField ID="HiddenRid" runat="server" Value='<%# Eval("rid") %>' />
                                                        <asp:Button ID="MoreButton" runat="server" Text="More" class="MoreButton" CssClass="more-button"
+                                                        data-pfp='<%# GetDirectLinkFromGoogleDrive(Eval("pfp").ToString()) %>'
                                                         data-name='<%# Eval("name") %>'
                                                         data-looking='<%# Eval("looking") %>'
                                                         data-strand='<%# Eval("strand") %>'
                                                         data-availability='<%# Eval("availability") %>'
                                                         data-location='<%# Eval("location") %>' />
-                                                <asp:Button ID="ConnectButton" runat="server" Text="Connect" class="ConnectButton"
-    OnClientClick='<%# "return showConnectConfirmation(" + Eval("rid") + ");" %>'
-    OnClick="ConnectNow_Click" />
+                                    <asp:Button ID="ConnectButton" runat="server" Text="Connect" class="ConnectButton"
+                                        OnClientClick='<%# "return showConnectConfirmation(" + Eval("rid") + ");" %>'
+                                        OnClick="ConnectNow_Click"
+                                        Visible='<%# IsConnectButtonVisible(Eval("uid").ToString()) %>' />
                                             </div>
                                             <div class="CardInfo">
                                                 <asp:Label ID="CardName" runat="server" Text='<%# Eval("name") %>' class="label"></asp:Label>
@@ -194,7 +196,7 @@
         </div>
         <div id="detailsModal" class="HiddenDiv">
             <span class="close" onclick="hideDetails()">&times;</span>
-            <img src="../Images/PF_placeholder.png" />
+            <asp:Image ID="pfpImageModal" runat="server" />
             <br />
             <br />
             <asp:Label ID="nameLabelModal" runat="server" Text="Name: "></asp:Label>
@@ -218,25 +220,27 @@
             var buttons = document.querySelectorAll(".more-button");
             buttons.forEach(function (button) {
                 button.addEventListener("click", function (event) {
-                    event.preventDefault(); // Prevent the default form submission behavior
+                    event.preventDefault();
+                    var pfp = this.getAttribute("data-pfp");
                     var name = this.getAttribute("data-name");
                     var looking = this.getAttribute("data-looking");
                     var strand = this.getAttribute("data-strand");
                     var availability = this.getAttribute("data-availability");
                     var location = this.getAttribute("data-location");
-                    showDetails(name, looking, strand, availability, location);
+                    showDetails(pfp, name, looking, strand, availability, location);
                 });
             });
         });
 
         function showDetails(name, looking, strand, availability, location) {
+            document.getElementById("pfpImageModal").src = pfp;
             document.getElementById("nameLabelModal").innerHTML = "Name: " + name;
             document.getElementById("lookingLabelModal").innerHTML = "Looking For: " + looking;
             document.getElementById("strandLabelModal").innerHTML = "Strand: " + strand;
             document.getElementById("availLabelModal").innerHTML = "Availability: " + availability;
             document.getElementById("locLabelModal").innerHTML = "Location: " + location;
             document.getElementById("detailsModal").style.display = "block";
-            return false; // Prevent form submission
+            return false;
         }
 
         function hideDetails() {

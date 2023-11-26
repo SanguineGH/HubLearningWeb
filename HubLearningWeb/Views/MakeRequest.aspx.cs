@@ -20,21 +20,17 @@ namespace HubLearningWeb.Views
         {
             if (!IsPostBack)
             {
-                // Check if the UID is set in the session
                 if (Session["UID"] != null)
                 {
-                    // Retrieve the UID from the session
                     string uidValue = Session["UID"].ToString();
 
-                    // Replace with your MySQL connection string
                     string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
 
                     using (MySqlConnection connection = new MySqlConnection(connectionString))
                     {
                         connection.Open();
 
-                        // Replace 'uidValue' with the actual UID you want to retrieve
-                        uidValue = Session["UID"].ToString(); // Assuming the UID is stored in the session
+                        uidValue = Session["UID"].ToString();
 
                         string query = "SELECT name, yearlevel, age, email, contact, availability, sex, socmed, location, studId, bio, pfp FROM users WHERE uid = @UID";
 
@@ -52,7 +48,6 @@ namespace HubLearningWeb.Views
                                     Email.Text = "Email: " + reader["email"].ToString();
                                     Contact.Text = "Contact Number: " + reader["contact"].ToString();
                                     string profilePictureLink = reader["pfp"].ToString();
-                                    // Update the link to use Google Drive shareable link
                                     ImagePF.ImageUrl = GetDirectLinkFromGoogleDrive(profilePictureLink);
                                 }
                             }
@@ -61,16 +56,14 @@ namespace HubLearningWeb.Views
                 }
                 else
                 {
-                    // Handle the case where the session variable 'UID' is not set, which may indicate the user is not authenticated
+
                 }
             }
         }
         private string GetDirectLinkFromGoogleDrive(string googleDriveLink)
         {
-            // Check if the link contains the expected pattern
             if (googleDriveLink.Contains("drive.google.com/file/d/"))
             {
-                // Extract the file ID from the link
                 int start = googleDriveLink.IndexOf("drive.google.com/file/d/") + "drive.google.com/file/d/".Length;
                 int end = googleDriveLink.IndexOf("/view");
 
@@ -78,33 +71,28 @@ namespace HubLearningWeb.Views
                 {
                     string fileId = googleDriveLink.Substring(start, end - start);
 
-                    // Construct the direct link
                     return $"https://drive.google.com/uc?export=view&id={fileId}";
                 }
             }
 
-            return googleDriveLink; // Return the original link if not in the expected format
+            return googleDriveLink;
         }
 
         protected void ReqSubmit_Click(object sender, EventArgs e)
         {
-            // Get the UID from the session.
             string uid = Session["UID"].ToString();
 
-            // Define your MySQL connection string.
             string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
 
-                // Define the SQL query to insert data into the "bulletin" table.
                 string query = "INSERT INTO bulletin (uid, name, looking, strand, yearlevel, availability, location, role, buldate) " +
                 "VALUES (@uid, (SELECT name FROM users WHERE uid = @uid), @looking, @strand, @yearLevel, @availability, @location, @role, CURDATE());";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    // Set the parameters for the MySQL query.
                     command.Parameters.AddWithValue("@uid", uid);
 
                     string lookingFor = (ReqTutee.Checked) ? "Tutee" : "Tutor";
@@ -116,7 +104,6 @@ namespace HubLearningWeb.Views
                     string yearLevel = GetSelectedRadioValue(YearLevelRadios);
                     command.Parameters.AddWithValue("@yearLevel", yearLevel);
 
-                    // Availability checkboxes (assuming checkboxes are used):
                     string availability = string.Join(", ", new[] {
                 ReqSun.Checked ? "Sunday" : "",
                 ReqMon.Checked ? "Monday" : "",
@@ -129,7 +116,6 @@ namespace HubLearningWeb.Views
 
                     command.Parameters.AddWithValue("@availability", availability);
 
-                    // Location checkboxes (assuming checkboxes are used):
                     string location = string.Join(", ", new[] {
                 ReqHome.Checked ? "Home" : "",
                 ReqSchool.Checked ? "School" : "",
@@ -138,16 +124,13 @@ namespace HubLearningWeb.Views
 
                     command.Parameters.AddWithValue("@location", location);
 
-                    // Determine the "role" based on the "looking" value
                     string role = (lookingFor == "Tutee") ? "Tutor" : "Tutee";
                     command.Parameters.AddWithValue("@role", role);
 
-                    // Execute the MySQL command to insert the data.
                     command.ExecuteNonQuery();
                 }
             }
 
-            // Reset the checkboxes and radio buttons to their initial state
             ReqTutee.Checked = false;
             ReqTutor.Checked = false;
             UncheckRadioButtons(StrandRadios);
@@ -163,7 +146,6 @@ namespace HubLearningWeb.Views
             ReqSchool.Checked = false;
             ReqPublic.Checked = false;
 
-            // Redirect or display a success message.
             Response.Write("<script>alert('Success')</script>");
         }
 
@@ -184,11 +166,9 @@ namespace HubLearningWeb.Views
             {
                 if (control is RadioButton radioButton && radioButton.Checked)
                 {
-                    return radioButton.Text; // Change this to Value if necessary.
+                    return radioButton.Text;
                 }
             }
-
-            // Default to an empty string if none are selected.
             return string.Empty;
         }
     }

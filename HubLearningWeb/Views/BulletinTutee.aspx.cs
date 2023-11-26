@@ -16,7 +16,6 @@ namespace HubLearningWeb.Views
         {
             if (!IsPostBack)
             {
-                // Check if the UID is set in the session
                 if (Session["UID"] != null)
                 {
                     string uidValue = Session["UID"].ToString();
@@ -24,28 +23,33 @@ namespace HubLearningWeb.Views
                 }
                 else
                 {
-                    // Handle the case where the session variable 'UID' is not set, which may indicate the user is not authenticated
+
                 }
             }
         }
-
+        protected bool IsConnectButtonVisible(string rowUid)
+        {
+            if (Session["UID"] != null)
+            {
+                string sessionUid = Session["UID"].ToString();
+                return rowUid != sessionUid;
+            }
+            return false;
+        }
         protected void ConnectNow_Click(object sender, EventArgs e)
         {
             Button connectButton = (Button)sender;
             RepeaterItem item = (RepeaterItem)connectButton.NamingContainer;
             int rid = Convert.ToInt32((item.FindControl("HiddenRid") as HiddenField).Value);
 
-            // Fetch UID from the session
             string uid = Session["UID"].ToString();
 
-            // Check for confirmation
             if (!Page.ClientScript.IsStartupScriptRegistered("connectConfirmation"))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "connectConfirmation",
                     $"if (!showConnectConfirmation({rid})) return;", true);
             }
 
-            // Connect to the database and insert values into the notification table
             string connectionString = "Server=localhost;Database=learninghubwebdb;User=root;Password=;";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -62,9 +66,6 @@ namespace HubLearningWeb.Views
                     command.ExecuteNonQuery();
                 }
             }
-
-            // You can add any additional logic or redirection after the connection is made
-
         }
 
         protected void Submit_Click(object sender, EventArgs e)
@@ -74,23 +75,19 @@ namespace HubLearningWeb.Views
 
         private void BindDataToRepeater()
         {
-            // Connect to the database and fetch the data
             string connectionString = "Server=localhost;Database=learninghubwebdb;User=root;Password=;";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
 
-                // Get the selected values for each filter
                 string selectedStrand = GetSelectedRadioButton("strandGroup");
                 string selectedYearLevel = GetSelectedRadioButton("yearLevelGroup");
                 List<string> selectedAvailability = GetSelectedCheckboxes("availGroup");
                 List<string> selectedLocations = GetSelectedCheckboxes("locGroup");
 
-                // Start building the query
                 string query = "SELECT b.rid, u.uid, u.name, u.pfp, b.looking, b.strand, b.availability, b.location FROM bulletin b JOIN users u ON b.uid = u.uid WHERE b.looking = 'Tutee' AND b.visibility = ''";
 
-                // Add filters to the query based on selected values
                 if (!string.IsNullOrEmpty(selectedStrand))
                 {
                     query += $" AND strand = '{selectedStrand}'";
@@ -103,7 +100,6 @@ namespace HubLearningWeb.Views
 
                 if (selectedAvailability.Count > 0)
                 {
-                    // Use the OR clause for multiple values
                     query += " AND (";
                     for (int i = 0; i < selectedAvailability.Count; i++)
                     {
@@ -118,7 +114,6 @@ namespace HubLearningWeb.Views
 
                 if (selectedLocations.Count > 0)
                 {
-                    // Use the OR clause for multiple values
                     query += " AND (";
                     for (int i = 0; i < selectedLocations.Count; i++)
                     {
@@ -148,10 +143,8 @@ namespace HubLearningWeb.Views
 
         protected string GetDirectLinkFromGoogleDrive(string googleDriveLink)
         {
-            // Return the direct link if it already fits the expected format
             if (googleDriveLink.Contains("drive.google.com/file/d/"))
             {
-                // Extract the file ID from the link
                 int start = googleDriveLink.IndexOf("drive.google.com/file/d/") + "drive.google.com/file/d/".Length;
                 int end = googleDriveLink.IndexOf("/view");
 
@@ -159,7 +152,6 @@ namespace HubLearningWeb.Views
                 {
                     string fileId = googleDriveLink.Substring(start, end - start);
 
-                    // Construct the direct link
                     return $"https://drive.google.com/uc?export=view&id={fileId}";
                 }
             }
@@ -208,22 +200,18 @@ namespace HubLearningWeb.Views
         }
         protected void Clear_Click(object sender, EventArgs e)
         {
-            // Reset filters and bind the repeater to show all data
             ResetFilters();
             BindDataToRepeater();
         }
 
-        // Add this method to reset filters
         private void ResetFilters()
         {
-            // Clear selected radio buttons and checkboxes
             ClearRadioButtonGroup("strandGroup");
             ClearRadioButtonGroup("yearLevelGroup");
             ClearCheckboxes("availGroup");
             ClearCheckboxes("locGroup");
         }
 
-        // Add these helper methods for resetting radio buttons and checkboxes
         private void ClearRadioButtonGroup(string groupName)
         {
             foreach (Control control in Page.Controls)

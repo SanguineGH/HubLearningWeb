@@ -110,7 +110,7 @@
             var buttons = document.querySelectorAll(".view-more-button");
             buttons.forEach(function (button) {
                 button.addEventListener("click", function (event) {
-                    event.preventDefault(); // Prevent the default form submission behavior
+                    event.preventDefault();
                     var tutor = this.getAttribute("data-tutor");
                     var tutee = this.getAttribute("data-tutee");
                     var strand = this.getAttribute("data-strand");
@@ -132,7 +132,7 @@
             document.getElementById("availabilityLabelModal").innerHTML = "Availability: " + availability;
             document.getElementById("locationLabelModal").innerHTML = "Location: " + location;
             document.getElementById("detailsModal").style.display = "block";
-            return false; // Prevent form submission
+            return false;
         }
 
         function hideDetails() {
