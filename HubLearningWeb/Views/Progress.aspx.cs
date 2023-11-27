@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
+using System.Web.UI.HtmlControls;
 
 namespace HubLearningWeb.Views
 {
@@ -106,6 +107,17 @@ namespace HubLearningWeb.Views
 
         protected void progressGridView_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            if (e.CommandName == "MoreCommand")
+            {
+                // Access the server-side div
+                HtmlGenericControl additionalContent = (HtmlGenericControl)FindControl("additionalContent");
+
+                // Implement the logic you want when the "More" button is clicked.
+                // For example, you can show additional content, load data, etc.
+
+                // For demonstration purposes, let's toggle the display style.
+                additionalContent.Style["display"] = additionalContent.Style["display"] == "none" ? "block" : "none";
+            }
             if (e.CommandName == "CompleteCommand")
             {
                 // Find the button that was clicked
@@ -144,6 +156,11 @@ namespace HubLearningWeb.Views
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+        protected void Details_Click(object sender, EventArgs e)
+        {
+            // Placeholder for the button click event.
+            // Implement your logic here when a details button is clicked.
         }
     }
 }

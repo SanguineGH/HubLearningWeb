@@ -5,8 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title></title>
+    <title>Home</title>
     <link href="../Css/Dashboard.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="../favicon-32x32.png" />
 </head>
 <body>
     <form id="form1" runat="server">

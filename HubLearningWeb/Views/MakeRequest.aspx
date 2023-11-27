@@ -7,7 +7,8 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="../Css/Dashboard.css" rel="stylesheet" />
     <link href="../Css/MakeRequest.css" rel="stylesheet" />
-    <title></title>
+    <link rel="icon" type="image/x-icon" href="../favicon-32x32.png" />
+    <title>Request</title>
 </head>
 <body>
     <form id="form1" runat="server">

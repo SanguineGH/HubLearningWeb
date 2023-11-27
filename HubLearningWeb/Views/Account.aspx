@@ -7,12 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="../Css/Dashboard.css" rel="stylesheet" />
     <link href="../Css/Account.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="../favicon-32x32.png" />
      <style>
         .hidden-form {
             display: none; /* Set to 'none' to hide it initially */
         }
     </style>
-    <title></title>
+    <title>Account</title>
 </head>
 <body>
     <form id="form1" runat="server">

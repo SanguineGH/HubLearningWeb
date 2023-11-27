@@ -7,7 +7,8 @@
 <head runat="server">
 <link href="../Css/index.css" rel="stylesheet" />
 <link rel="stylesheet" href="../bootstrapcss/bootstrap.minmat.css" />
-<title>Test</title>
+	<link rel="icon" type="image/x-icon" href="../favicon-32x32.png" />
+<title>Welcome!</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">

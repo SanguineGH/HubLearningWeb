@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>LOGIN FORM</title>
+    <title>Login</title>
     <link href="../Css/Login.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="../favicon-32x32.png" />
 </head>
 <body>
     <form id="form1" runat="server">
