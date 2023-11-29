@@ -10,7 +10,7 @@
     <link rel="icon" type="image/x-icon" href="../favicon-32x32.png" />
      <style>
         .hidden-form {
-            display: none; /* Set to 'none' to hide it initially */
+            display: none;
         }
     </style>
     <title>Account</title>

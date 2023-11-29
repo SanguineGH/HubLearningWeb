@@ -1,57 +1,8 @@
 ﻿.MainContentHolder {
     display: flex;
-   height: 100%
+    height: 100%
 }
 
-p {
-    font-weight: bold;
-    text-align: center;
-}
-
-.FilterSide {
-    padding-left: 25px;
-    font-size: 10px;
-    border: solid;
-    width: 25%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-}
-
-/*Filters HERE*/
-
-.Strands {  
-}
-.Subjects {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align:center;
-}
-
-
-.Yearlvl {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align:center;
-}
-
-.Availability {
-    flex-direction: column;
-    justify-content: center;
-
-}
-
-.Location {
-    display: flex;
-    flex-direction: column;
-    justify-content:flex-start;
-
-}
-
-/*Filter END*/
 
 .CardSide {
     border: solid orange;
@@ -75,17 +26,7 @@ p {
     border: solid;
 }
 
-.BullTitle {
-    height: 15%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1;
 
-}
 
 table {
     height: 80%;
@@ -113,6 +54,7 @@ td {
 .CardInfo {
     display: flex;
     flex-direction: column;
+    font-size:20px;
 }
 
 .CardDP {
@@ -177,4 +119,118 @@ td {
 .label {
     font-weight: bold;
     margin: 5px 0;
+    font-family:monospace;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color:white;
+}
+
+.Content {
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    color:white;
+    text-align:center;
+    font:bold;
+}
+
+.FilterSide {
+    margin-bottom: 20px;
+}
+
+p {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.Strands, .Yearlvl, .Availability, .Location {
+    margin-bottom: 20px;
+}
+
+.Holder {
+    margin-bottom: 10px;
+}
+
+/* Styling radio buttons and checkboxes */
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Styling labels for better alignment */
+.label {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 17px;
+    color: white;
+    font-family: monospace;
+}
+
+
+
+#Submit {
+    background-color: orange;
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding around text */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition on hover */
+}
+
+    #Submit:hover {
+        background-color: #45a049; /* Darker green on hover */
+        transform: scale(1.05); /* Slightly enlarge on hover */
+    }
+#Clear {
+    background-color: saddlebrown;
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding around text */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition on hover */
+}
+
+    #Clear:hover {
+        background-color: #45a049; /* Darker green on hover */
+        transform: scale(1.05); /* Slightly enlarge on hover */
+    }
+.MoreButton {
+}
+
+.more-button {
+    background-color: orange;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+    .more-button:hover {
+        background-color: saddlebrown; 
+    }
+.ConnectButton {
+    background-color: orange;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    padding-top:10px;
+    margin-top:10px;
+}
+
+    .ConnectButton:hover {
+        background-color: saddlebrown;
+    }

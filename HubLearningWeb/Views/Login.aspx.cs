@@ -35,13 +35,10 @@ namespace HubLearningWeb.Views
                     if (reader.Read())
                     {
                         string storedPassword = reader["password"].ToString();
-                        string uid = reader["UID"].ToString(); // Retrieve the UID
+                        string uid = reader["UID"].ToString();
 
                         if (storedPassword == password)
                         {
-                            // Passwords match, so authentication is successful.
-
-                            // Set the UID as a session variable
                             Session["UID"] = uid;
 
                             Response.Write("<script>alert('Login successful')</script>");
@@ -49,13 +46,11 @@ namespace HubLearningWeb.Views
                         }
                         else
                         {
-                            // Passwords don't match, show an error message.
                             Response.Write("<script>alert('Incorrect password')</script>");
                         }
                     }
                     else
                     {
-                        // Username not found in the database.
                         Response.Write("<script>alert('Username not found')</script>");
                     }
                 }
