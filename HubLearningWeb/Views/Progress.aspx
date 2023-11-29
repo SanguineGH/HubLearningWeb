@@ -8,6 +8,23 @@
     <title></title>
     <link href="../Css/Dashboard.css" rel="stylesheet" />
     <link href="../Css/ProgressTracker.css" rel ="stylesheet" />
+       <link rel="icon" type="image/x-icon" href="../favicon-32x32.png" />
+
+    <style>
+        #additionalContent {
+            width: 50%;
+            height: 80%;
+        }
+            .progress-table {
+        text-align: center;
+        margin: 0 auto; /* Center the table */
+        color: black;
+    }
+
+    .additional-content {
+        width: 80%; /* Combined width of both tables */
+    }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -62,11 +79,81 @@
                             <ItemTemplate>
                                 <asp:Button ID="btnComplete" runat="server" Text="Complete" CommandName="CompleteCommand"
                                     OnClientClick='<%# "return showConfirmationModal(this, " + Container.DataItemIndex + ");" %>' />
+                                <asp:Button ID="btnMore" runat="server" Text="More" CssClass="more-button" CommandName="MoreCommand" />
                                 <asp:HiddenField ID="hfRowIndex" runat="server" Value='<%# Container.DataItemIndex %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+                <div id="additionalContent" class="additional-content" runat="server" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid #ccc;">
+    <table class="progress-table" style="width: 40%; float: left;">
+        <tr>
+            <th colspan="2">First Half</th>
+        </tr>
+        <tr>
+            <td>Day 1</td>
+            <td><asp:Button ID="btnDetails1" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+        </tr>
+        <tr>
+            <td>Day 2</td>
+            <td><asp:Button ID="btnDetails2" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+        </tr>
+        <tr>
+            <td>Day 3</td>
+            <td><asp:Button ID="btnDetails3" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+        </tr>
+        <tr>
+            <td>Day 4</td>
+            <td><asp:Button ID="btnDetails4" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+        </tr>
+        <tr>
+            <td>Day 5</td>
+            <td><asp:Button ID="btnDetails5" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+        </tr>
+        <tr>
+            <td>Day 6</td>
+            <td><asp:Button ID="btnDetails6" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+        </tr>
+        <tr>
+            <td>Day 7</td>
+            <td><asp:Button ID="btnDetails7" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+        </tr>
+    </table>
+
+    <table class="progress-table" style="width: 40%; float: right;">
+        <tr>
+            <th colspan="2">Second Half</th>
+        </tr>
+        <tr>
+            <td>Day 8</td>
+            <td><asp:Button ID="btnDetails8" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+        </tr>
+        <tr>
+            <td>Day 9</td>
+            <td><asp:Button ID="btnDetails9" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+        </tr>
+        <tr>
+            <td>Day 10</td>
+            <td><asp:Button ID="btnDetails10" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+        </tr>
+        <tr>
+            <td>Day 11</td>
+            <td><asp:Button ID="btnDetails11" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+        </tr>
+        <tr>
+            <td>Day 12</td>
+            <td><asp:Button ID="btnDetails12" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+        </tr>
+        <tr>
+            <td>Day 13</td>
+            <td><asp:Button ID="btnDetails13" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+        </tr>
+        <tr>
+            <td>Day 14</td>
+            <td><asp:Button ID="btnDetails14" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+        </tr>
+    </table>
+</div>
             </div>
         </div>
         <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -93,9 +180,16 @@
 
 
 
- function showConfirmationModal(button, rowIndex) {
-        return confirm('Are you sure you want to complete this? (Irreversible)');
-    }
+        function showConfirmationModal(button, rowIndex) {
+            return confirm('Are you sure you want to complete this? (Irreversible)');
+        }
+
+        function showMoreContent() {
+            var additionalContent = document.getElementById("additionalContent");
+            additionalContent.style.display = (additionalContent.style.display === "none") ? "block" : "none";
+            return false; // Prevent postback
+        }
+
     </script>
 </body>
 </html>
