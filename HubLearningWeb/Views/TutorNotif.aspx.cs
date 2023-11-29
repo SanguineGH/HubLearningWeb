@@ -137,13 +137,17 @@ namespace HubLearningWeb.Views
                             int requestor = reader.GetInt32("Frid");
                             int client = reader.GetInt32("Fuid");
 
+                            // Get current session user ID (assuming it's stored in Session["UID"])
+                            int tutor = Convert.ToInt32(Session["UID"]);
+
                             reader.Close();
 
-                            string insertQuery = "INSERT INTO transaction (requestor, client, progress, trandate) VALUES (@Requestor, @Client, @Progress, @TranDate)";
+                            string insertQuery = "INSERT INTO transaction (requestor, client, tutor, progress, trandate) VALUES (@Requestor, @Client, @Tutor, @Progress, @TranDate)";
                             using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, connection))
                             {
                                 insertCmd.Parameters.AddWithValue("@Requestor", requestor);
                                 insertCmd.Parameters.AddWithValue("@Client", client);
+                                insertCmd.Parameters.AddWithValue("@Tutor", tutor);
                                 insertCmd.Parameters.AddWithValue("@Progress", "Ongoing");
                                 insertCmd.Parameters.AddWithValue("@TranDate", DateTime.Now);
 

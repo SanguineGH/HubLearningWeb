@@ -130,7 +130,10 @@ namespace HubLearningWeb.Views
             {
                 connection.Open();
 
-                string fetchDetailsQuery = "SELECT Frid, Fuid FROM notification WHERE nid = @NotificationID";
+                string fetchDetailsQuery = "SELECT b.role, n.Frid, n.Fuid " +
+                           "FROM notification n " +
+                           "INNER JOIN bulletin b ON n.Frid = b.rid " +
+                           "WHERE n.nid = @NotificationID";
 
                 using (MySqlCommand fetchCmd = new MySqlCommand(fetchDetailsQuery, connection))
                 {
@@ -140,16 +143,20 @@ namespace HubLearningWeb.Views
                     {
                         if (reader.Read())
                         {
+                            string authorRole = reader.GetString("role");
                             int requestor = reader.GetInt32("Frid");
                             int client = reader.GetInt32("Fuid");
 
+                            int tutor = (authorRole == "Tutee") ? client : requestor;
+
                             reader.Close();
 
-                            string insertQuery = "INSERT INTO transaction (requestor, client, progress, trandate) VALUES (@Requestor, @Client, @Progress, @TranDate)";
+                            string insertQuery = "INSERT INTO transaction (requestor, client, tutor, progress, trandate) VALUES (@Requestor, @Client, @Tutor, @Progress, @TranDate)";
                             using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, connection))
                             {
                                 insertCmd.Parameters.AddWithValue("@Requestor", requestor);
                                 insertCmd.Parameters.AddWithValue("@Client", client);
+                                insertCmd.Parameters.AddWithValue("@Tutor", tutor);
                                 insertCmd.Parameters.AddWithValue("@Progress", "Ongoing");
                                 insertCmd.Parameters.AddWithValue("@TranDate", DateTime.Now);
 

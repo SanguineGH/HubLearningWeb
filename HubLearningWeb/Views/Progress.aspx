@@ -85,8 +85,12 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+               
+                
+                
                 <div id="additionalContent" class="additional-content" runat="server" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid #ccc;">
-    <table class="progress-table" style="width: 40%; float: left;">
+     <div style="height: 70%; overflow: auto; border: 1px solid #000;">
+                    <table class="progress-table" style="width: 40%; float: left;">
         <tr>
             <th colspan="2">First Half</th>
         </tr>
@@ -153,28 +157,28 @@
             <td><asp:Button ID="btnDetails14" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
         </tr>
     </table>
-</div>
-            </div>
-        </div>
-        <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to complete this? (Irreversible)
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary" id="btnConfirm">Yes</button>
-            </div>
-        </div>
+         </div>
+
+        <div id="hidediv" class="hidedivclass" runat="server" style="border-style: solid; height: 30%; border-width: 5px; border-color: blue; z-index: 1; position: relative;">
+    <p>TEST HERE</p>
+
+    <!-- Invisible label at the middle top -->
+    <asp:Label ID="lblTopMiddle" runat="server" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); color: black;">Top Middle Label</asp:Label>
+
+    <!-- Invisible label at the center -->
+    <asp:Label ID="lblCenter" runat="server"  style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: black;">Center Label</asp:Label>
+
+    <!-- Edit and Complete buttons -->
+    <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">
+        <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="edit-button" Visible="true" style="color: black;" />
+        <asp:Button ID="btnComplete" runat="server" Text="Complete" CssClass="complete-button" Visible="true" style="color: black;" />
     </div>
 </div>
+    </div>
+
+            </div>
+        </div>
+
     </form>
     <script>
 
