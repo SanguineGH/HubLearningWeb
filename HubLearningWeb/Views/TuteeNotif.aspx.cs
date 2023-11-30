@@ -131,9 +131,9 @@ namespace HubLearningWeb.Views
                 connection.Open();
 
                 string fetchDetailsQuery = "SELECT b.role, n.Frid, n.Fuid " +
-                           "FROM notification n " +
-                           "INNER JOIN bulletin b ON n.Frid = b.rid " +
-                           "WHERE n.nid = @NotificationID";
+                            "FROM notification n " +
+                            "INNER JOIN bulletin b ON n.Frid = b.rid " +
+                            "WHERE n.nid = @NotificationID";
 
                 using (MySqlCommand fetchCmd = new MySqlCommand(fetchDetailsQuery, connection))
                 {
@@ -151,16 +151,31 @@ namespace HubLearningWeb.Views
 
                             reader.Close();
 
-                            string insertQuery = "INSERT INTO transaction (requestor, client, tutor, progress, trandate) VALUES (@Requestor, @Client, @Tutor, @Progress, @TranDate)";
-                            using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, connection))
+                            string insertTransactionQuery = "INSERT INTO transaction (requestor, client, tutor, progress, trandate) VALUES (@Requestor, @Client, @Tutor, @Progress, @TranDate)";
+                            using (MySqlCommand insertTransactionCmd = new MySqlCommand(insertTransactionQuery, connection))
                             {
-                                insertCmd.Parameters.AddWithValue("@Requestor", requestor);
-                                insertCmd.Parameters.AddWithValue("@Client", client);
-                                insertCmd.Parameters.AddWithValue("@Tutor", tutor);
-                                insertCmd.Parameters.AddWithValue("@Progress", "Ongoing");
-                                insertCmd.Parameters.AddWithValue("@TranDate", DateTime.Now);
+                                insertTransactionCmd.Parameters.AddWithValue("@Requestor", requestor);
+                                insertTransactionCmd.Parameters.AddWithValue("@Client", client);
+                                insertTransactionCmd.Parameters.AddWithValue("@Tutor", tutor);
+                                insertTransactionCmd.Parameters.AddWithValue("@Progress", "Ongoing");
+                                insertTransactionCmd.Parameters.AddWithValue("@TranDate", DateTime.Now);
 
-                                insertCmd.ExecuteNonQuery();
+                                insertTransactionCmd.ExecuteNonQuery();
+                            }
+
+                            // Retrieve the ID of the last inserted transaction
+                            string getLastInsertedIdQuery = "SELECT LAST_INSERT_ID()";
+                            using (MySqlCommand getLastInsertedIdCmd = new MySqlCommand(getLastInsertedIdQuery, connection))
+                            {
+                                int lastInsertedId = Convert.ToInt32(getLastInsertedIdCmd.ExecuteScalar());
+
+                                // Insert into the learning table using the last inserted transaction ID
+                                string insertLearningQuery = "INSERT INTO learning (tid) VALUES (@TID)";
+                                using (MySqlCommand insertLearningCmd = new MySqlCommand(insertLearningQuery, connection))
+                                {
+                                    insertLearningCmd.Parameters.AddWithValue("@TID", lastInsertedId);
+                                    insertLearningCmd.ExecuteNonQuery();
+                                }
                             }
                         }
                     }

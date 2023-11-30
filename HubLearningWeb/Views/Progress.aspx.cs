@@ -13,6 +13,7 @@ namespace HubLearningWeb.Views
 {
     public partial class Progress : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -159,8 +160,20 @@ namespace HubLearningWeb.Views
         }
         protected void Details_Click(object sender, EventArgs e)
         {
-            // Placeholder for the button click event.
-            // Implement your logic here when a details button is clicked.
+            // Get the clicked button's command argument (day information)
+            Button clickedButton = (Button)sender;
+            string dayInformation = clickedButton.CommandArgument;
+
+            // Find and display the hidediv
+            HtmlGenericControl hidediv = (HtmlGenericControl)FindControl("hidediv");
+            hidediv.Style["display"] = "block";
+
+            // Update the top middle label with the day information
+            Label lblTopMiddle = (Label)hidediv.FindControl("lblTopMiddle");
+            if (lblTopMiddle != null)
+            {
+                lblTopMiddle.Text = dayInformation;
+            }
         }
     }
 }

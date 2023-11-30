@@ -96,31 +96,31 @@
         </tr>
         <tr>
             <td>Day 1</td>
-            <td><asp:Button ID="btnDetails1" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+            <td><asp:Button ID="btnDetails1" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" CommandArgument="Day 1"/></td>
         </tr>
         <tr>
             <td>Day 2</td>
-            <td><asp:Button ID="btnDetails2" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+            <td><asp:Button ID="btnDetails2" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" CommandArgument="Day 2"/></td>
         </tr>
         <tr>
             <td>Day 3</td>
-            <td><asp:Button ID="btnDetails3" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+            <td><asp:Button ID="btnDetails3" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" CommandArgument="Day 3"/></td>
         </tr>
         <tr>
             <td>Day 4</td>
-            <td><asp:Button ID="btnDetails4" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+            <td><asp:Button ID="btnDetails4" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" CommandArgument="Day 4"/></td>
         </tr>
         <tr>
             <td>Day 5</td>
-            <td><asp:Button ID="btnDetails5" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+            <td><asp:Button ID="btnDetails5" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" CommandArgument="Day 5"/></td>
         </tr>
         <tr>
             <td>Day 6</td>
-            <td><asp:Button ID="btnDetails6" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+            <td><asp:Button ID="btnDetails6" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" CommandArgument="Day 6"/></td>
         </tr>
         <tr>
             <td>Day 7</td>
-            <td><asp:Button ID="btnDetails7" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+            <td><asp:Button ID="btnDetails7" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" CommandArgument="Day 7"/></td>
         </tr>
     </table>
 
@@ -130,36 +130,36 @@
         </tr>
         <tr>
             <td>Day 8</td>
-            <td><asp:Button ID="btnDetails8" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+            <td><asp:Button ID="btnDetails8" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" CommandArgument="Day 8"/></td>
         </tr>
         <tr>
             <td>Day 9</td>
-            <td><asp:Button ID="btnDetails9" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+            <td><asp:Button ID="btnDetails9" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" CommandArgument="Day 9"/></td>
         </tr>
         <tr>
             <td>Day 10</td>
-            <td><asp:Button ID="btnDetails10" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+            <td><asp:Button ID="btnDetails10" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" CommandArgument="Day 10"/></td>
         </tr>
         <tr>
             <td>Day 11</td>
-            <td><asp:Button ID="btnDetails11" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+            <td><asp:Button ID="btnDetails11" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" CommandArgument="Day 11"/></td>
         </tr>
         <tr>
             <td>Day 12</td>
-            <td><asp:Button ID="btnDetails12" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+            <td><asp:Button ID="btnDetails12" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" CommandArgument="Day 12"/></td>
         </tr>
         <tr>
             <td>Day 13</td>
-            <td><asp:Button ID="btnDetails13" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+            <td><asp:Button ID="btnDetails13" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" CommandArgument="Day 13"/></td>
         </tr>
         <tr>
             <td>Day 14</td>
-            <td><asp:Button ID="btnDetails14" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" /></td>
+            <td><asp:Button ID="btnDetails14" runat="server" Text="Details" CssClass="details-button" OnClick="Details_Click" CommandArgument="Day 14"/></td>
         </tr>
     </table>
          </div>
 
-        <div id="hidediv" class="hidedivclass" runat="server" style="border-style: solid; height: 30%; border-width: 5px; border-color: blue; z-index: 1; position: relative;">
+        <div id="hidediv" class="hidedivclass" runat="server" style="display: none; border-style: solid; height: 30%; border-width: 5px; border-color: blue; z-index: 1; position: relative;">
     <p>TEST HERE</p>
 
     <!-- Invisible label at the middle top -->
