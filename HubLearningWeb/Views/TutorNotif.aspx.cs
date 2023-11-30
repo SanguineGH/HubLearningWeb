@@ -153,6 +153,19 @@ namespace HubLearningWeb.Views
 
                                 insertCmd.ExecuteNonQuery();
                             }
+                            string getLastInsertedIdQuery = "SELECT LAST_INSERT_ID()";
+                            using (MySqlCommand getLastInsertedIdCmd = new MySqlCommand(getLastInsertedIdQuery, connection))
+                            {
+                                int lastInsertedId = Convert.ToInt32(getLastInsertedIdCmd.ExecuteScalar());
+
+                                // Insert into the learning table using the last inserted transaction ID
+                                string insertLearningQuery = "INSERT INTO learning (tid) VALUES (@TID)";
+                                using (MySqlCommand insertLearningCmd = new MySqlCommand(insertLearningQuery, connection))
+                                {
+                                    insertLearningCmd.Parameters.AddWithValue("@TID", lastInsertedId);
+                                    insertLearningCmd.ExecuteNonQuery();
+                                }
+                            }
                         }
                     }
                 }
