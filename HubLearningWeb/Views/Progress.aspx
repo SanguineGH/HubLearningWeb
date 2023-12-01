@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="Content">
-                <asp:GridView ID="progressGridView" runat="server" AutoGenerateColumns="False" OnRowCommand="progressGridView_RowCommand" DataKeyNames="TransactionID">
+                <asp:GridView ID="progressGridView" runat="server" AutoGenerateColumns="False" OnRowCommand="progressGridView_RowCommand" OnRowDataBound="progressGridView_RowDataBound" DataKeyNames="TransactionID">
                     <Columns>
                         <asp:BoundField DataField="TuteeName" HeaderText="Tutee Name" SortExpression="TuteeName" />
                         <asp:BoundField DataField="TuteeStudentID" HeaderText="Tutee Student ID" SortExpression="TuteeStudentID" />
@@ -82,7 +82,7 @@
                             <ItemTemplate>
                                 <asp:Button ID="btnComplete" runat="server" Text="Complete" CommandName="CompleteCommand"
                                     OnClientClick='<%# "return showConfirmationModal(this, " + Container.DataItemIndex + ");" %>' />
-                                <asp:Button ID="btnMore" runat="server" Text="More" CssClass="more-button" CommandName="MoreCommand" />
+                               <asp:Button ID="btnMore" runat="server" Text="More" CssClass="more-button" CommandName="MoreCommand" CommandArgument='<%# Eval("TransactionID") %>' />
                                 <asp:HiddenField ID="hfRowIndex" runat="server" Value='<%# Container.DataItemIndex %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -203,18 +203,23 @@
             return false; // Prevent postback
         }
 
-            function showEditCenterForm() {
-                var editCenterForm = document.getElementById('<%= editCenterForm.ClientID %>');
-                if (editCenterForm) {
-                    editCenterForm.style.display = 'block';
-                }
+        function showEditCenterForm() {
+            var editCenterForm = document.getElementById('<%= editCenterForm.ClientID %>');
+            if (editCenterForm) {
+                editCenterForm.style.display = 'block';
             }
+        }
 
-            function hideEditCenterForm() {
-                var editCenterForm = document.getElementById('<%= editCenterForm.ClientID %>');
+        function hideEditCenterForm() {
+            var editCenterForm = document.getElementById('<%= editCenterForm.ClientID %>');
             if (editCenterForm) {
                 editCenterForm.style.display = 'none';
             }
+        }
+
+        function showMoreContent(rowIndex) {
+            // Get the value of tid from the hidden field in the row
+            var tid = document.getElementById('<%= progressGridView.ClientID %>').rows[rowIndex].cells[8].innerText;
         }
     </script>
 </body>

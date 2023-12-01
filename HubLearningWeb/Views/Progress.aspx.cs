@@ -8,12 +8,18 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Web.UI.HtmlControls;
+using System.Security.Cryptography;
+using System.Diagnostics;
 
 namespace HubLearningWeb.Views
 {
     public partial class Progress : System.Web.UI.Page
     {
-
+        private string tid
+        {
+            get { return ViewState["TransactionID"] as string; }
+            set { ViewState["TransactionID"] = value; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,6 +31,9 @@ namespace HubLearningWeb.Views
                     Response.Redirect("Login.aspx"); // Adjust the URL accordingly
                     return;
                 }
+
+                // Try to get TransactionID from the query string
+                tid = Request.QueryString["TransactionID"];
 
                 BindProgressGridView();
             }
@@ -110,14 +119,18 @@ namespace HubLearningWeb.Views
         {
             if (e.CommandName == "MoreCommand")
             {
-                // Access the server-side div
+                // Extract the TransactionID from the CommandArgument
+                tid = e.CommandArgument.ToString();
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowTransactionID", $"console.log('TransactionID: {tid}');", true);
+
+                // Your additional logic here based on the tid...
+                // For example, showing/hiding elements, performing actions, etc.
                 HtmlGenericControl additionalContent = (HtmlGenericControl)FindControl("additionalContent");
-
-                // Implement the logic you want when the "More" button is clicked.
-                // For example, you can show additional content, load data, etc.
-
-                // For demonstration purposes, let's toggle the display style.
-                additionalContent.Style["display"] = additionalContent.Style["display"] == "none" ? "block" : "none";
+                if (additionalContent != null)
+                {
+                    additionalContent.Style["display"] = additionalContent.Style["display"] == "none" ? "block" : "none";
+                }
             }
             if (e.CommandName == "CompleteCommand")
             {
@@ -140,6 +153,14 @@ namespace HubLearningWeb.Views
                 }
             }
         }
+        protected void progressGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HiddenField hfRowIndex = (HiddenField)e.Row.FindControl("hfRowIndex");
+                hfRowIndex.Value = e.Row.RowIndex.ToString();
+            }
+        }
 
         protected void UpdateProgressToComplete(string tid)
         {
@@ -160,90 +181,105 @@ namespace HubLearningWeb.Views
         }
         protected void Details_Click(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this, GetType(), "ShowTransactionID", $"console.log('TransactionID: {tid}');", true);
+            // Get the clicked button's command argument (day information)
             Button clickedButton = (Button)sender;
-            Control container = clickedButton.NamingContainer;
+            string dayInformation = clickedButton.CommandArgument;
 
-            while (!(container is GridViewRow) && container != null)
+            // Find and display the hidediv
+            HtmlGenericControl hidediv = (HtmlGenericControl)FindControl("hidediv");
+            hidediv.Style["display"] = "block";
+
+            // Update the top middle label with the day information
+            Label lblTopMiddle = (Label)hidediv.FindControl("lblTopMiddle");
+            if (lblTopMiddle != null)
             {
-                container = container.NamingContainer;
+                lblTopMiddle.Text = dayInformation;
             }
 
-            if (container != null)
+            // Check if tid has a valid value
+            if (!string.IsNullOrEmpty(tid))
             {
-                GridViewRow clickedRow = (GridViewRow)container;
-                int rowIndex = clickedRow.RowIndex;
+                ScriptManager.RegisterStartupScript(this, GetType(), "ConsoleLogDetailsClick",
+                    "console.log('Details_Click triggered.');", true);
+                // Extract the button number from the button ID (assuming btnDetailsX format)
+                string buttonNumber = ((Button)sender).ID.Replace("btnDetails", "");
 
-                string transactionID = progressGridView.DataKeys[rowIndex]["TransactionID"].ToString();
-                Session["SelectedTransactionID"] = transactionID;
+                // Construct the column name based on the button number (e.g., "Day1")
+                string columnName = "day" + buttonNumber;
 
-                HtmlGenericControl hidediv = (HtmlGenericControl)FindControl("hidediv");
-                hidediv.Style["display"] = "block";
+                // Call the method directly without storing the result in a variable
+                RetrieveDayDetailsFromDatabase(tid, columnName);
 
-                Label lblTopMiddle = (Label)hidediv.FindControl("lblTopMiddle");
-                if (lblTopMiddle != null)
-                {
-                    lblTopMiddle.Text = clickedButton.CommandArgument;
-                }
+                // Show the lblCenter and hide the edit form
+                lblCenter.Visible = true;
+                editCenterForm.Style["display"] = "none";
             }
         }
 
+        private string RetrieveDayDetailsFromDatabase(string tid, string columnName)
+        {
+            try
+            {
+                string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Construct the query to retrieve data from the specified column
+                    string query = $"SELECT {columnName} FROM learning WHERE tid = @TID";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@TID", tid);
+
+                        // Debugging: Output the constructed query to the console
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ConsoleLogRetrieveDay",
+                            "console.log('Retrieve Day triggered.');", true);
+
+                        // Debugging: Output the parameter values to the console
+                        foreach (MySqlParameter parameter in cmd.Parameters)
+                        {
+                            Console.WriteLine($"Parameter {parameter.ParameterName}: {parameter.Value}");
+                        }
+
+                        // Attempt to execute the query and retrieve the data
+                        object result = cmd.ExecuteScalar();
+
+                        // Debugging: Output the result to the console
+                        Console.WriteLine($"Result: {result}");
+
+                        if (result != null)
+                        {
+                            // If there is a result, set the retrieved day details in lblCenter label
+                            lblCenter.Text = result.ToString();
+
+                            // Show the lblCenter and hide the edit form
+                            lblCenter.Visible = true;
+                            editCenterForm.Style["display"] = "none";
+                        }
+                        else
+                        {
+                            // If there is no result, log a message to the console
+                            Console.WriteLine("No data found for the specified parameters.");
+                        }
+
+                        // Return the result
+                        return result?.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log any exceptions to the console
+                Console.WriteLine($"Exception: {ex.Message}");
+                return null;
+            }
+        }
         protected void Save_Click(object sender, EventArgs e)
         {
-            string newDayDetails = CenterTextarea.Text;
-            string dayInformation = lblTopMiddle.Text;
 
-            // Update the details for the specific day in the database
-            UpdateDayDetailsInDatabase(newDayDetails, dayInformation);
-
-            // Retrieve the updated details for the specific day from the database
-            string updatedDayDetails = RetrieveDayDetailsFromDatabase(dayInformation);
-
-            // Update the displayed details on the page
-            lblCenter.Text = updatedDayDetails;
-        }
-
-        private void UpdateDayDetailsInDatabase(string newDayDetails, string dayInformation)
-        {
-            string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string columnName = dayInformation.Replace(" ", ""); // Construct the column name
-
-                // Update the specific day's column with new details
-                string updateQuery = $"UPDATE learning SET {columnName} = @NewDayDetails WHERE lid";
-
-                using (MySqlCommand cmd = new MySqlCommand(updateQuery, connection))
-                {
-                    cmd.Parameters.AddWithValue("@NewDayDetails", newDayDetails);
-                    // Add parameters or conditions that uniquely identify the record you want to update
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
-        private string RetrieveDayDetailsFromDatabase(string dayInformation)
-        {
-            string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
-            string columnName = dayInformation.Replace(" ", ""); // Construct the column name
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                // Retrieve the specific day's column data
-                string selectQuery = $"SELECT {columnName} FROM learning WHERE lid";
-
-                using (MySqlCommand cmd = new MySqlCommand(selectQuery, connection))
-                {
-                    // Add other necessary parameters or conditions
-
-                    // ExecuteScalar retrieves the value from the specified column
-                    return cmd.ExecuteScalar()?.ToString();
-                }
-            }
         }
 
     }
