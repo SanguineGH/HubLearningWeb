@@ -1,5 +1,5 @@
 ﻿.Content {
-    margin: 20px;
+    display: inline;
 }
 
 /* Styles for the GridView */
@@ -84,9 +84,9 @@
     .btn-primary:hover {
         background-color: #ff6347; /* Tomato on hover for primary button */
     }
+
 #btn-Complete {
-  
-    background-color: #4CAF50; 
+    background-color: #4CAF50;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -100,7 +100,24 @@
     border-radius: 5px;
 }
 
-#btnComplete:hover {
-    background-color: #45a049;
-    color: white;
+    #btn-Complete:hover {
+        background-color: #45a049;
+        color: white;
     }
+
+/* Additional Styles to prevent overlapping with image background */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    position: relative;
+}
+
+.background-image {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    z-index: -1;
+}
