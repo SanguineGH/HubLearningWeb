@@ -21,6 +21,9 @@
         color: black;
     }
 
+            .Content {
+    overflow: auto;
+}
     .additional-content {
         width: 80%; /* Combined width of both tables */
     }
