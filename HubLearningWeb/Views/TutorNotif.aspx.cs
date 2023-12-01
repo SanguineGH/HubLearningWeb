@@ -142,17 +142,18 @@ namespace HubLearningWeb.Views
 
                             reader.Close();
 
-                            string insertQuery = "INSERT INTO transaction (requestor, client, tutor, progress, trandate) VALUES (@Requestor, @Client, @Tutor, @Progress, @TranDate)";
+                            string insertQuery = "INSERT INTO transaction (requestor, client, tutor, days, trandate) VALUES (@Requestor, @Client, @Tutor, @Days, @TranDate)";
                             using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, connection))
                             {
                                 insertCmd.Parameters.AddWithValue("@Requestor", requestor);
                                 insertCmd.Parameters.AddWithValue("@Client", client);
                                 insertCmd.Parameters.AddWithValue("@Tutor", tutor);
-                                insertCmd.Parameters.AddWithValue("@Progress", "Ongoing");
+                                insertCmd.Parameters.AddWithValue("@Days", 0); // Insert 0 into the days column
                                 insertCmd.Parameters.AddWithValue("@TranDate", DateTime.Now);
-
+                                insertCmd.Parameters.AddWithValue("@Progress", "Ongoing");
                                 insertCmd.ExecuteNonQuery();
                             }
+
                             string getLastInsertedIdQuery = "SELECT LAST_INSERT_ID()";
                             using (MySqlCommand getLastInsertedIdCmd = new MySqlCommand(getLastInsertedIdQuery, connection))
                             {

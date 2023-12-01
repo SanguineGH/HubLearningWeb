@@ -77,11 +77,15 @@
                         <asp:BoundField DataField="TuteeStrand" HeaderText="Strand" SortExpression="TuteeStrand" />
                         <asp:BoundField DataField="TutorAvailability" HeaderText="Availability" SortExpression="TutorAvailability" />
                         <asp:BoundField DataField="TutorLocation" HeaderText="Location" SortExpression="TutorLocation" />
-                        <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" />
-                          <asp:TemplateField HeaderText="Progress">
+                        <asp:BoundField DataField="days" HeaderText="Days" SortExpression="days" />
+<asp:TemplateField HeaderText="Progress">
+    <ItemTemplate>
+        <asp:Literal ID="litProgress" runat="server"></asp:Literal>
+    </ItemTemplate>
+</asp:TemplateField>
+                          <asp:TemplateField HeaderText="Actions">
                             <ItemTemplate>
-                                <asp:Button ID="btnComplete" runat="server" Text="Complete" CommandName="CompleteCommand"
-                                    OnClientClick='<%# "return showConfirmationModal(this, " + Container.DataItemIndex + ");" %>' />
+                                
                                 <asp:Button ID="btnMore" runat="server" Text="More" CssClass="more-button" CommandName="MoreCommand" />
                                 <asp:HiddenField ID="hfRowIndex" runat="server" Value='<%# Container.DataItemIndex %>' />
                             </ItemTemplate>
