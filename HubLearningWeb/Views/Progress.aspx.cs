@@ -160,20 +160,91 @@ namespace HubLearningWeb.Views
         }
         protected void Details_Click(object sender, EventArgs e)
         {
-            // Get the clicked button's command argument (day information)
             Button clickedButton = (Button)sender;
-            string dayInformation = clickedButton.CommandArgument;
+            Control container = clickedButton.NamingContainer;
 
-            // Find and display the hidediv
-            HtmlGenericControl hidediv = (HtmlGenericControl)FindControl("hidediv");
-            hidediv.Style["display"] = "block";
-
-            // Update the top middle label with the day information
-            Label lblTopMiddle = (Label)hidediv.FindControl("lblTopMiddle");
-            if (lblTopMiddle != null)
+            while (!(container is GridViewRow) && container != null)
             {
-                lblTopMiddle.Text = dayInformation;
+                container = container.NamingContainer;
+            }
+
+            if (container != null)
+            {
+                GridViewRow clickedRow = (GridViewRow)container;
+                int rowIndex = clickedRow.RowIndex;
+
+                string transactionID = progressGridView.DataKeys[rowIndex]["TransactionID"].ToString();
+                Session["SelectedTransactionID"] = transactionID;
+
+                HtmlGenericControl hidediv = (HtmlGenericControl)FindControl("hidediv");
+                hidediv.Style["display"] = "block";
+
+                Label lblTopMiddle = (Label)hidediv.FindControl("lblTopMiddle");
+                if (lblTopMiddle != null)
+                {
+                    lblTopMiddle.Text = clickedButton.CommandArgument;
+                }
             }
         }
+
+        protected void Save_Click(object sender, EventArgs e)
+        {
+            string newDayDetails = CenterTextarea.Text;
+            string dayInformation = lblTopMiddle.Text;
+
+            // Update the details for the specific day in the database
+            UpdateDayDetailsInDatabase(newDayDetails, dayInformation);
+
+            // Retrieve the updated details for the specific day from the database
+            string updatedDayDetails = RetrieveDayDetailsFromDatabase(dayInformation);
+
+            // Update the displayed details on the page
+            lblCenter.Text = updatedDayDetails;
+        }
+
+        private void UpdateDayDetailsInDatabase(string newDayDetails, string dayInformation)
+        {
+            string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string columnName = dayInformation.Replace(" ", ""); // Construct the column name
+
+                // Update the specific day's column with new details
+                string updateQuery = $"UPDATE learning SET {columnName} = @NewDayDetails WHERE lid";
+
+                using (MySqlCommand cmd = new MySqlCommand(updateQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@NewDayDetails", newDayDetails);
+                    // Add parameters or conditions that uniquely identify the record you want to update
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private string RetrieveDayDetailsFromDatabase(string dayInformation)
+        {
+            string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+            string columnName = dayInformation.Replace(" ", ""); // Construct the column name
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Retrieve the specific day's column data
+                string selectQuery = $"SELECT {columnName} FROM learning WHERE lid";
+
+                using (MySqlCommand cmd = new MySqlCommand(selectQuery, connection))
+                {
+                    // Add other necessary parameters or conditions
+
+                    // ExecuteScalar retrieves the value from the specified column
+                    return cmd.ExecuteScalar()?.ToString();
+                }
+            }
+        }
+
     }
 }
