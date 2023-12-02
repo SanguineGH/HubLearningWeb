@@ -126,6 +126,11 @@ namespace HubLearningWeb.Views
 
                 // Your additional logic here based on the tid...
                 // For example, showing/hiding elements, performing actions, etc.
+                            hidediv.Style["display"] = "none";
+
+            // Reset lblTopMiddle and lblCenter text
+            lblTopMiddle.Text = "";
+            lblCenter.Text = "";
                 HtmlGenericControl additionalContent = (HtmlGenericControl)FindControl("additionalContent");
                 if (additionalContent != null)
                 {
@@ -190,6 +195,8 @@ namespace HubLearningWeb.Views
             HtmlGenericControl hidediv = (HtmlGenericControl)FindControl("hidediv");
             hidediv.Style["display"] = "block";
 
+            CenterTextarea.Text = "";
+
             // Update the top middle label with the day information
             Label lblTopMiddle = (Label)hidediv.FindControl("lblTopMiddle");
             if (lblTopMiddle != null)
@@ -208,6 +215,8 @@ namespace HubLearningWeb.Views
                 // Construct the column name based on the button number (e.g., "Day1")
                 string columnName = "day" + buttonNumber;
 
+                ViewState["SelectedColumnName"] = columnName;
+                ViewState["SelectedTID"] = tid;
                 // Call the method directly without storing the result in a variable
                 RetrieveDayDetailsFromDatabase(tid, columnName);
 
@@ -277,8 +286,84 @@ namespace HubLearningWeb.Views
                 return null;
             }
         }
+        protected void Edit_Click(object sender, EventArgs e)
+        {
+            
+        }
         protected void Save_Click(object sender, EventArgs e)
         {
+            string columnName = ViewState["SelectedColumnName"] as string;
+            string tid = ViewState["SelectedTID"] as string;
+
+            // Get the text from the textarea
+            string newText = CenterTextarea.Text.Trim(); // Trim to remove extra spaces
+
+            if (string.IsNullOrEmpty(newText))
+            {
+                // Show an alert indicating the textarea is empty
+                ScriptManager.RegisterStartupScript(this, GetType(), "EmptyTextareaAlert", "alert('Text Area is empty. The details will not be saved.');", true);
+                return; // Halt the method if the textarea is empty
+            }
+
+            if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(tid))
+            {
+                // Update the database with the new text
+                UpdateDayDetailsInDatabase(tid, columnName, newText);
+
+                // Reset the textarea after successful update
+                CenterTextarea.Text = "";
+            }
+        }
+        private void UpdateDayDetailsInDatabase(string tid, string columnName, string newText)
+        {
+            try
+            {
+                string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Construct the update query for the specific column
+                    string query = $"UPDATE learning SET {columnName} = @NewText WHERE tid = @TID";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@NewText", newText);
+                        cmd.Parameters.AddWithValue("@TID", tid);
+
+                        // Execute the update query
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            // Update successful
+                            // You might want to show a success message or handle accordingly
+                            lblCenter.Text = newText;
+                        }
+                        else
+                        {
+                            // Update failed
+                            // Handle failure case or show error message
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                // Log or display error message
+            }
+        }
+        protected void Close_Click(object sender, EventArgs e)
+        {
+            // Hide additional content and hidedivclass
+            additionalContent.Style["display"] = "none";
+            hidediv.Style["display"] = "none";
+
+            // Reset lblTopMiddle and lblCenter text
+            lblTopMiddle.Text = "";
+            lblCenter.Text = "";
 
         }
 

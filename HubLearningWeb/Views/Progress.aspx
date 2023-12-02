@@ -66,6 +66,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="Content">
                 <asp:GridView ID="progressGridView" runat="server" AutoGenerateColumns="False" OnRowCommand="progressGridView_RowCommand" OnRowDataBound="progressGridView_RowDataBound" DataKeyNames="TransactionID">
                     <Columns>
@@ -80,7 +81,7 @@
                         <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" />
                           <asp:TemplateField HeaderText="Progress">
                             <ItemTemplate>
-                                <asp:Button ID="btnComplete" runat="server" Text="Complete" CommandName="CompleteCommand"
+                                <asp:Button ID="btnComplete" runat="server" Text="Complete"
                                     OnClientClick='<%# "return showConfirmationModal(this, " + Container.DataItemIndex + ");" %>' />
                                <asp:Button ID="btnMore" runat="server" Text="More" CssClass="more-button" CommandName="MoreCommand" CommandArgument='<%# Eval("TransactionID") %>' />
                                 <asp:HiddenField ID="hfRowIndex" runat="server" Value='<%# Container.DataItemIndex %>' />
@@ -88,11 +89,11 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
-               
-                
+              
                 
                 <div id="additionalContent" class="additional-content" runat="server" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid #ccc;">
      <div style="height: 70%; overflow: auto; border: 1px solid #000;">
+         <asp:Button ID="closeButton" runat="server" Text="X" CssClass="close-button" OnClick="Close_Click" style="position: absolute; top: 5px; right: 5px;"/>
                     <table class="progress-table" style="width: 40%; float: left;">
         <tr>
             <th colspan="2">First Half</th>
@@ -178,8 +179,8 @@
 
     <!-- Edit and Complete buttons -->
     <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">
-        <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="edit-button" Visible="true" style="color: black;" OnClientClick="showEditCenterForm(); return false;" />
-        <asp:Button ID="btnComplete" runat="server" Text="Complete" CssClass="complete-button" Visible="true" style="color: black;" />
+        <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="edit-button" Visible="true" OnClick="Edit_Click" style="color: black;" OnClientClick="showEditCenterForm(); return false;" />
+        <asp:Button ID="btnComplete" runat="server" Text="Complete" CommandName="CompleteCommand" CssClass="complete-button" Visible="true" style="color: black;" />
     </div>
 
 </div>
