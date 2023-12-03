@@ -46,9 +46,11 @@
     margin-left: 10px;
 }
 
-.NotifViewButton,
-.NotifCell button,
-.view-more-button {
+ NotifViewButton:hover,
+.NotifCell button:hover,
+.view-more-button:hover,
+.accept-button:hover,
+.reject-button:hover {
     background-color: #007bff;
     color: white;
     padding: 5px 10px;
@@ -61,8 +63,10 @@
 
     .NotifViewButton:hover,
     .NotifCell button:hover,
-    .view-more-button:hover {
-        background-color: black;
+    .view-more-button:hover,
+    .accept-button:hover,
+    .reject-button:hover {
+        background-color: saddlebrown;
     }
 
 .NotifRow + .NotifRow {
@@ -164,24 +168,6 @@
         cursor: pointer;
         width: 48%;
     }
-
-#acceptButton {
-    background-color: #d2b48c; /* Light Brown */
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-}
-
-#declineButton {
-    background-color: #ccc;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
 .TitleOnly p {
     font-size: 24px;
     font-weight: bold;
@@ -194,10 +180,26 @@
 }
 
 .view-more-button {
+    background-color: #d2b48c; 
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-left: auto; 
+}
+.accept-button {
+    background-color: #d2b48c; 
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-left: auto;
+}
+.reject-button {
     background-color: #d2b48c; /* Light Brown */
     color: #fff;
     border: none;
     padding: 10px 15px;
     cursor: pointer;
-    margin-left: auto; /* Align to the right */
+    margin-left: auto;
 }
