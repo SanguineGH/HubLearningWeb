@@ -68,25 +68,25 @@
 }
 
 .btn-secondary {
-    background-color: #6c757d; /* Gray for secondary button */
+    background-color: #6c757d; 
     color: #fff;
 }
 
     .btn-secondary:hover {
-        background-color: #495057; /* Dark gray on hover for secondary button */
+        background-color: #495057;
     }
 
 .btn-primary {
-    background-color: #ffa07a; /* Light coral for primary button */
+    background-color: #ffa07a; 
     color: #fff;
 }
 
     .btn-primary:hover {
-        background-color: #ff6347; /* Tomato on hover for primary button */
+        background-color: #ff6347; 
     }
 #btn-Complete {
   
-    background-color: #4CAF50; 
+    background-color: orange; 
     color: white;
     border: none;
     padding: 10px 20px;
@@ -101,6 +101,69 @@
 }
 
 #btnComplete:hover {
-    background-color: #45a049;
+    background-color: #f79307;
     color: white;
+}
+.additional-content {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.progress-table {
+    width: 40%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+    .progress-table th,
+    .progress-table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
     }
+
+.details-button {
+    background-color:saddlebrown;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#hidediv {
+    display: none;
+    border: 5px solid ;
+    border-color:orange;
+    height: 30%;
+    position: relative;
+}
+
+    #hidediv p,
+    #hidediv label {
+        color: #333;
+        margin: 10px;
+    }
+
+.edit-button,
+.complete-button {
+    background-color: orange;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
