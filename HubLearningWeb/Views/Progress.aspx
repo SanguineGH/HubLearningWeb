@@ -180,7 +180,7 @@
     <!-- Edit and Complete buttons -->
     <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">
         <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="edit-button" Visible="true" OnClick="Edit_Click" style="color: black;" OnClientClick="showEditCenterForm(); return false;" />
-        <asp:Button ID="btnComplete" runat="server" Text="Complete" CommandName="CompleteCommand" CssClass="complete-button" Visible="true" style="color: black;" />
+        <asp:Button ID="btnComplete" runat="server" Text="Complete" CommandName="CompleteCommand" CssClass="complete-button" OnClick="Complete_Click" Visible="true" style="color: black;" />
     </div>
 
 </div>

@@ -366,6 +366,10 @@ namespace HubLearningWeb.Views
             lblCenter.Text = "";
 
         }
+        protected void Complete_Click(object sender, EventArgs e)
+        {
+
+        }
 
     }
 }
