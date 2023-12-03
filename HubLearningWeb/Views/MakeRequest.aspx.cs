@@ -134,7 +134,7 @@ namespace HubLearningWeb.Views
             ReqTutee.Checked = false;
             ReqTutor.Checked = false;
             UncheckRadioButtons(StrandRadios);
-
+            UncheckRadioButtons(YearLevelRadios);
             ReqSun.Checked = false;
             ReqMon.Checked = false;
             ReqTues.Checked = false;
@@ -159,6 +159,8 @@ namespace HubLearningWeb.Views
                 }
             }
         }
+
+    
 
         private string GetSelectedRadioValue(Control container)
         {
