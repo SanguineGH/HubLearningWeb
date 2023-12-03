@@ -32,11 +32,49 @@ namespace HubLearningWeb.Views
                     return;
                 }
 
+                string userRole = GetUserRole(Session["UID"].ToString());
+
+                // Disable or hide the Edit and Complete buttons if the user is in the Tutee role
+                if (userRole == "Tutee")
+                {
+                    btnEdit.Style["display"] = "none"; // Hide the edit button
+                    btnComplete.Style["display"] = "none"; // Hide the complete button
+                }
+
                 // Try to get TransactionID from the query string
                 tid = Request.QueryString["TransactionID"];
 
                 BindProgressGridView();
             }
+        }
+
+        private string GetUserRole(string uid)
+        {
+            string userRole = "";
+            string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT role FROM bulletin WHERE uid = @UID";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@UID", uid);
+
+                    // Execute the query to fetch the role
+                    object result = cmd.ExecuteScalar();
+
+                    // Check if a role is retrieved
+                    if (result != null && result != DBNull.Value)
+                    {
+                        userRole = result.ToString();
+                    }
+                }
+            }
+
+            return userRole;
         }
 
         protected void BindProgressGridView()
@@ -137,26 +175,6 @@ namespace HubLearningWeb.Views
                     additionalContent.Style["display"] = additionalContent.Style["display"] == "none" ? "block" : "none";
                 }
             }
-            if (e.CommandName == "CompleteCommand")
-            {
-                // Find the button that was clicked
-                Button btnComplete = (Button)e.CommandSource;
-
-                // Find the row that contains the button
-                GridViewRow row = (GridViewRow)btnComplete.NamingContainer;
-
-                // Get the row index
-                int rowIndex = row.RowIndex;
-
-                if (rowIndex >= 0 && rowIndex < progressGridView.Rows.Count)
-                {
-                    string tid = progressGridView.DataKeys[rowIndex]["TransactionID"].ToString();
-                    UpdateProgressToComplete(tid);
-
-                    // Rebind the GridView to reflect the changes
-                    BindProgressGridView();
-                }
-            }
         }
         protected void progressGridView_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -223,6 +241,13 @@ namespace HubLearningWeb.Views
                 // Show the lblCenter and hide the edit form
                 lblCenter.Visible = true;
                 editCenterForm.Style["display"] = "none";
+
+                string columnValue = RetrieveDayDetailsFromDatabase(tid, columnName);
+
+                bool isColumnEmpty = string.IsNullOrEmpty(columnValue);
+                btnComplete.Visible = isColumnEmpty;
+                btnEdit.Visible = isColumnEmpty;
+
             }
         }
 
@@ -288,7 +313,19 @@ namespace HubLearningWeb.Views
         }
         protected void Edit_Click(object sender, EventArgs e)
         {
-            
+            if (!string.IsNullOrEmpty(ViewState["SelectedColumnName"] as string) && !string.IsNullOrEmpty(ViewState["SelectedTID"] as string))
+            {
+                // Retrieve the column name and transaction ID
+                string columnName = ViewState["SelectedColumnName"].ToString();
+                string tid = ViewState["SelectedTID"].ToString();
+
+                // Check the specific column value in the learning table
+                string columnValue = RetrieveDayDetailsFromDatabase(tid, columnName);
+
+                // If the column has a value, hide the btnComplete; otherwise, show it
+                btnEdit.Visible = string.IsNullOrEmpty(columnValue);
+
+            }
         }
         protected void Save_Click(object sender, EventArgs e)
         {
@@ -368,8 +405,19 @@ namespace HubLearningWeb.Views
         }
         protected void Complete_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(ViewState["SelectedColumnName"] as string) && !string.IsNullOrEmpty(ViewState["SelectedTID"] as string))
+            {
+                // Retrieve the column name and transaction ID
+                string columnName = ViewState["SelectedColumnName"].ToString();
+                string tid = ViewState["SelectedTID"].ToString();
 
+                // Check the specific column value in the learning table
+                string columnValue = RetrieveDayDetailsFromDatabase(tid, columnName);
+
+                // If the column has a value, hide the btnComplete; otherwise, show it
+                btnComplete.Visible = string.IsNullOrEmpty(columnValue);
+                btnEdit.Visible = string.IsNullOrEmpty(columnValue);
+            }
         }
-
     }
 }
