@@ -209,6 +209,7 @@ namespace HubLearningWeb.Views
                 }
             }
         }
+
         protected void Details_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "ShowTransactionID", $"console.log('TransactionID: {tid}');", true);
@@ -424,6 +425,15 @@ namespace HubLearningWeb.Views
                 // If the column has a value, hide the btnComplete; otherwise, show it
                 btnComplete.Visible = string.IsNullOrEmpty(columnValue);
                 btnEdit.Visible = string.IsNullOrEmpty(columnValue);
+
+                if (string.IsNullOrEmpty(lblCenter.Text))
+                {
+                    // Display a prompt indicating action denial
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ActionDenied", "alert('Action denied.');", true);
+
+                    // Prevent further execution of the method
+                    return;
+                }
             }
         }
     }
