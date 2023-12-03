@@ -81,8 +81,6 @@
                         <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" />
                           <asp:TemplateField HeaderText="Progress">
                             <ItemTemplate>
-                                <asp:Button ID="btnComplete" runat="server" Text="Complete"
-                                    OnClientClick='<%# "return showConfirmationModal(this, " + Container.DataItemIndex + ");" %>' />
                                <asp:Button ID="btnMore" runat="server" Text="More" CssClass="more-button" CommandName="MoreCommand" CommandArgument='<%# Eval("TransactionID") %>' />
                                 <asp:HiddenField ID="hfRowIndex" runat="server" Value='<%# Container.DataItemIndex %>' />
                             </ItemTemplate>
