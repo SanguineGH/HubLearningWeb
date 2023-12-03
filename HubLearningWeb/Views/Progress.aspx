@@ -67,32 +67,31 @@
                 </div>
             </div>
             <div class="Content">
+                <asp:Button ID="btnGeneratePDF" runat="server" Text="Generate PDF" OnClick="GeneratePDF_Click" />
                 <asp:GridView ID="progressGridView" runat="server" AutoGenerateColumns="False" OnRowCommand="progressGridView_RowCommand" DataKeyNames="TransactionID">
-                    <Columns>
-                        <asp:BoundField DataField="TuteeName" HeaderText="Tutee Name" SortExpression="TuteeName" />
-                        <asp:BoundField DataField="TuteeStudentID" HeaderText="Tutee Student ID" SortExpression="TuteeStudentID" />
-                        <asp:BoundField DataField="TutorName" HeaderText="Tutor Name" SortExpression="TutorName" />
-                        <asp:BoundField DataField="TutorStudentID" HeaderText="Tutor Student ID" SortExpression="TutorStudentID" />
-                        <asp:BoundField DataField="TuteeYearLevel" HeaderText="Year Level" SortExpression="TuteeYearLevel" />
-                        <asp:BoundField DataField="TuteeStrand" HeaderText="Strand" SortExpression="TuteeStrand" />
-                        <asp:BoundField DataField="TutorAvailability" HeaderText="Availability" SortExpression="TutorAvailability" />
-                        <asp:BoundField DataField="TutorLocation" HeaderText="Location" SortExpression="TutorLocation" />
-                        <asp:BoundField DataField="days" HeaderText="Days" SortExpression="days" />
-<asp:TemplateField HeaderText="Progress">
-    <ItemTemplate>
-        <asp:Literal ID="litProgress" runat="server"></asp:Literal>
-    </ItemTemplate>
-</asp:TemplateField>
-                          <asp:TemplateField HeaderText="Actions">
-                            <ItemTemplate>
-                                
-                                <asp:Button ID="btnMore" runat="server" Text="More" CssClass="more-button" CommandName="MoreCommand" />
-                                <asp:HiddenField ID="hfRowIndex" runat="server" Value='<%# Container.DataItemIndex %>' />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
+    <Columns>
+        <asp:BoundField DataField="TransactionID" HeaderText="Transaction ID" SortExpression="TransactionID" />
+        <asp:BoundField DataField="TuteeName" HeaderText="Tutee Name" SortExpression="TuteeName" />
+        <asp:BoundField DataField="TuteeStudentID" HeaderText="Tutee Student ID" SortExpression="TuteeStudentID" />
+        <asp:BoundField DataField="TutorName" HeaderText="Tutor Name" SortExpression="TutorName" />
+        <asp:BoundField DataField="TutorStudentID" HeaderText="Tutor Student ID" SortExpression="TutorStudentID" />
+        <asp:BoundField DataField="TuteeYearLevel" HeaderText="Year Level" SortExpression="TuteeYearLevel" />
+        <asp:BoundField DataField="TuteeStrand" HeaderText="Strand" SortExpression="TuteeStrand" />
+        <asp:BoundField DataField="TutorAvailability" HeaderText="Availability" SortExpression="TutorAvailability" />
+        <asp:BoundField DataField="TutorLocation" HeaderText="Location" SortExpression="TutorLocation" />
+        <asp:BoundField DataField="days" HeaderText="Days" SortExpression="days" />
+        <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" />
+        <asp:TemplateField HeaderText="Actions">
+            <ItemTemplate>
+                <asp:Button ID="btnMore" runat="server" Text="More" CssClass="more-button" CommandName="MoreCommand" />
+                <asp:HiddenField ID="hfRowIndex" runat="server" Value='<%# Container.DataItemIndex %>' />
+            </ItemTemplate>
+        </asp:TemplateField>
+    </Columns>
+</asp:GridView>
                
+                
+
                 
                 
                 <div id="additionalContent" class="additional-content" runat="server" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid #ccc;">
