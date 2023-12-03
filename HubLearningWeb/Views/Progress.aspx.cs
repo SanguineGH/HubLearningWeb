@@ -87,18 +87,19 @@ namespace HubLearningWeb.Views
                 connection.Open();
 
                 string query = "SELECT t.tid AS TransactionID, " +
-                               "CASE WHEN b.role = 'Tutor' THEN ut.name ELSE tutor.name END AS TuteeName, " +
-                               "CASE WHEN b.role = 'Tutee' THEN ut.name ELSE tutor.name END AS TutorName, " +
-                               "CASE WHEN b.role = 'Tutor' THEN ut.studid ELSE tutor.studid END AS TuteeStudentID, " +
-                               "CASE WHEN b.role = 'Tutee' THEN ut.studid ELSE tutor.studid END AS TutorStudentID, " +
-                               "b.yearlevel AS TuteeYearLevel, b.strand AS TuteeStrand, " +
-                               "b.availability AS TutorAvailability, b.location AS TutorLocation, " +
-                               "t.progress " +
-                               "FROM transaction t " +
-                               "INNER JOIN bulletin b ON t.requestor = b.rid OR t.client = b.rid " +
-                               "INNER JOIN users ut ON t.client = ut.uid " +
-                               "LEFT JOIN users tutor ON b.uid = tutor.uid " +
-                               "WHERE b.uid = @UID OR t.requestor = @UID OR t.client = @UID";
+                "CASE WHEN b.role = 'Tutor' THEN ut.name ELSE tutor.name END AS TuteeName, " +
+                "CASE WHEN b.role = 'Tutee' THEN ut.name ELSE tutor.name END AS TutorName, " +
+                "CASE WHEN b.role = 'Tutor' THEN ut.studid ELSE tutor.studid END AS TuteeStudentID, " +
+                "CASE WHEN b.role = 'Tutee' THEN ut.studid ELSE tutor.studid END AS TutorStudentID, " +
+                "b.yearlevel AS TuteeYearLevel, b.strand AS TuteeStrand, " +
+                "b.availability AS TutorAvailability, b.location AS TutorLocation, " +
+                "t.days, " + // Include the 'days' column
+                "t.progress " +
+                "FROM transaction t " +
+                "INNER JOIN bulletin b ON t.requestor = b.rid OR t.client = b.rid " +
+                "INNER JOIN users ut ON t.client = ut.uid " +
+                "LEFT JOIN users tutor ON b.uid = tutor.uid " +
+                "WHERE b.uid = @UID OR t.requestor = @UID OR t.client = @UID";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
@@ -108,6 +109,12 @@ namespace HubLearningWeb.Views
                     {
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            // Set the progress directly in the "Days" column
+                            row.SetField("days", $"{row["days"]}/14");
+                        }
 
                         progressGridView.DataSource = dt;
                         progressGridView.DataBind();

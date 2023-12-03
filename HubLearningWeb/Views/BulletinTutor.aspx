@@ -210,7 +210,7 @@
             <br />
             <asp:Label ID="locLabelModal" runat="server" Text="Location: "></asp:Label>
             <br />
-            <button onclick="connectNow()">Connect Now</button>
+      
         </div>
         </form>
     <script type="text/javascript">
