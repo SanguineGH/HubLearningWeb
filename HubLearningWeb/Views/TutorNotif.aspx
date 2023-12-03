@@ -52,7 +52,7 @@
                     <p>TUTOR NOTIFICATION</p>
                 </div>
                     <div class="MainHolderNotif">
-                               <asp:Repeater ID="transactionRepeater" runat="server">
+                        <asp:Repeater ID="transactionRepeater" runat="server" OnItemCommand="transactionRepeater_ItemCommand">
                         <ItemTemplate>
                             <div class="NotificationCard">
                               

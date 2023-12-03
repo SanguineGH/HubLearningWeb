@@ -71,7 +71,6 @@
                                             data-tutor='<%# Eval("TutorName") %>'
                                             data-tutee='<%# Eval("TuteeName") %>'
                                             data-strand='<%# Eval("Strand") %>'
-
                                             data-yearlevel='<%# Eval("YearLevel") %>'
                                             data-availability='<%# Eval("Availability") %>'
                                             data-location='<%# Eval("Location") %>' />
@@ -81,7 +80,7 @@
                         <asp:Button ID="rejectButton" runat="server" Text="Reject" CssClass="reject-button"
     CommandName="Reject" CommandArgument='<%# Eval("NotificationID") %>' OnCommand="RejectButton_Click"
     OnClientClick="return confirm('Are you sure you want to reject this notification?');" />
-
+                                
                                      </div>
                             </div>
                         </ItemTemplate>

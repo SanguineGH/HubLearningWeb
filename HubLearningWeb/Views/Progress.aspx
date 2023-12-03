@@ -165,7 +165,7 @@
     </table>
          </div>
 
-        <div id="hidediv" class="hidedivclass" runat="server" style="display: none; border-style: solid; height: 30%; border-width: 5px; border-color: blue; z-index: 1; position: relative;">
+        <div id="hidediv" class="hidedivclass" runat="server" style="display: none; border-style: solid; height: 30%; border-width: 5px; border-color: orange; z-index: 1; position: relative;">
     <p>TEST HERE</p>
 
     <!-- Invisible label at the middle top -->
