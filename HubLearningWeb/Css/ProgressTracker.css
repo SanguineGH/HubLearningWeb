@@ -1,208 +1,153 @@
 ﻿.Content {
-    display: inline;
+    margin-top: 20px;
+    background-color:white;
+    color:black;
 }
 
-/* Styles for the GridView */
 #progressGridView {
     width: 100%;
     border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    background-color:white;
+    font-size:20px;
+    font:bold;
 }
 
     #progressGridView th,
     #progressGridView td {
-        padding: 10px;
         border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
     }
 
     #progressGridView th {
-        background-color: #ffa07a; /* Light coral for header background */
-        color: #fff; 
+        background-color: darkorange;
     }
 
     #progressGridView tr:hover {
-        background-color: #ffe6cc; 
+        background-color: lightsalmon;
     }
 
-/* Styles for the modal */
-.modal {
+.more-button {
+    background-color: orange; /* Orange color for the button */
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .more-button:hover {
+        background-color: saddlebrown; /* Darker orange on hover */
+    }
+
+/* Style for the Progress column */
+#progressGridView td:nth-child(9) {
+    font-weight: bold;
+    color: #4CAF50; /* Green color for progress text */
+}
+
+/* Style for the Actions column */
+#progressGridView td:nth-child(10),
+#progressGridView th:nth-child(10) {
+    text-align: center;
+}
+
+/* HiddenField styling */
+#progressGridView .hfRowIndex {
+    display: none; /* Hide the HiddenField */
+}
+
+/* Style for the Literal in the Progress column */
+#progressGridView .litProgress {
+    font-weight: bold;
+    color: #4CAF50; /* Green color for progress text */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    #progressGridView th,
+    #progressGridView td {
+        font-size: 12px;
+    }
+
+    .more-button {
+        font-size: 12px;
+    }
+}
+.additional-content {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-dialog {
-    margin: 50px auto;
-}
-
-.modal-content {
-    background-color: rosybrown;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    background-color: rgba(1, 1, 1, 0.2);
 }
 
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #d6d8db;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-}
-
-.modal-title {
-    font-size: 1.2em;
-}
-
-.modal-body {
+.progress-table {
+    width: 40%;
     margin-bottom: 20px;
+    border-collapse: collapse;
 }
 
-.modal-footer {
-    text-align: right;
-}
-
-.btn-secondary {
-    background-color: #6c757d; 
-    color: #fff;
-}
-
-    .btn-secondary:hover {
-        background-color: #495057;
+    .progress-table th,
+    .progress-table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
     }
 
-.btn-primary {
-    background-color: #ffa07a; 
+.details-button {
+    background-color: saddlebrown;
     color: #fff;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
 }
 
-    .btn-primary:hover {
-        background-color: #ff6347; 
+#hidediv {
+    display: none;
+    border: 5px solid;
+    border-color: orange;
+    height: 30%;
+    position: relative;
+}
+
+    #hidediv p,
+    #hidediv label {
+        color: #333;
+        margin: 10px;
     }
 
-#btn-Complete {
-<<<<<<< HEAD
-  
-    background-color: orange; 
-=======
-    background-color: #4CAF50;
->>>>>>> 30c24d92f6b03cad7ea326ce10ae871fcf1cc8ec
-    color: white;
+.edit-button,
+.complete-button {
+    background-color: orange;
+    color: #fff;
     border: none;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
     cursor: pointer;
-    border-radius: 5px;
+    margin-right: 10px;
 }
-
-<<<<<<< HEAD
-#btnComplete:hover {
-    background-color: #f79307;
+ .edit-button:hover,
+.complete-button:hover {
+    background-color: saddlebrown;
     color: white;
-}
-=======
-    #btn-Complete:hover {
-        background-color: #45a049;
-        color: white;
-    }
-
-/* Additional Styles to prevent overlapping with image background */
-body {
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    position: relative;
-}
-
-.background-image {
-    width: 100%;
-    height: auto;
-    position: absolute;
-    z-index: -1;
-}
-#additionalContent {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-}
-
-/* Progress table styles */
-.progress-table {
-    width: 45%;
-    margin: 0 auto;
-}
-
-    .progress-table th {
-        background-color: #f2f2f2;
-        padding: 12px;
-    }
-
-    .progress-table td {
-        padding: 12px;
-    }
-
-/* Hidden div styles */
-#hidediv {
-    display: none;
-    border-style: solid;
-    height: 40%;
-    border-width: 5px;
-    border-color: blue;
-    z-index: 1;
-    position: relative;
-    background-color: #fff;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-    /* Labels styles */
-    #hidediv p, #lblTopMiddle, #lblCenter {
-        color: black;
-    }
-
-    /* Edit and Complete buttons styles */
-    #hidediv .edit-button, #hidediv .complete-button {
-        color: #fff;
-        background-color: #007bff;
-        border: 1px solid #007bff;
-        padding: 10px 15px;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background-color 0.3s, color 0.3s;
-    }
-
-        #hidediv .edit-button:hover, #hidediv .complete-button:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-
-/* JavaScript-specific styles */
-.hidden {
-    display: none;
-}
-
-/* Hover effect for show more content link */
-.show-more-link:hover {
-    text-decoration: underline;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
->>>>>>> 30c24d92f6b03cad7ea326ce10ae871fcf1cc8ec
