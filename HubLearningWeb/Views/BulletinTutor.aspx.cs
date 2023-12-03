@@ -85,12 +85,12 @@ namespace HubLearningWeb.Views
 
                 if (!string.IsNullOrEmpty(selectedStrand))
                 {
-                    query += $" AND strand = '{selectedStrand}'";
+                    query += $" AND b.strand = '{selectedStrand}'";
                 }
 
                 if (!string.IsNullOrEmpty(selectedYearLevel))
                 {
-                    query += $" AND yearlevel = '{selectedYearLevel}'";
+                    query += $" AND b.yearlevel = '{selectedYearLevel}'";
                 }
 
                 if (selectedAvailability.Count > 0)
@@ -98,7 +98,7 @@ namespace HubLearningWeb.Views
                     query += " AND (";
                     for (int i = 0; i < selectedAvailability.Count; i++)
                     {
-                        query += $"availability LIKE '%{selectedAvailability[i]}%'";
+                        query += $"b.availability LIKE '%{selectedAvailability[i]}%'";
                         if (i < selectedAvailability.Count - 1)
                         {
                             query += " OR ";
@@ -112,7 +112,7 @@ namespace HubLearningWeb.Views
                     query += " AND (";
                     for (int i = 0; i < selectedLocations.Count; i++)
                     {
-                        query += $"location LIKE '%{selectedLocations[i]}%'";
+                        query += $"b.location LIKE '%{selectedLocations[i]}%'";
                         if (i < selectedLocations.Count - 1)
                         {
                             query += " OR ";
@@ -121,7 +121,7 @@ namespace HubLearningWeb.Views
                     query += ")";
                 }
 
-                query += " AND visibility = ''";
+                query += " AND b.visibility = ''";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {

@@ -82,11 +82,8 @@
                         <asp:BoundField DataField="TutorAvailability" HeaderText="Availability" SortExpression="TutorAvailability" />
                         <asp:BoundField DataField="TutorLocation" HeaderText="Location" SortExpression="TutorLocation" />
                         <asp:BoundField DataField="days" HeaderText="Days" SortExpression="days" />
-<asp:TemplateField HeaderText="Progress">
-    <ItemTemplate>
-        <asp:Literal ID="litProgress" runat="server"></asp:Literal>
-    </ItemTemplate>
-</asp:TemplateField>
+                        <asp:BoundField DataField="Progress" HeaderText="Progress" SortExpression="Progress" />
+
                           <asp:TemplateField HeaderText="Actions">
                             <ItemTemplate>
 

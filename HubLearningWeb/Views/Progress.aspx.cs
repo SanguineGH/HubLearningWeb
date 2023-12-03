@@ -110,10 +110,13 @@ namespace HubLearningWeb.Views
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
 
+
+
                         foreach (DataRow row in dt.Rows)
                         {
                             // Set the progress directly in the "Days" column
                             row.SetField("days", $"{row["days"]}/14");
+                            row.SetField("progress", row["progress"].ToString());
                         }
 
                         progressGridView.DataSource = dt;
@@ -208,6 +211,7 @@ namespace HubLearningWeb.Views
                     cmd.ExecuteNonQuery();
                 }
             }
+            BindProgressGridView();
         }
 
         protected void Details_Click(object sender, EventArgs e)
@@ -369,22 +373,20 @@ namespace HubLearningWeb.Views
                 {
                     connection.Open();
 
-                    // Construct the update query for the specific column
-                    string query = $"UPDATE learning SET {columnName} = @NewText WHERE tid = @TID";
+                    string updateQuery = $"UPDATE learning SET {columnName} = @NewText WHERE tid = @TID";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    using (MySqlCommand cmd = new MySqlCommand(updateQuery, connection))
                     {
                         cmd.Parameters.AddWithValue("@NewText", newText);
                         cmd.Parameters.AddWithValue("@TID", tid);
 
-                        // Execute the update query
                         int rowsAffected = cmd.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
                         {
                             // Update successful
-                            // You might want to show a success message or handle accordingly
                             lblCenter.Text = newText;
+
                         }
                         else
                         {
@@ -400,6 +402,7 @@ namespace HubLearningWeb.Views
                 // Log or display error message
             }
         }
+
         protected void Close_Click(object sender, EventArgs e)
         {
             // Hide additional content and hidedivclass
@@ -426,7 +429,12 @@ namespace HubLearningWeb.Views
                 btnComplete.Visible = string.IsNullOrEmpty(columnValue);
                 btnEdit.Visible = string.IsNullOrEmpty(columnValue);
 
-                if (string.IsNullOrEmpty(lblCenter.Text))
+                if (columnName == "day14" && !string.IsNullOrEmpty(lblCenter.Text))
+                {
+                    // Update the progress column in the transaction table to "Complete"
+                    UpdateProgressToComplete(tid);
+                }
+                else
                 {
                     // Display a prompt indicating action denial
                     ScriptManager.RegisterStartupScript(this, GetType(), "ActionDenied", "alert('Action denied.');", true);
