@@ -422,6 +422,10 @@ namespace HubLearningWeb.Views
                 string columnName = ViewState["SelectedColumnName"].ToString();
                 string tid = ViewState["SelectedTID"].ToString();
 
+                string buttonNumber = columnName.Replace("day", "");
+
+                // Update the days column in the transaction table
+                UpdateDaysInTransactionTable(tid, buttonNumber);
                 // Check the specific column value in the learning table
                 string columnValue = RetrieveDayDetailsFromDatabase(tid, columnName);
 
@@ -429,20 +433,85 @@ namespace HubLearningWeb.Views
                 btnComplete.Visible = string.IsNullOrEmpty(columnValue);
                 btnEdit.Visible = string.IsNullOrEmpty(columnValue);
 
-                if (columnName == "day14" && !string.IsNullOrEmpty(lblCenter.Text))
+
+                if (columnName == "day14")
                 {
                     // Update the progress column in the transaction table to "Complete"
                     UpdateProgressToComplete(tid);
                 }
-                else
+                else if (string.IsNullOrEmpty(lblCenter.Text))
                 {
-                    // Display a prompt indicating action denial
+                    // If lblCenter.Text is empty, deny the action
                     ScriptManager.RegisterStartupScript(this, GetType(), "ActionDenied", "alert('Action denied.');", true);
-
-                    // Prevent further execution of the method
                     return;
                 }
             }
+
+        }
+        protected void UpdateDaysInTransactionTable(string tid, string buttonNumber)
+        {
+            try
+            {
+                string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Construct the query to fetch the transaction data
+                    string updateQuery = "UPDATE transaction SET days = @Days WHERE tid = @TID";
+
+                    using (MySqlCommand cmd = new MySqlCommand(updateQuery, connection))
+                    {
+                        // Combine the button number and "/14" to form the days value
+                        string daysValue = buttonNumber;
+
+                        cmd.Parameters.AddWithValue("@Days", daysValue);
+                        cmd.Parameters.AddWithValue("@TID", tid);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            // Update successful
+                            ScriptManager.RegisterStartupScript(this, GetType(), "DaysUpdateSuccess",
+                                $"console.log('Days updated successfully: {daysValue}');", true);
+
+                            // Fetch the DataTable from the GridView
+                            DataTable dt = progressGridView.DataSource as DataTable;
+
+                            if (dt != null)
+                            {
+                                // Update the specific row in the DataTable
+                                foreach (DataRow row in dt.Rows)
+                                {
+                                    if (row["TransactionID"].ToString() == tid)
+                                    {
+                                        // Set the new days value for the specific row
+                                        row.SetField("days", daysValue);
+                                        break; // Exit the loop once the row is updated
+                                    }
+                                }
+
+                                // Rebind the updated DataTable to the GridView
+                                progressGridView.DataSource = dt;
+                                progressGridView.DataBind();
+                            }
+                        }
+                        else
+                        {
+                            // Update failed
+                            // Handle failure case or show error message
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                // Log or display error message
+            }
+            BindProgressGridView();
         }
     }
 }
