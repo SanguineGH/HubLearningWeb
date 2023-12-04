@@ -27,6 +27,9 @@
     .additional-content {
         width: 80%; /* Combined width of both tables */
     }
+        .hidden-form {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -66,6 +69,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="Content">
                 <asp:Button ID="btnGeneratePDF" runat="server" Text="Generate PDF" OnClick="GeneratePDF_Click" />
                 <asp:GridView ID="progressGridView" runat="server" AutoGenerateColumns="False" OnRowCommand="progressGridView_RowCommand" DataKeyNames="TransactionID">
@@ -80,22 +84,19 @@
         <asp:BoundField DataField="TutorAvailability" HeaderText="Availability" SortExpression="TutorAvailability" />
         <asp:BoundField DataField="TutorLocation" HeaderText="Location" SortExpression="TutorLocation" />
         <asp:BoundField DataField="days" HeaderText="Days" SortExpression="days" />
-        <asp:BoundField DataField="progress" HeaderText="Progress" SortExpression="progress" />
+        <asp:BoundField DataField="Progress" HeaderText="Progress" SortExpression="Progress" />
         <asp:TemplateField HeaderText="Actions">
             <ItemTemplate>
-                <asp:Button ID="btnMore" runat="server" Text="More" CssClass="more-button" CommandName="MoreCommand" />
+                <asp:Button ID="btnMore" runat="server" Text="More" CssClass="more-button" CommandName="MoreCommand" CommandArgument='<%# Eval("TransactionID") %>' />
                 <asp:HiddenField ID="hfRowIndex" runat="server" Value='<%# Container.DataItemIndex %>' />
             </ItemTemplate>
         </asp:TemplateField>
     </Columns>
 </asp:GridView>
-               
-                
-
-                
                 
                 <div id="additionalContent" class="additional-content" runat="server" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid #ccc;">
      <div style="height: 70%; overflow: auto; border: 1px solid #000;">
+         <asp:Button ID="closeButton" runat="server" Text="X" CssClass="close-button" OnClick="Close_Click" style="position: absolute; top: 5px; right: 5px;"/>
                     <table class="progress-table" style="width: 40%; float: left;">
         <tr>
             <th colspan="2">First Half</th>
@@ -172,13 +173,19 @@
     <asp:Label ID="lblTopMiddle" runat="server" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); color: black;">Top Middle Label</asp:Label>
 
     <!-- Invisible label at the center -->
-    <asp:Label ID="lblCenter" runat="server"  style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: black;">Center Label</asp:Label>
+    <asp:Label ID="lblCenter" runat="server" Text="Center Label" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: black;"></asp:Label>
+                <div id="editCenterForm" class="hidden-form" runat="server">
+                    <asp:TextBox ID="CenterTextarea" runat="server" TextMode="MultiLine" Rows="5" Columns="40"></asp:TextBox>
+                    <br />
+                    <asp:Button ID="saveButton" runat="server" Text="Save" OnClick="Save_Click" OnClientClick="hideEditCenterForm();" />
+                </div>
 
     <!-- Edit and Complete buttons -->
     <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">
-        <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="edit-button" Visible="true" style="color: black;" />
-        <asp:Button ID="btnComplete" runat="server" Text="Complete" CssClass="complete-button" Visible="true" style="color: black;" />
+        <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="edit-button" Visible="true" OnClick="Edit_Click" style="color: black;" OnClientClick="showEditCenterForm(); return false;" />
+        <asp:Button ID="btnComplete" runat="server" Text="Complete" CommandName="CompleteCommand" CssClass="complete-button" OnClick="Complete_Click" Visible="true" style="color: black;" />
     </div>
+
 </div>
     </div>
 
@@ -200,6 +207,24 @@
             return false; // Prevent postback
         }
 
+        function showEditCenterForm() {
+            var editCenterForm = document.getElementById('<%= editCenterForm.ClientID %>');
+            if (editCenterForm) {
+                editCenterForm.style.display = 'block';
+            }
+        }
+
+        function hideEditCenterForm() {
+            var editCenterForm = document.getElementById('<%= editCenterForm.ClientID %>');
+            if (editCenterForm) {
+                editCenterForm.style.display = 'none';
+            }
+        }
+
+        function showMoreContent(rowIndex) {
+            // Get the value of tid from the hidden field in the row
+            var tid = document.getElementById('<%= progressGridView.ClientID %>').rows[rowIndex].cells[8].innerText;
+        }
     </script>
 </body>
 </html>

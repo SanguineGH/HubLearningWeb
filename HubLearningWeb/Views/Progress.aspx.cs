@@ -8,6 +8,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Web.UI.HtmlControls;
+using System.Security.Cryptography;
+using System.Diagnostics;
 using iText.Kernel.Pdf;
 using iText.Layout.Element;
 using System.IO;
@@ -18,7 +20,11 @@ namespace HubLearningWeb.Views
 {
     public partial class Progress : System.Web.UI.Page
     {
-
+        private string tid
+        {
+            get { return ViewState["TransactionID"] as string; }
+            set { ViewState["TransactionID"] = value; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -31,8 +37,49 @@ namespace HubLearningWeb.Views
                     return;
                 }
 
+                string userRole = GetUserRole(Session["UID"].ToString());
+
+                // Disable or hide the Edit and Complete buttons if the user is in the Tutee role
+                if (userRole == "Tutee")
+                {
+                    btnEdit.Style["display"] = "none"; // Hide the edit button
+                    btnComplete.Style["display"] = "none"; // Hide the complete button
+                }
+
+                // Try to get TransactionID from the query string
+                tid = Request.QueryString["TransactionID"];
+
                 BindProgressGridView();
             }
+        }
+
+        private string GetUserRole(string uid)
+        {
+            string userRole = "";
+            string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT role FROM bulletin WHERE uid = @UID";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@UID", uid);
+
+                    // Execute the query to fetch the role
+                    object result = cmd.ExecuteScalar();
+
+                    // Check if a role is retrieved
+                    if (result != null && result != DBNull.Value)
+                    {
+                        userRole = result.ToString();
+                    }
+                }
+            }
+
+            return userRole;
         }
 
         protected void BindProgressGridView()
@@ -95,10 +142,13 @@ namespace HubLearningWeb.Views
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
 
+
+
                         foreach (DataRow row in dt.Rows)
                         {
                             // Set the progress directly in the "Days" column
                             row.SetField("days", $"{row["days"]}/14");
+                            row.SetField("progress", row["progress"].ToString());
                         }
 
                         progressGridView.DataSource = dt;
@@ -149,34 +199,31 @@ namespace HubLearningWeb.Views
         {
             if (e.CommandName == "MoreCommand")
             {
-                // Access the server-side div
+                // Extract the TransactionID from the CommandArgument
+                tid = e.CommandArgument.ToString();
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowTransactionID", $"console.log('TransactionID: {tid}');", true);
+
+                // Your additional logic here based on the tid...
+                // For example, showing/hiding elements, performing actions, etc.
+                            hidediv.Style["display"] = "none";
+
+            // Reset lblTopMiddle and lblCenter text
+            lblTopMiddle.Text = "";
+            lblCenter.Text = "";
                 HtmlGenericControl additionalContent = (HtmlGenericControl)FindControl("additionalContent");
-
-                // Implement the logic you want when the "More" button is clicked.
-                // For example, you can show additional content, load data, etc.
-
-                // For demonstration purposes, let's toggle the display style.
-                additionalContent.Style["display"] = additionalContent.Style["display"] == "none" ? "block" : "none";
-            }
-            if (e.CommandName == "CompleteCommand")
-            {
-                // Find the button that was clicked
-                Button btnComplete = (Button)e.CommandSource;
-
-                // Find the row that contains the button
-                GridViewRow row = (GridViewRow)btnComplete.NamingContainer;
-
-                // Get the row index
-                int rowIndex = row.RowIndex;
-
-                if (rowIndex >= 0 && rowIndex < progressGridView.Rows.Count)
+                if (additionalContent != null)
                 {
-                    string tid = progressGridView.DataKeys[rowIndex]["TransactionID"].ToString();
-                    UpdateProgressToComplete(tid);
-
-                    // Rebind the GridView to reflect the changes
-                    BindProgressGridView();
+                    additionalContent.Style["display"] = additionalContent.Style["display"] == "none" ? "block" : "none";
                 }
+            }
+        }
+        protected void progressGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HiddenField hfRowIndex = (HiddenField)e.Row.FindControl("hfRowIndex");
+                hfRowIndex.Value = e.Row.RowIndex.ToString();
             }
         }
 
@@ -196,9 +243,12 @@ namespace HubLearningWeb.Views
                     cmd.ExecuteNonQuery();
                 }
             }
+            BindProgressGridView();
         }
+
         protected void Details_Click(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this, GetType(), "ShowTransactionID", $"console.log('TransactionID: {tid}');", true);
             // Get the clicked button's command argument (day information)
             Button clickedButton = (Button)sender;
             string dayInformation = clickedButton.CommandArgument;
@@ -207,12 +257,293 @@ namespace HubLearningWeb.Views
             HtmlGenericControl hidediv = (HtmlGenericControl)FindControl("hidediv");
             hidediv.Style["display"] = "block";
 
+            CenterTextarea.Text = "";
+
             // Update the top middle label with the day information
             Label lblTopMiddle = (Label)hidediv.FindControl("lblTopMiddle");
             if (lblTopMiddle != null)
             {
                 lblTopMiddle.Text = dayInformation;
             }
+
+            // Check if tid has a valid value
+            if (!string.IsNullOrEmpty(tid))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "ConsoleLogDetailsClick",
+                    "console.log('Details_Click triggered.');", true);
+                // Extract the button number from the button ID (assuming btnDetailsX format)
+                string buttonNumber = ((Button)sender).ID.Replace("btnDetails", "");
+
+                // Construct the column name based on the button number (e.g., "Day1")
+                string columnName = "day" + buttonNumber;
+
+                ViewState["SelectedColumnName"] = columnName;
+                ViewState["SelectedTID"] = tid;
+                // Call the method directly without storing the result in a variable
+                RetrieveDayDetailsFromDatabase(tid, columnName);
+
+                // Show the lblCenter and hide the edit form
+                lblCenter.Visible = true;
+                editCenterForm.Style["display"] = "none";
+
+                string columnValue = RetrieveDayDetailsFromDatabase(tid, columnName);
+
+                bool isColumnEmpty = string.IsNullOrEmpty(columnValue);
+                btnComplete.Visible = isColumnEmpty;
+                btnEdit.Visible = isColumnEmpty;
+
+            }
+        }
+
+        private string RetrieveDayDetailsFromDatabase(string tid, string columnName)
+        {
+            try
+            {
+                string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Construct the query to retrieve data from the specified column
+                    string query = $"SELECT {columnName} FROM learning WHERE tid = @TID";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@TID", tid);
+
+                        // Debugging: Output the constructed query to the console
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ConsoleLogRetrieveDay",
+                            "console.log('Retrieve Day triggered.');", true);
+
+                        // Debugging: Output the parameter values to the console
+                        foreach (MySqlParameter parameter in cmd.Parameters)
+                        {
+                            Console.WriteLine($"Parameter {parameter.ParameterName}: {parameter.Value}");
+                        }
+
+                        // Attempt to execute the query and retrieve the data
+                        object result = cmd.ExecuteScalar();
+
+                        // Debugging: Output the result to the console
+                        Console.WriteLine($"Result: {result}");
+
+                        if (result != null)
+                        {
+                            // If there is a result, set the retrieved day details in lblCenter label
+                            lblCenter.Text = result.ToString();
+
+                            // Show the lblCenter and hide the edit form
+                            lblCenter.Visible = true;
+                            editCenterForm.Style["display"] = "none";
+                        }
+                        else
+                        {
+                            // If there is no result, log a message to the console
+                            Console.WriteLine("No data found for the specified parameters.");
+                        }
+
+                        // Return the result
+                        return result?.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log any exceptions to the console
+                Console.WriteLine($"Exception: {ex.Message}");
+                return null;
+            }
+        }
+        protected void Edit_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(ViewState["SelectedColumnName"] as string) && !string.IsNullOrEmpty(ViewState["SelectedTID"] as string))
+            {
+                // Retrieve the column name and transaction ID
+                string columnName = ViewState["SelectedColumnName"].ToString();
+                string tid = ViewState["SelectedTID"].ToString();
+
+                // Check the specific column value in the learning table
+                string columnValue = RetrieveDayDetailsFromDatabase(tid, columnName);
+
+                // If the column has a value, hide the btnComplete; otherwise, show it
+                btnEdit.Visible = string.IsNullOrEmpty(columnValue);
+
+            }
+        }
+        protected void Save_Click(object sender, EventArgs e)
+        {
+            string columnName = ViewState["SelectedColumnName"] as string;
+            string tid = ViewState["SelectedTID"] as string;
+
+            // Get the text from the textarea
+            string newText = CenterTextarea.Text.Trim(); // Trim to remove extra spaces
+
+            if (string.IsNullOrEmpty(newText))
+            {
+                // Show an alert indicating the textarea is empty
+                ScriptManager.RegisterStartupScript(this, GetType(), "EmptyTextareaAlert", "alert('Text Area is empty. The details will not be saved.');", true);
+                return; // Halt the method if the textarea is empty
+            }
+
+            if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(tid))
+            {
+                // Update the database with the new text
+                UpdateDayDetailsInDatabase(tid, columnName, newText);
+
+                // Reset the textarea after successful update
+                CenterTextarea.Text = "";
+            }
+        }
+        private void UpdateDayDetailsInDatabase(string tid, string columnName, string newText)
+        {
+            try
+            {
+                string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string updateQuery = $"UPDATE learning SET {columnName} = @NewText WHERE tid = @TID";
+
+                    using (MySqlCommand cmd = new MySqlCommand(updateQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@NewText", newText);
+                        cmd.Parameters.AddWithValue("@TID", tid);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            // Update successful
+                            lblCenter.Text = newText;
+
+                        }
+                        else
+                        {
+                            // Update failed
+                            // Handle failure case or show error message
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                // Log or display error message
+            }
+        }
+
+        protected void Close_Click(object sender, EventArgs e)
+        {
+            // Hide additional content and hidedivclass
+            additionalContent.Style["display"] = "none";
+            hidediv.Style["display"] = "none";
+
+            // Reset lblTopMiddle and lblCenter text
+            lblTopMiddle.Text = "";
+            lblCenter.Text = "";
+
+        }
+        protected void Complete_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(ViewState["SelectedColumnName"] as string) && !string.IsNullOrEmpty(ViewState["SelectedTID"] as string))
+            {
+                // Retrieve the column name and transaction ID
+                string columnName = ViewState["SelectedColumnName"].ToString();
+                string tid = ViewState["SelectedTID"].ToString();
+
+                string buttonNumber = columnName.Replace("day", "");
+
+                // Update the days column in the transaction table
+                UpdateDaysInTransactionTable(tid, buttonNumber);
+                // Check the specific column value in the learning table
+                string columnValue = RetrieveDayDetailsFromDatabase(tid, columnName);
+
+                // If the column has a value, hide the btnComplete; otherwise, show it
+                btnComplete.Visible = string.IsNullOrEmpty(columnValue);
+                btnEdit.Visible = string.IsNullOrEmpty(columnValue);
+
+
+                if (columnName == "day14")
+                {
+                    // Update the progress column in the transaction table to "Complete"
+                    UpdateProgressToComplete(tid);
+                }
+                else if (string.IsNullOrEmpty(lblCenter.Text))
+                {
+                    // If lblCenter.Text is empty, deny the action
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ActionDenied", "alert('Action denied.');", true);
+                    return;
+                }
+            }
+
+        }
+        protected void UpdateDaysInTransactionTable(string tid, string buttonNumber)
+        {
+            try
+            {
+                string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Construct the query to fetch the transaction data
+                    string updateQuery = "UPDATE transaction SET days = @Days WHERE tid = @TID";
+
+                    using (MySqlCommand cmd = new MySqlCommand(updateQuery, connection))
+                    {
+                        // Combine the button number and "/14" to form the days value
+                        string daysValue = buttonNumber;
+
+                        cmd.Parameters.AddWithValue("@Days", daysValue);
+                        cmd.Parameters.AddWithValue("@TID", tid);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            // Update successful
+                            ScriptManager.RegisterStartupScript(this, GetType(), "DaysUpdateSuccess",
+                                $"console.log('Days updated successfully: {daysValue}');", true);
+
+                            // Fetch the DataTable from the GridView
+                            DataTable dt = progressGridView.DataSource as DataTable;
+
+                            if (dt != null)
+                            {
+                                // Update the specific row in the DataTable
+                                foreach (DataRow row in dt.Rows)
+                                {
+                                    if (row["TransactionID"].ToString() == tid)
+                                    {
+                                        // Set the new days value for the specific row
+                                        row.SetField("days", daysValue);
+                                        break; // Exit the loop once the row is updated
+                                    }
+                                }
+
+                                // Rebind the updated DataTable to the GridView
+                                progressGridView.DataSource = dt;
+                                progressGridView.DataBind();
+                            }
+                        }
+                        else
+                        {
+                            // Update failed
+                            // Handle failure case or show error message
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                // Log or display error message
+            }
+            BindProgressGridView();
         }
 
         protected void GeneratePDF_Click(object sender, EventArgs e)

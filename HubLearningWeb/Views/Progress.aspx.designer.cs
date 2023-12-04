@@ -51,6 +51,15 @@ namespace HubLearningWeb.Views
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl additionalContent;
 
         /// <summary>
+        /// closeButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button closeButton;
+
+        /// <summary>
         /// btnDetails1 control.
         /// </summary>
         /// <remarks>
@@ -202,6 +211,33 @@ namespace HubLearningWeb.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCenter;
+
+        /// <summary>
+        /// editCenterForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editCenterForm;
+
+        /// <summary>
+        /// CenterTextarea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CenterTextarea;
+
+        /// <summary>
+        /// saveButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button saveButton;
 
         /// <summary>
         /// btnEdit control.
