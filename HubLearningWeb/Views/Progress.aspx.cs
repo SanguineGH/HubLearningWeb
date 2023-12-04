@@ -282,10 +282,18 @@ namespace HubLearningWeb.Views
                 // Call the method directly without storing the result in a variable
                 RetrieveDayDetailsFromDatabase(tid, columnName);
 
+                // Call the method to check if the day has a value in the learning table
+                bool isDayComplete = IsDayComplete(tid, columnName);
+
+                // Show or hide the "Edit" and "Complete" buttons based on the result
+                btnEdit.Visible = !isDayComplete;
+                btnComplete.Visible = !isDayComplete;
+
                 // Show the lblCenter and hide the edit form
                 lblCenter.Visible = true;
                 editCenterForm.Style["display"] = "none";
 
+                // Retrieve the column value once (no need to call the method again)
                 string columnValue = RetrieveDayDetailsFromDatabase(tid, columnName);
 
                 bool isColumnEmpty = string.IsNullOrEmpty(columnValue);
@@ -294,6 +302,39 @@ namespace HubLearningWeb.Views
 
             }
         }
+
+        private bool IsDayComplete(string tid, string columnName)
+        {
+            try
+            {
+                string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Construct the query to retrieve data from the specified column
+                    string query = $"SELECT {columnName} FROM learning WHERE tid = @TID";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@TID", tid);
+
+                        object result = cmd.ExecuteScalar();
+
+                        // Check if the result is DBNull.Value before determining completeness
+                        return result != DBNull.Value;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log any exceptions to the console
+                Console.WriteLine($"Exception: {ex.Message}");
+                return false;
+            }
+        }
+
 
         private string RetrieveDayDetailsFromDatabase(string tid, string columnName)
         {
@@ -362,6 +403,16 @@ namespace HubLearningWeb.Views
                 // Retrieve the column name and transaction ID
                 string columnName = ViewState["SelectedColumnName"].ToString();
                 string tid = ViewState["SelectedTID"].ToString();
+
+                // Check if the day has a value in the learning table
+                bool isDayComplete = IsDayComplete(tid, columnName);
+
+                // If the day is complete, show an alert and return
+                if (isDayComplete)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "DayCompleteAlert", "alert('This day is already completed.');", true);
+                    return;
+                }
 
                 // Check the specific column value in the learning table
                 string columnValue = RetrieveDayDetailsFromDatabase(tid, columnName);
