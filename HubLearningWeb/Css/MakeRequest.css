@@ -140,7 +140,7 @@ input[type="radio"], input[type="checkbox"] {
 
 /* Change the font size of the BottomPart div */
 .BottomPart {
-    font-size: 12px;
+    font-size: 15px;
 }
 
 /* Add a border and shadow to the Submit button */
@@ -191,7 +191,7 @@ input[type="radio"], input[type="checkbox"] {
 
 .InfoLabel {
     margin: 5px 0;
-    font-size: 14px;
+    font-size: 20px;
     color: #333;
     color:white;
 }
