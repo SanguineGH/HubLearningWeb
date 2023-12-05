@@ -17,7 +17,7 @@
         }
             .progress-table {
         text-align: center;
-        margin: 0 auto; /* Center the table */
+        margin: 0 auto; 
         color: black;
     }
 
@@ -25,7 +25,7 @@
     overflow: auto;
 }
     .additional-content {
-        width: 80%; /* Combined width of both tables */
+        width: 80%; 
     }
         .hidden-form {
             display: none;
@@ -169,10 +169,10 @@
         <div id="hidediv" class="hidedivclass" runat="server" style="display: none; border-style: solid; height: 30%; border-width: 5px; border-color: orange; z-index: 1; position: relative;">
     <p>TEST HERE</p>
 
-    <!-- Invisible label at the middle top -->
+   
     <asp:Label ID="lblTopMiddle" runat="server" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); color: black;">Top Middle Label</asp:Label>
 
-    <!-- Invisible label at the center -->
+
     <asp:Label ID="lblCenter" runat="server" Text="Center Label" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: black;"></asp:Label>
                 <div id="editCenterForm" class="hidden-form" runat="server">
                     <asp:TextBox ID="CenterTextarea" runat="server" TextMode="MultiLine" Rows="5" Columns="40"></asp:TextBox>
@@ -180,7 +180,7 @@
                     <asp:Button ID="saveButton" runat="server" Text="Save" OnClick="Save_Click" OnClientClick="hideEditCenterForm();" />
                 </div>
 
-    <!-- Edit and Complete buttons -->
+
     <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">
         <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="edit-button" Visible="true" OnClick="Edit_Click" style="color: black;" OnClientClick="showEditCenterForm(); return false;" />
         <asp:Button ID="btnComplete" runat="server" Text="Complete" CommandName="CompleteCommand" CssClass="complete-button" OnClick="Complete_Click" Visible="true" style="color: black;" />
@@ -204,7 +204,7 @@
         function showMoreContent() {
             var additionalContent = document.getElementById("additionalContent");
             additionalContent.style.display = (additionalContent.style.display === "none") ? "block" : "none";
-            return false; // Prevent postback
+            return false; 
         }
 
         function showEditCenterForm() {
@@ -222,7 +222,7 @@
         }
 
         function showMoreContent(rowIndex) {
-            // Get the value of tid from the hidden field in the row
+            
             var tid = document.getElementById('<%= progressGridView.ClientID %>').rows[rowIndex].cells[8].innerText;
         }
     </script>

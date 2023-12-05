@@ -137,7 +137,7 @@ namespace HubLearningWeb.Views
                             int requestor = reader.GetInt32("Frid");
                             int client = reader.GetInt32("Fuid");
 
-                            // Get current session user ID (assuming it's stored in Session["UID"])
+                         
                             int tutor = Convert.ToInt32(Session["UID"]);
 
                             reader.Close();
@@ -148,7 +148,7 @@ namespace HubLearningWeb.Views
                                 insertCmd.Parameters.AddWithValue("@Requestor", requestor);
                                 insertCmd.Parameters.AddWithValue("@Client", client);
                                 insertCmd.Parameters.AddWithValue("@Tutor", tutor);
-                                insertCmd.Parameters.AddWithValue("@Days", 0); // Insert 0 into the days column
+                                insertCmd.Parameters.AddWithValue("@Days", 0); 
                                 insertCmd.Parameters.AddWithValue("@TranDate", DateTime.Now);
                                 insertCmd.Parameters.AddWithValue("@Progress", "Ongoing");
                                 insertCmd.ExecuteNonQuery();
@@ -159,7 +159,7 @@ namespace HubLearningWeb.Views
                             {
                                 int lastInsertedId = Convert.ToInt32(getLastInsertedIdCmd.ExecuteScalar());
 
-                                // Insert into the learning table using the last inserted transaction ID
+                          
                                 string insertLearningQuery = "INSERT INTO learning (tid) VALUES (@TID)";
                                 using (MySqlCommand insertLearningCmd = new MySqlCommand(insertLearningQuery, connection))
                                 {

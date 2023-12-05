@@ -11,7 +11,7 @@ namespace HubLearningWeb.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-          
+          // Ano tinitingnan mo here, walang codes hereeeee
         }
     }
 }

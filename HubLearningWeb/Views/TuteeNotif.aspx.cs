@@ -157,19 +157,18 @@ namespace HubLearningWeb.Views
                                 insertTransactionCmd.Parameters.AddWithValue("@Requestor", requestor);
                                 insertTransactionCmd.Parameters.AddWithValue("@Client", client);
                                 insertTransactionCmd.Parameters.AddWithValue("@Tutor", tutor);
-                                insertTransactionCmd.Parameters.AddWithValue("@Days", 0); // Insert 0 into the days column
+                                insertTransactionCmd.Parameters.AddWithValue("@Days", 0);
                                 insertTransactionCmd.Parameters.AddWithValue("@TranDate", DateTime.Now);
                                 insertTransactionCmd.Parameters.AddWithValue("@Progress", "Ongoing");
                                 insertTransactionCmd.ExecuteNonQuery();
                             }
 
-                            // Retrieve the ID of the last inserted transaction
+                           
                             string getLastInsertedIdQuery = "SELECT LAST_INSERT_ID()";
                             using (MySqlCommand getLastInsertedIdCmd = new MySqlCommand(getLastInsertedIdQuery, connection))
                             {
                                 int lastInsertedId = Convert.ToInt32(getLastInsertedIdCmd.ExecuteScalar());
 
-                                // Insert into the learning table using the last inserted transaction ID
                                 string insertLearningQuery = "INSERT INTO learning (tid) VALUES (@TID)";
                                 using (MySqlCommand insertLearningCmd = new MySqlCommand(insertLearningQuery, connection))
                                 {

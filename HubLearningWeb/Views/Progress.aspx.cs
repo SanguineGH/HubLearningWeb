@@ -29,24 +29,24 @@ namespace HubLearningWeb.Views
         {
             if (!IsPostBack)
             {
-                // Check if Session["UID"] is null
+                
                 if (Session["UID"] == null)
                 {
-                    // Redirect to the login page or take appropriate action
-                    Response.Redirect("Login.aspx"); // Adjust the URL accordingly
+                
+                    Response.Redirect("Login.aspx"); 
                     return;
                 }
 
                 string userRole = GetUserRole(Session["UID"].ToString());
 
-                // Disable or hide the Edit and Complete buttons if the user is in the Tutee role
+               
                 if (userRole == "Tutee")
                 {
-                    btnEdit.Style["display"] = "none"; // Hide the edit button
-                    btnComplete.Style["display"] = "none"; // Hide the complete button
+                    btnEdit.Style["display"] = "none"; 
+                    btnComplete.Style["display"] = "none"; 
                 }
 
-                // Try to get TransactionID from the query string
+             
                 tid = Request.QueryString["TransactionID"];
 
                 BindProgressGridView();
@@ -68,10 +68,10 @@ namespace HubLearningWeb.Views
                 {
                     cmd.Parameters.AddWithValue("@UID", uid);
 
-                    // Execute the query to fetch the role
+                   
                     object result = cmd.ExecuteScalar();
 
-                    // Check if a role is retrieved
+          
                     if (result != null && result != DBNull.Value)
                     {
                         userRole = result.ToString();
@@ -96,7 +96,7 @@ namespace HubLearningWeb.Views
 
                 if (sessionKey == 1)
                 {
-                    // If the session key is 1, retrieve all entries
+       
                     query = "SELECT t.tid AS TransactionID, " +
                             "CASE WHEN b.role = 'Tutor' THEN ut.name ELSE tutor.name END AS TuteeName, " +
                             "CASE WHEN b.role = 'Tutee' THEN ut.name ELSE tutor.name END AS TutorName, " +
@@ -104,7 +104,7 @@ namespace HubLearningWeb.Views
                             "CASE WHEN b.role = 'Tutee' THEN ut.studid ELSE tutor.studid END AS TutorStudentID, " +
                             "b.yearlevel AS TuteeYearLevel, b.strand AS TuteeStrand, " +
                             "b.availability AS TutorAvailability, b.location AS TutorLocation, " +
-                            "t.days, " + // Include the 'days' column
+                            "t.days, " + 
                             "t.progress " +
                             "FROM transaction t " +
                             "INNER JOIN bulletin b ON t.requestor = b.rid OR t.client = b.rid " +
@@ -113,7 +113,7 @@ namespace HubLearningWeb.Views
                 }
                 else
                 {
-                    // If the session key is not 1, retrieve entries related to the user
+                   
                     query = "SELECT t.tid AS TransactionID, " +
                             "CASE WHEN b.role = 'Tutor' THEN ut.name ELSE tutor.name END AS TuteeName, " +
                             "CASE WHEN b.role = 'Tutee' THEN ut.name ELSE tutor.name END AS TutorName, " +
@@ -121,7 +121,7 @@ namespace HubLearningWeb.Views
                             "CASE WHEN b.role = 'Tutee' THEN ut.studid ELSE tutor.studid END AS TutorStudentID, " +
                             "b.yearlevel AS TuteeYearLevel, b.strand AS TuteeStrand, " +
                             "b.availability AS TutorAvailability, b.location AS TutorLocation, " +
-                            "t.days, " + // Include the 'days' column
+                            "t.days, " +
                             "t.progress " +
                             "FROM transaction t " +
                             "INNER JOIN bulletin b ON t.requestor = b.rid OR t.client = b.rid " +
@@ -146,7 +146,7 @@ namespace HubLearningWeb.Views
 
                         foreach (DataRow row in dt.Rows)
                         {
-                            // Set the progress directly in the "Days" column
+                           
                             row.SetField("days", $"{row["days"]}/14");
                             row.SetField("progress", row["progress"].ToString());
                         }
@@ -199,16 +199,14 @@ namespace HubLearningWeb.Views
         {
             if (e.CommandName == "MoreCommand")
             {
-                // Extract the TransactionID from the CommandArgument
+                
                 tid = e.CommandArgument.ToString();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "ShowTransactionID", $"console.log('TransactionID: {tid}');", true);
 
-                // Your additional logic here based on the tid...
-                // For example, showing/hiding elements, performing actions, etc.
+            
                             hidediv.Style["display"] = "none";
 
-            // Reset lblTopMiddle and lblCenter text
             lblTopMiddle.Text = "";
             lblCenter.Text = "";
                 HtmlGenericControl additionalContent = (HtmlGenericControl)FindControl("additionalContent");
@@ -249,40 +247,40 @@ namespace HubLearningWeb.Views
         protected void Details_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "ShowTransactionID", $"console.log('TransactionID: {tid}');", true);
-            // Get the clicked button's command argument (day information)
+     
             Button clickedButton = (Button)sender;
             string dayInformation = clickedButton.CommandArgument;
 
-            // Find and display the hidediv
+
             HtmlGenericControl hidediv = (HtmlGenericControl)FindControl("hidediv");
             hidediv.Style["display"] = "block";
 
             CenterTextarea.Text = "";
 
-            // Update the top middle label with the day information
+       
             Label lblTopMiddle = (Label)hidediv.FindControl("lblTopMiddle");
             if (lblTopMiddle != null)
             {
                 lblTopMiddle.Text = dayInformation;
             }
 
-            // Check if tid has a valid value
+         
             if (!string.IsNullOrEmpty(tid))
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "ConsoleLogDetailsClick",
                     "console.log('Details_Click triggered.');", true);
-                // Extract the button number from the button ID (assuming btnDetailsX format)
+        
                 string buttonNumber = ((Button)sender).ID.Replace("btnDetails", "");
 
-                // Construct the column name based on the button number (e.g., "Day1")
+           
                 string columnName = "day" + buttonNumber;
 
                 ViewState["SelectedColumnName"] = columnName;
                 ViewState["SelectedTID"] = tid;
-                // Call the method directly without storing the result in a variable
+        
                 RetrieveDayDetailsFromDatabase(tid, columnName);
 
-                // Show the lblCenter and hide the edit form
+          
                 lblCenter.Visible = true;
                 editCenterForm.Style["display"] = "none";
 
@@ -305,52 +303,48 @@ namespace HubLearningWeb.Views
                 {
                     connection.Open();
 
-                    // Construct the query to retrieve data from the specified column
                     string query = $"SELECT {columnName} FROM learning WHERE tid = @TID";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@TID", tid);
 
-                        // Debugging: Output the constructed query to the console
                         ScriptManager.RegisterStartupScript(this, GetType(), "ConsoleLogRetrieveDay",
                             "console.log('Retrieve Day triggered.');", true);
 
-                        // Debugging: Output the parameter values to the console
                         foreach (MySqlParameter parameter in cmd.Parameters)
                         {
                             Console.WriteLine($"Parameter {parameter.ParameterName}: {parameter.Value}");
                         }
 
-                        // Attempt to execute the query and retrieve the data
                         object result = cmd.ExecuteScalar();
 
-                        // Debugging: Output the result to the console
+                    
                         Console.WriteLine($"Result: {result}");
 
                         if (result != null)
                         {
-                            // If there is a result, set the retrieved day details in lblCenter label
+                          
                             lblCenter.Text = result.ToString();
 
-                            // Show the lblCenter and hide the edit form
+                        
                             lblCenter.Visible = true;
                             editCenterForm.Style["display"] = "none";
                         }
                         else
                         {
-                            // If there is no result, log a message to the console
+                        
                             Console.WriteLine("No data found for the specified parameters.");
                         }
 
-                        // Return the result
+                
                         return result?.ToString();
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Log any exceptions to the console
+             
                 Console.WriteLine($"Exception: {ex.Message}");
                 return null;
             }
@@ -359,14 +353,14 @@ namespace HubLearningWeb.Views
         {
             if (!string.IsNullOrEmpty(ViewState["SelectedColumnName"] as string) && !string.IsNullOrEmpty(ViewState["SelectedTID"] as string))
             {
-                // Retrieve the column name and transaction ID
+           
                 string columnName = ViewState["SelectedColumnName"].ToString();
                 string tid = ViewState["SelectedTID"].ToString();
 
-                // Check the specific column value in the learning table
+             
                 string columnValue = RetrieveDayDetailsFromDatabase(tid, columnName);
 
-                // If the column has a value, hide the btnComplete; otherwise, show it
+           
                 btnEdit.Visible = string.IsNullOrEmpty(columnValue);
 
             }
@@ -376,22 +370,22 @@ namespace HubLearningWeb.Views
             string columnName = ViewState["SelectedColumnName"] as string;
             string tid = ViewState["SelectedTID"] as string;
 
-            // Get the text from the textarea
-            string newText = CenterTextarea.Text.Trim(); // Trim to remove extra spaces
+     
+            string newText = CenterTextarea.Text.Trim();
 
             if (string.IsNullOrEmpty(newText))
             {
-                // Show an alert indicating the textarea is empty
+            
                 ScriptManager.RegisterStartupScript(this, GetType(), "EmptyTextareaAlert", "alert('Text Area is empty. The details will not be saved.');", true);
-                return; // Halt the method if the textarea is empty
+                return;
             }
 
             if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(tid))
             {
-                // Update the database with the new text
+              
                 UpdateDayDetailsInDatabase(tid, columnName, newText);
 
-                // Reset the textarea after successful update
+              
                 CenterTextarea.Text = "";
             }
         }
@@ -416,32 +410,31 @@ namespace HubLearningWeb.Views
 
                         if (rowsAffected > 0)
                         {
-                            // Update successful
+                           
                             lblCenter.Text = newText;
 
                         }
                         else
                         {
-                            // Update failed
-                            // Handle failure case or show error message
+                            //Incase hindi gumana SHHSHSHSHS
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Handle exceptions
-                // Log or display error message
+                // pag inubo yung codes, dito punta
+              
             }
         }
 
         protected void Close_Click(object sender, EventArgs e)
         {
-            // Hide additional content and hidedivclass
+         
             additionalContent.Style["display"] = "none";
             hidediv.Style["display"] = "none";
 
-            // Reset lblTopMiddle and lblCenter text
+      
             lblTopMiddle.Text = "";
             lblCenter.Text = "";
 
@@ -450,30 +443,30 @@ namespace HubLearningWeb.Views
         {
             if (!string.IsNullOrEmpty(ViewState["SelectedColumnName"] as string) && !string.IsNullOrEmpty(ViewState["SelectedTID"] as string))
             {
-                // Retrieve the column name and transaction ID
+   
                 string columnName = ViewState["SelectedColumnName"].ToString();
                 string tid = ViewState["SelectedTID"].ToString();
 
                 string buttonNumber = columnName.Replace("day", "");
 
-                // Update the days column in the transaction table
+              
                 UpdateDaysInTransactionTable(tid, buttonNumber);
-                // Check the specific column value in the learning table
+            
                 string columnValue = RetrieveDayDetailsFromDatabase(tid, columnName);
 
-                // If the column has a value, hide the btnComplete; otherwise, show it
+              
                 btnComplete.Visible = string.IsNullOrEmpty(columnValue);
                 btnEdit.Visible = string.IsNullOrEmpty(columnValue);
 
 
                 if (columnName == "day14")
                 {
-                    // Update the progress column in the transaction table to "Complete"
+                 
                     UpdateProgressToComplete(tid);
                 }
                 else if (string.IsNullOrEmpty(lblCenter.Text))
                 {
-                    // If lblCenter.Text is empty, deny the action
+                 
                     ScriptManager.RegisterStartupScript(this, GetType(), "ActionDenied", "alert('Action denied.');", true);
                     return;
                 }
@@ -490,12 +483,12 @@ namespace HubLearningWeb.Views
                 {
                     connection.Open();
 
-                    // Construct the query to fetch the transaction data
+                  
                     string updateQuery = "UPDATE transaction SET days = @Days WHERE tid = @TID";
 
                     using (MySqlCommand cmd = new MySqlCommand(updateQuery, connection))
                     {
-                        // Combine the button number and "/14" to form the days value
+                    
                         string daysValue = buttonNumber;
 
                         cmd.Parameters.AddWithValue("@Days", daysValue);
@@ -505,74 +498,72 @@ namespace HubLearningWeb.Views
 
                         if (rowsAffected > 0)
                         {
-                            // Update successful
+                      
                             ScriptManager.RegisterStartupScript(this, GetType(), "DaysUpdateSuccess",
                                 $"console.log('Days updated successfully: {daysValue}');", true);
 
-                            // Fetch the DataTable from the GridView
+                       
                             DataTable dt = progressGridView.DataSource as DataTable;
 
                             if (dt != null)
                             {
-                                // Update the specific row in the DataTable
+                               
                                 foreach (DataRow row in dt.Rows)
                                 {
                                     if (row["TransactionID"].ToString() == tid)
                                     {
-                                        // Set the new days value for the specific row
+                                       
                                         row.SetField("days", daysValue);
-                                        break; // Exit the loop once the row is updated
+                                        break;
                                     }
                                 }
 
-                                // Rebind the updated DataTable to the GridView
+                               
                                 progressGridView.DataSource = dt;
                                 progressGridView.DataBind();
                             }
                         }
                         else
                         {
-                            // Update failed
-                            // Handle failure case or show error message
+                            // If for some reason di gumana yung update (DI MANGYAYARI KASI DI KO ALAM MANGYAYARI IF HINDI)
+                            
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Handle exceptions
-                // Log or display error message
+                // Pag inubo nanaman siya
             }
             BindProgressGridView();
         }
 
-        protected void GeneratePDF_Click(object sender, EventArgs e)
+        protected void GeneratePDF_Click(object sender, EventArgs e) //PANG PeDoFile creation, wag galawin 
         {
-            // Create a MemoryStream to hold the PDF
+
             using (MemoryStream ms = new MemoryStream())
             {
-                // Create a PdfWriter instance
+             
                 using (PdfWriter writer = new PdfWriter(ms))
                 {
-                    // Create a PdfDocument instance
+                 
                     using (var pdf = new PdfDocument(writer))
                     {
-                        // Create a Document instance
+                     
                         using (var document = new Document(pdf))
                         {
-                            // Add content to the document
+                            
                             document.Add(new Paragraph($"Transaction Progress Report ({DateTime.Now})").SetBold());
 
-                            // Add GridView content to the document
+                            
                             AddGridViewToDocument(document);
 
-                            // Save the document
                             document.Close();
                         }
                     }
                 }
 
-                // Save the PDF to the response stream
+              
                 Response.ContentType = "application/pdf";
                 Response.AddHeader("content-disposition", "attachment;filename=TransactionReport.pdf");
                 Response.OutputStream.Write(ms.ToArray(), 0, ms.ToArray().Length);
@@ -581,10 +572,10 @@ namespace HubLearningWeb.Views
 
         private void AddGridViewToDocument(Document document)
         {
-            // Iterate through GridView rows and add content to the document
+            
             foreach (GridViewRow row in progressGridView.Rows)
             {
-                // Extract data from GridView row
+              
                 var transactionID = row.Cells[0].Text;
                 var tuteeName = row.Cells[1].Text;
                 var tutorName = row.Cells[3].Text;
@@ -596,9 +587,9 @@ namespace HubLearningWeb.Views
                 var location = row.Cells[8].Text;
                 var days = row.Cells[9].Text;
                 var progress = row.Cells[10].Text;
-                var transactionDate = GetTransactionDate(transactionID); // Assuming you have a method to get the date
+                var transactionDate = GetTransactionDate(transactionID); 
 
-                // Add data to the document in the specified format
+              
                 var formattedData = $"Transaction ID: {transactionID} - Tutor Name: {tutorName} - Tutor StudentID: {tutorStudentID} - " +
                                     $"Tutee Name: {tuteeName} - Tutee StudentID: {tuteeStudentID} - Strand: {strand} - " +
                                     $"Year Level: {yearLevel} - Availabilities: {availabilities} - Location: {location} - " +
@@ -624,7 +615,7 @@ namespace HubLearningWeb.Views
 
                     object result = cmd.ExecuteScalar();
 
-                    // Check if the result is DBNull.Value before converting to string
+             
                     return result != DBNull.Value ? Convert.ToDateTime(result).ToString("yyyy-MM-dd") : string.Empty;
                 }
             }
