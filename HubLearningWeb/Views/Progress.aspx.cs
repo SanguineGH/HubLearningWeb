@@ -216,13 +216,11 @@ namespace HubLearningWeb.Views
 
                 if (isCurrentUserTutor)
                 {
-                    // Show buttons if the current user is the tutor for this transaction
                     btnEdit.Style["display"] = "block";
                     btnComplete.Style["display"] = "block";
                 }
                 else
                 {
-                    // Hide buttons if the current user is not the tutor for this transaction
                     btnEdit.Style["display"] = "none";
                     btnComplete.Style["display"] = "none";
                 }
@@ -287,7 +285,6 @@ namespace HubLearningWeb.Views
 
                     if (tutorID != null && tutorID.ToString() == currentUserID)
                     {
-                        // If the tutor ID from the transaction table matches the current user's ID
                         return true;
                     }
                 }
