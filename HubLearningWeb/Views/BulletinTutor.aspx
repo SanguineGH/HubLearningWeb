@@ -55,7 +55,7 @@
         <div class="Dashboard">
             <div class="IconNavigation">
                 <div class="Icon">
-                    <img src="../Medias/Images/PF_placeholder.png" class="IconImage" />
+                    <img src="../Images/NOVA.png" class="IconImage"/>
                 </div>
                 <div class="Navigation">
                     <div class="dropdown">

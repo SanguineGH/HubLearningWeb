@@ -29,57 +29,14 @@ namespace HubLearningWeb.Views
         {
             if (!IsPostBack)
             {
-                
                 if (Session["UID"] == null)
                 {
-                
-                    Response.Redirect("Login.aspx"); 
+                    Response.Redirect("Login.aspx");
                     return;
                 }
 
-                string userRole = GetUserRole(Session["UID"].ToString());
-
-               
-                if (userRole == "Tutee")
-                {
-                    btnEdit.Style["display"] = "none"; 
-                    btnComplete.Style["display"] = "none"; 
-                }
-
-             
-                tid = Request.QueryString["TransactionID"];
-
                 BindProgressGridView();
             }
-        }
-
-        private string GetUserRole(string uid)
-        {
-            string userRole = "";
-            string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "SELECT role FROM bulletin WHERE uid = @UID";
-
-                using (MySqlCommand cmd = new MySqlCommand(query, connection))
-                {
-                    cmd.Parameters.AddWithValue("@UID", uid);
-
-                   
-                    object result = cmd.ExecuteScalar();
-
-          
-                    if (result != null && result != DBNull.Value)
-                    {
-                        userRole = result.ToString();
-                    }
-                }
-            }
-
-            return userRole;
         }
 
         protected void BindProgressGridView()
@@ -251,6 +208,26 @@ namespace HubLearningWeb.Views
             Button clickedButton = (Button)sender;
             string dayInformation = clickedButton.CommandArgument;
 
+            string currentUserID = Session["UID"]?.ToString();
+
+            if (!string.IsNullOrEmpty(tid) && !string.IsNullOrEmpty(currentUserID))
+            {
+                bool isCurrentUserTutor = IsCurrentUserTutor(tid, currentUserID);
+
+                if (isCurrentUserTutor)
+                {
+                    // Show buttons if the current user is the tutor for this transaction
+                    btnEdit.Style["display"] = "block";
+                    btnComplete.Style["display"] = "block";
+                }
+                else
+                {
+                    // Hide buttons if the current user is not the tutor for this transaction
+                    btnEdit.Style["display"] = "none";
+                    btnComplete.Style["display"] = "none";
+                }
+            }
+
 
             HtmlGenericControl hidediv = (HtmlGenericControl)FindControl("hidediv");
             hidediv.Style["display"] = "block";
@@ -291,6 +268,32 @@ namespace HubLearningWeb.Views
                 btnEdit.Visible = isColumnEmpty;
 
             }
+        }
+        private bool IsCurrentUserTutor(string transactionID, string currentUserID)
+        {
+            string connectionString = "Server=localhost;Database=learninghubwebdb;Uid=root;Pwd=;";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT tutor FROM `transaction` WHERE tid = @TransactionID";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@TransactionID", transactionID);
+
+                    object tutorID = cmd.ExecuteScalar();
+
+                    if (tutorID != null && tutorID.ToString() == currentUserID)
+                    {
+                        // If the tutor ID from the transaction table matches the current user's ID
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         private string RetrieveDayDetailsFromDatabase(string tid, string columnName)

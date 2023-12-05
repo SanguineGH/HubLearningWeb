@@ -20,7 +20,7 @@
           <div class="Dashboard">
             <div class="IconNavigation">
                 <div class="Icon">
-                    <asp:Image ID="Image1" runat="server" CssClass="ImagePF" />
+                    <img src="../Images/NOVA.png" class="IconImage"/>
                 </div>
                 <div class="Navigation">
                     <div class="dropdown">

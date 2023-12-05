@@ -116,7 +116,7 @@ td {
         background-color: #c4770a;
         color: #fff;
     }
-/* Style for labels */
+
 .label {
     font-weight: bold;
     margin: 5px 0;
@@ -165,7 +165,6 @@ input[type="radio"], input[type="checkbox"] {
     margin-right: 15px;
 }
 
-/* Styling labels for better alignment */
 .label {
     display: inline-block;
     vertical-align: middle;
@@ -236,7 +235,6 @@ input[type="radio"], input[type="checkbox"] {
     .ConnectButton:hover {
         background-color: saddlebrown;
     }
-/* Add this CSS to your existing stylesheet or create a new CSS file */
 
 .HiddenDiv {
     display: none;

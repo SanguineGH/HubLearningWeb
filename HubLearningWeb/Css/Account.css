@@ -8,19 +8,18 @@
     margin-top: 40px;
     background-image: url('/Images/novahigh.png');
     background-repeat: no-repeat;
-    background-size: cover; /* Use cover for a better background image fit */
-    padding: 20px; /* Add some padding to the GrandHolder */
-    border-radius: 10px; /* Add border-radius for rounded corners */
+    background-size: cover;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .TopPart {
     display: flex;
     color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    justify-content: space-between; /* Distribute child elements evenly */
+    justify-content: space-between;
 }
 
-/* Add styling to the InfoHolder and ContactHolder */
 .InfoHolder,
 .ContactHolder {
     width: 40%;
@@ -31,43 +30,39 @@
     padding-top: 10px;
 }
 
-    /* Add styling to the ContactHolder h2 */
     .ContactHolder h2 {
-        margin-bottom: 0; /* Remove margin-bottom for better alignment */
+        margin-bottom: 0;
     }
 
 .ImagePF {
     display: block;
-    width: 100%; /* Make the image fill its container */
+    width: 100%;
     border-radius: 50%;
 }
 
 .BottomPart {
-    padding: 20px; /* Add more padding to the BottomPart */
+    padding: 20px;
     border: solid;
     border-color: white;
     color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: 5px 0;
     text-align: center;
-    border-radius: 10px; /* Add border-radius for rounded corners */
+    border-radius: 10px;
 }
 
-/* Style the Edit Bio button */
 #editBioForm {
     background: white;
     padding: 20px;
     border-radius: 10px;
 }
 
-/* Style the Logout button */
 .Logout {
     padding: 20px;
 }
 
-/* Style the Logout button */
 .blog {
-    width: 100%; /* Make the button fill its container */
+    width: 100%;
     height: 50px;
-    border-radius: 5px; /* Add border-radius for rounded corners */
+    border-radius: 5px;
 }
