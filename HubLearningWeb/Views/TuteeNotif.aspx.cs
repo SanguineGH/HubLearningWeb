@@ -151,7 +151,7 @@ namespace HubLearningWeb.Views
 
                             reader.Close();
 
-                            string insertTransactionQuery = "INSERT INTO transaction (requestor, client, tutor, days, trandate) VALUES (@Requestor, @Client, @Tutor, @Days, @TranDate)";
+                            string insertTransactionQuery = "INSERT INTO transaction (requestor, client, tutor, days, trandate, progress) VALUES (@Requestor, @Client, @Tutor, @Days, @TranDate, @Progress)";
                             using (MySqlCommand insertTransactionCmd = new MySqlCommand(insertTransactionQuery, connection))
                             {
                                 insertTransactionCmd.Parameters.AddWithValue("@Requestor", requestor);
