@@ -167,7 +167,6 @@
          </div>
 
         <div id="hidediv" class="hidedivclass" runat="server" style="display: none; border-style: solid; height: 30%; border-width: 5px; border-color: orange; z-index: 1; position: relative;">
-    <p>TEST HERE</p>
 
    
     <asp:Label ID="lblTopMiddle" runat="server" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); color: black;">Top Middle Label</asp:Label>
