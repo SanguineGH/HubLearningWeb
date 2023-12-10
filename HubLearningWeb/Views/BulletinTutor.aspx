@@ -167,13 +167,7 @@
                                                 <br />
 
                                                 <asp:HiddenField ID="HiddenRid" runat="server" Value='<%# Eval("rid") %>' />
-                                                       <asp:Button ID="MoreButton" runat="server" Text="More" class="MoreButton" CssClass="more-button"
-                                                        data-pfp='<%# GetDirectLinkFromGoogleDrive(Eval("pfp").ToString()) %>'
-                                                        data-name='<%# Eval("name") %>'
-                                                        data-looking='<%# Eval("looking") %>'
-                                                        data-strand='<%# Eval("strand") %>'
-                                                        data-availability='<%# Eval("availability") %>'
-                                                        data-location='<%# Eval("location") %>' />
+                                                     
                                     <asp:Button ID="ConnectButton" runat="server" Text="Connect" class="ConnectButton"
                                         OnClientClick='<%# "return showConnectConfirmation(" + Eval("rid") + ");" %>'
                                         OnClick="ConnectNow_Click"
@@ -181,6 +175,7 @@
                                             </div>
                                             <div class="CardInfo">
                                                 <asp:Label ID="CardName" runat="server" Text='<%# Eval("name") %>' class="label"></asp:Label>
+                                                <asp:Label ID="CardContact" runat="server" Text='<%# Eval("contact") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardTeaching" runat="server" Text='<%# Eval("looking") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardStrand" runat="server" Text='<%# Eval("strand") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardAvailability" runat="server" Text='<%# Eval("availability") %>' class="label"></asp:Label>

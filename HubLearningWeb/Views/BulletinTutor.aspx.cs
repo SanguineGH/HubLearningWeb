@@ -81,7 +81,7 @@ namespace HubLearningWeb.Views
                 List<string> selectedAvailability = GetSelectedCheckboxes("availGroup");
                 List<string> selectedLocations = GetSelectedCheckboxes("locGroup");
 
-                string query = "SELECT b.rid, u.uid, u.name, u.pfp, b.looking, b.strand, b.availability, b.location FROM bulletin b JOIN users u ON b.uid = u.uid WHERE b.looking = 'Tutor' AND b.visibility = ''";
+                string query = "SELECT b.rid, u.uid, u.name, u.pfp, b.looking, b.strand, b.availability, b.location, u.contact FROM bulletin b JOIN users u ON b.uid = u.uid WHERE b.looking = 'Tutor' AND b.visibility = ''";
 
                 if (!string.IsNullOrEmpty(selectedStrand))
                 {
