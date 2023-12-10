@@ -167,13 +167,6 @@
                                                 <br />
 
                                                 <asp:HiddenField ID="HiddenRid" runat="server" Value='<%# Eval("rid") %>' />
-                                                       <asp:Button ID="MoreButton" runat="server" Text="More" class="MoreButton" CssClass="more-button"
-                                                        data-pfp='<%# GetDirectLinkFromGoogleDrive(Eval("pfp").ToString()) %>'
-                                                        data-name='<%# Eval("name") %>'
-                                                        data-looking='<%# Eval("looking") %>'
-                                                        data-strand='<%# Eval("strand") %>'
-                                                        data-availability='<%# Eval("availability") %>'
-                                                        data-location='<%# Eval("location") %>' />
                                     <asp:Button ID="ConnectButton" runat="server" Text="Connect" class="ConnectButton"
                                         OnClientClick='<%# "return showConnectConfirmation(" + Eval("rid") + ");" %>'
                                         OnClick="ConnectNow_Click"
@@ -181,7 +174,8 @@
                                             </div>
                                             <div class="CardInfo">
                                                 <asp:Label ID="CardName" runat="server" Text='<%# Eval("name") %>' class="label"></asp:Label>
-                                                <asp:Label ID="CardTeaching" runat="server" Text='<%# Eval("looking") %>' class="label"></asp:Label>
+                                                <asp:Label ID="CardContact" runat="server" Text='<%# Eval("contact") %>' class="label"></asp:Label>
+                                                <asp:Label ID="CardTeaching" runat="server" Text='<%# "looking for " + Eval("looking") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardStrand" runat="server" Text='<%# Eval("strand") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardAvailability" runat="server" Text='<%# Eval("availability") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardLocation" runat="server" Text='<%# Eval("location") %>' class="label"></asp:Label>
@@ -195,59 +189,11 @@
                 </div>
             </div>
         </div>
-        <div id="detailsModal" class="HiddenDiv">
-            <span class="close" onclick="hideDetails()">&times;</span>
-            <asp:Image ID="pfpImageModal" runat="server" />
-            <br />
-            <br />
-            <asp:Label ID="nameLabelModal" runat="server" Text="Name: "></asp:Label>
-            <br />
-            <asp:Label ID="lookingLabelModal" runat="server" Text="Looking For: "></asp:Label>
-            <br />
-            <asp:Label ID="strandLabelModal" runat="server" Text="Strand: "></asp:Label>
-            <br />
-            <asp:Label ID="availLabelModal" runat="server" Text="Availability: "></asp:Label>
-            <br />
-            <asp:Label ID="locLabelModal" runat="server" Text="Location: "></asp:Label>
-            <br />
-      
-        </div>
         </form>
     <script type="text/javascript">
     function showConnectConfirmation(rid) {
         return confirm('Are you sure you want to connect now?');
     }
-  document.addEventListener("DOMContentLoaded", function () {
-            var buttons = document.querySelectorAll(".more-button");
-            buttons.forEach(function (button) {
-                button.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    var pfp = this.getAttribute("data-pfp");
-                    var name = this.getAttribute("data-name");
-                    var looking = this.getAttribute("data-looking");
-                    var strand = this.getAttribute("data-strand");
-                    var availability = this.getAttribute("data-availability");
-                    var location = this.getAttribute("data-location");
-                    showDetails(pfp, name, looking, strand, availability, location);
-                });
-            });
-        });
-
-        function showDetails(pfp, name, looking, strand, availability, location) {
-            document.getElementById("pfpImageModal").src = pfp;
-            document.getElementById("nameLabelModal").innerHTML = "Name: " + name;
-            document.getElementById("nameLabelModal").innerHTML = "Name: " + name;
-            document.getElementById("lookingLabelModal").innerHTML = "Looking For: " + looking;
-            document.getElementById("strandLabelModal").innerHTML = "Strand: " + strand;
-            document.getElementById("availLabelModal").innerHTML = "Availability: " + availability;
-            document.getElementById("locLabelModal").innerHTML = "Location: " + location;
-            document.getElementById("detailsModal").style.display = "block";
-            return false;
-        }
-
-        function hideDetails() {
-            document.getElementById("detailsModal").style.display = "none";
-        }
     </script>
 </body>
 </html>
