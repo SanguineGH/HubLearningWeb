@@ -175,7 +175,7 @@
                                             <div class="CardInfo">
                                                 <asp:Label ID="CardName" runat="server" Text='<%# Eval("name") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardContact" runat="server" Text='<%# Eval("contact") %>' class="label"></asp:Label>
-                                                <asp:Label ID="CardTeaching" runat="server" Text='<%# "looking for " + Eval("looking") %>' class="label"></asp:Label>
+                                                <asp:Label ID="CardTeaching" runat="server" Text='<%# "Looking for " + Eval("looking") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardStrand" runat="server" Text='<%# Eval("strand") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardAvailability" runat="server" Text='<%# Eval("availability") %>' class="label"></asp:Label>
                                                 <asp:Label ID="CardLocation" runat="server" Text='<%# Eval("location") %>' class="label"></asp:Label>
